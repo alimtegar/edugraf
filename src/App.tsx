@@ -18,11 +18,11 @@ const App = () => {
         logger: (m: WorkerLog) => console.log(m)
     });
 
-    const recognize = async (imgUrl: string) => {
+    const recognize = async (image: string) => {
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
-        const { data: { text } }: Tesseract.RecognizeResult = await worker.recognize(imgUrl);
+        const { data: { text } }: Tesseract.RecognizeResult = await worker.recognize(image);
 
         console.log(text);
         setResultText(text);
@@ -38,10 +38,10 @@ const App = () => {
                 ref={(ref) => setCanvasRef(ref)}
             />
 
-            {/* {canvasRef && canvasRef.toDataURL()} */}
-
-            {/* {() => recognize(canvasRef.toDataURL())} */}
-            <button {...canvasRef ? { onClick: () => recognize(canvasRef.toDataURL()), } : { disabled: true, }} >
+            <button {...canvasRef ? 
+                { onClick: () => recognize(canvasRef.toDataURL() /* Convert canvas content to data URL */ ), } 
+                : { disabled: true, }} 
+            >
                 recognize
             </button>
 
