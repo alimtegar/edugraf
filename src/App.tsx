@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Tesseract, { createWorker } from 'tesseract.js';
 import SignatureCanvas from 'react-signature-canvas'
+import { FaArrowLeft } from 'react-icons/fa';
 
 // Components
+import Navbar from './components/Navbar';
 import Button from './components/Button';
 import OutlineButton from './components/OutlineButton';
 
@@ -37,14 +39,16 @@ const App = () => {
     return (
         <div className="App">
             <div className="flex flex-col h-screen">
+                <Navbar />
+
                 <div className="flex flex-grow justify-center items-center w-full">
                     <span className="text-8xl font-extrabold">
                         Aa
                     </span>
                 </div>
 
-                <div className="flex-none h-1/2 px-3">
-                    <div className="h-full border-black border-2 rounded-xl">
+                <div className="flex-none h-1/3 px-3">
+                    <div className="h-full border-black border-3 rounded-xl">
                         <SignatureCanvas
                             penColor='red'
                             minWidth={8}
@@ -65,9 +69,10 @@ const App = () => {
                         height={16}
                         borderWidth="none"
                         borderRadius="full"
+                        center={true}
                         onClick={() => canvasRef?.clear()}
                     >
-                        OK
+                        <FaArrowLeft size="1.25rem" />
                     </OutlineButton>
                     <div className="flex-grow">
                         <Button
@@ -79,7 +84,7 @@ const App = () => {
                             height={16}
                             borderRadius="full"
                         >
-                            Recognize
+                            Selanjutnya
                     </Button>
                     </div>
                     {/* <OutlineButton

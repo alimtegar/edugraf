@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "sibisa",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "react-scripts": "4.0.2",
     "react-signature-canvas": "^1.0.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
