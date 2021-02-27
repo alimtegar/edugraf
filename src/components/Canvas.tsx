@@ -70,7 +70,6 @@ const Canvas = ({ canvasRef, setCanvasRef }: Props) => {
                                 tool.onClick();
 
                                 if (tool.isActivable) {
-                                    console.log(key);
                                     setActiveToolKey(key);
                                 }
 
