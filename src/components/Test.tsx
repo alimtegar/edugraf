@@ -29,13 +29,11 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
 
     // Effect
     useEffect(() => {
-        axios.get('http://localhost:8000/tests/' + id)
-            .then((res: AxiosResponse<any>) => {
-                console.log({ res });
-                setTest(res.data);
-            })
+        // http://localhost:8000/
+        axios.get(`${process.env.REACT_APP_API_URL}tests/${id}`)
+            .then((res: AxiosResponse<any>) => setTest(res.data))
             .catch((err: any) => console.log(err));
-    }, []);
+    }, [id]);
 
     // Functions
     const check = () => {
@@ -57,9 +55,9 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
         }
     };
 
-    const answer = () => {
-        // ...
-    }
+    // const answer = () => {
+    //     // ...
+    // }
 
     return (
         <div className="flex flex-col flex-grow bg-green-500 w-screen">
