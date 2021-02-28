@@ -49,12 +49,16 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
                     setIsChecking(false);                       // Set checking status to false
                     canvasRef.clear()                           // Clear canvas
 
-                    if (test && page + 1 < test?.question_count) {
+                    if (test && page + 1 <= test?.question_count) {
                         history.push(`/tests/${id}/${page + 1}`);   // Navigate to next page
                     }
                 })
                 .catch((err) => console.log(err));
         }
+    };
+
+    const answer = () => {
+        // ...
     }
 
     return (
@@ -94,7 +98,7 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
                             h={12}
                             borderR="full"
                         >
-                            Submit
+                            Jawab
                         </Button>
                     )}
                 </div>
