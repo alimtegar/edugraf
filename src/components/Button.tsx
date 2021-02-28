@@ -1,7 +1,15 @@
 import { ButtonHTMLAttributes } from 'react';
 
-// Types
-import ButtonProps from '../types/ButtonProps';
+type Props = {
+    bgColor?: string,
+    bgColorOn?: string,
+    textColor?: string,
+    textColorOn?: string,
+    w: number | string,
+    h: number | string,
+    borderR?: string,
+    center?: boolean,
+};
 
 const Button = ({ 
     children, 
@@ -14,7 +22,7 @@ const Button = ({
     borderR = 'lg', 
     center = false, 
     ...props 
-}: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) => (
+}: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
         className={`
             ${center ? 'flex justify-center items-center' : ''}

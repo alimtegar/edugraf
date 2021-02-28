@@ -1,43 +1,73 @@
-import SignatureCanvas from 'react-signature-canvas'
+import { useState, useEffect } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
+import SignatureCanvas from 'react-signature-canvas';
+import Tesseract, { recognize } from 'tesseract.js';
 
 // Components
+import TestPagination from './TestPagination';
 import Canvas from './Canvas';
 import Button from './Button';
 
-type Props = {
-    recognize: (image: string) => Promise<void>,
-    canvasRef: SignatureCanvas | null,
-    setCanvasRef: React.Dispatch<React.SetStateAction<SignatureCanvas | null>>,
+// Types
+import Test from '../types/Test';
+
+type MatchParams = {
+    id?: string | undefined;
+    page?: string | undefined;
 }
 
-const TestProgress = () => {
-    return (
-        <div>
-            <ol className="flex grid grid-cols-5">
-                <li className="bg-red-500 h-0.75"></li>
-                <li className="relative bg-red-500 border-red-500 h-0.75">
-                    {/* <span className="absolute top-0.75 left-1/2 transform -translate-x-1/2 border-transparent border-12" style={{ borderTopColor: 'inherit', }}></span> */}
-                    <span className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 bg-red-500 w-3 h-3 rounded-full" style={{ borderTopColor: 'inherit', }}></span>
-                </li>
-                <li className="bg-white h-0.75"></li>
-                <li className="bg-white h-0.75"></li>
-                <li className="bg-white h-0.75"></li>
-            </ol>
-        </div>
-    );
-}
+const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => {
+    const { params: { id, page: initPage } } = match;
+    const page = initPage ? parseInt(initPage) - 1 : 0;
 
-const Test = ({recognize, canvasRef, setCanvasRef}: Props) => {
+    // States
+    const [canvasRef, setCanvasRef] = useState<SignatureCanvas | null>(null);
+    const [test, setTest] = useState<Test | null>(null);
+    const [isChecking, setIsChecking] = useState<boolean>(false);
+
+    // Effect
+    useEffect(() => {
+        axios.get('http://localhost:8000/tests/' + id)
+            .then((res: AxiosResponse<any>) => {
+                console.log({ res });
+                setTest(res.data);
+            })
+            .catch((err: any) => console.log(err));
+    }, []);
+
+    // Functions
+    const check = () => {
+        setIsChecking(true);
+
+        if (canvasRef) {
+            recognize(canvasRef.toDataURL())
+                .then(({ data: { text } }: Tesseract.RecognizeResult) => {
+                    alert(`(This alert just demo and just temporary) \n\n Question: ${test?.attempted_test_questions[page].test_question.question} \n Answer: ${text} \n Is Corrent? \n ${text.trim() === 'A'}`);
+
+                    setIsChecking(false);                       // Set checking status to false
+                    canvasRef.clear()                           // Clear canvas
+
+                    if (test && page + 2 < test?.question_count) {
+                        history.push(`/tests/${id}/${page + 2}`);   // Navigate to next page
+                    }
+                })
+                .catch((err) => console.log(err));
+        }
+    }
+
     return (
         <div className="flex flex-col flex-grow bg-green-500 w-screen">
-            <TestProgress  />
+            <TestPagination active={page} count={test?.question_count} />
 
             <div className="flex flex-col flex-grow px-3">
                 <div className="flex flex-col flex-grow justify-center items-center w-full">
                     <span className="flex justify-center items-center bg-white w-32 h-32 text-7xl font-extrabold mb-6 rounded-xl">
-                        A
-                        </span>
-                    <p className="text-white text-center">Tulislah huruf <strong>A</strong> dengan <strong>Kanvas</strong> <br />dibawah ini.</p>
+                        {test ? test?.attempted_test_questions[page].test_question.question : "?"}
+                    </span>
+                    <p className="text-white text-center">
+                        Tulislah huruf <strong>{test ? test?.attempted_test_questions[page].test_question.question : "?"}</strong> dengan <strong>Kanvas</strong> <br />dibawah ini.
+                    </p>
                 </div>
 
                 <div className="mb-3">
@@ -49,17 +79,23 @@ const Test = ({recognize, canvasRef, setCanvasRef}: Props) => {
                 </div>
 
                 <div className="mb-3">
-                    <Button
-                        {...canvasRef ?
-                            { onClick: () => recognize(canvasRef.toDataURL() /* Convert canvas content to data URL */), }
-                            : { disabled: true, }
-                        }
-                        w="full"
-                        h={12}
-                        borderR="full"
-                    >
-                        Submit
-                    </Button>
+                    {isChecking ? (
+                        <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-full" disabled>
+                            Loading...
+                        </button>
+                    ) : (
+                        <Button
+                            {...canvasRef ?
+                                { onClick: () => check() }
+                                : { disabled: true, }
+                            }
+                            w="full"
+                            h={12}
+                            borderR="full"
+                        >
+                            Submit
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>
@@ -67,4 +103,4 @@ const Test = ({recognize, canvasRef, setCanvasRef}: Props) => {
     )
 };
 
-export default Test;
+export default withRouter(TestComponent);
