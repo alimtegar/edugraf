@@ -8,7 +8,6 @@ type ButtonProps = {
     w: number | string,
     h: number | string,
     borderR?: string,
-    borderW?: number | string,
     center?: boolean,
 };
 
