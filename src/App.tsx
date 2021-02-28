@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react';
-// import Tesseract from 'tesseract.js';
-import SignatureCanvas from 'react-signature-canvas'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
 } from "react-router-dom";
 
 // Components
@@ -17,17 +15,22 @@ const App = () => {
             <div className="flex flex-col min-h-screen">
                 <Navbar />
                 <Switch>
+                    {/* Remove this if homepage has been created */}
+                    <Redirect 
+                        exact
+                        from="/" 
+                        to="/tests/1/1" 
+                    />
+                    {/*  */}
+                    <Redirect 
+                        exact
+                        from="/tests/:id" 
+                        to="/tests/:id/1" 
+                    />
                     <Route
                         exact
                         path="/tests/:id/:page"
-                        render={(props: any) => (
-                            <Test
-                                // recognize={recognize}
-                                // canvasRef={canvasRef}
-                                // setCanvasRef={setCanvasRef}
-                                {...props}
-                            />
-                        )}
+                        render={(props: any) => (<Test {...props} />)}
                     />
                 </Switch>
             </div>

@@ -19,7 +19,8 @@ type MatchParams = {
 
 const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { id, page: initPage } } = match;
-    const page = initPage ? parseInt(initPage) - 1 : 0;
+    const page: number = initPage ? parseInt(initPage) : 1;
+    const iQuestion: number = page - 1;
 
     // States
     const [canvasRef, setCanvasRef] = useState<SignatureCanvas | null>(null);
@@ -43,13 +44,13 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
         if (canvasRef) {
             recognize(canvasRef.toDataURL())
                 .then(({ data: { text } }: Tesseract.RecognizeResult) => {
-                    alert(`(This alert just demo and just temporary) \n\n Question: ${test?.attempted_test_questions[page].test_question.question} \n Answer: ${text} \n Is Corrent? \n ${text.trim() === 'A'}`);
+                    alert(`(This alert just demo and just temporary) \n\n Question: ${test?.attempted_test_questions[iQuestion].test_question.question} \n Answer: ${text} \n Is Corrent? \n ${text.trim() === 'A'}`);
 
                     setIsChecking(false);                       // Set checking status to false
                     canvasRef.clear()                           // Clear canvas
 
-                    if (test && page + 2 < test?.question_count) {
-                        history.push(`/tests/${id}/${page + 2}`);   // Navigate to next page
+                    if (test && page + 1 < test?.question_count) {
+                        history.push(`/tests/${id}/${page + 1}`);   // Navigate to next page
                     }
                 })
                 .catch((err) => console.log(err));
@@ -63,10 +64,10 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
             <div className="flex flex-col flex-grow px-3">
                 <div className="flex flex-col flex-grow justify-center items-center w-full">
                     <span className="flex justify-center items-center bg-white w-32 h-32 text-7xl font-extrabold mb-6 rounded-xl">
-                        {test ? test?.attempted_test_questions[page].test_question.question : "?"}
+                        {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
                     </span>
                     <p className="text-white text-center">
-                        Tulislah huruf <strong>{test ? test?.attempted_test_questions[page].test_question.question : "?"}</strong> dengan <strong>Kanvas</strong> <br />dibawah ini.
+                        Tulislah huruf <strong>{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong>Kanvas</strong> <br />dibawah ini.
                     </p>
                 </div>
 
