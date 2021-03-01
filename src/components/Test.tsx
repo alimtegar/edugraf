@@ -3,6 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import SignatureCanvas from 'react-signature-canvas';
 import Tesseract, { recognize } from 'tesseract.js';
+// import * as worker from 'tesseract.js/dist/worker.min';
 
 // Components
 import TestPagination from './TestPagination';
@@ -29,7 +30,6 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
 
     // Effect
     useEffect(() => {
-        // http://localhost:8000/
         axios.get(`${process.env.REACT_APP_API_URL}tests/${id}`)
             .then((res: AxiosResponse<any>) => setTest(res.data))
             .catch((err: any) => console.log(err));
@@ -40,9 +40,14 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
         setIsChecking(true);
 
         if (canvasRef) {
-            recognize(canvasRef.toDataURL())
-                .then(({ data: { text } }: Tesseract.RecognizeResult) => {
-                    alert(`(This alert just demo and just temporary) \n\n Question: ${test?.attempted_test_questions[iQuestion].test_question.question} \n Answer: ${text} \n Is Corrent? \n ${text.trim() === 'A'}`);
+            recognize(canvasRef.toDataURL(), undefined, {
+                workerPath: '/workers/tesseract.js/worker.min.js',
+                workerBlobURL: false,
+              })
+                .then(({ data: { text: initText } }: Tesseract.RecognizeResult) => {
+                    const text = initText.trim();
+
+                    alert(`(This alert just demo and just temporary) \n\n Question: ${test?.attempted_test_questions[iQuestion].test_question.question} \n Answer: ${text} \n Is Corrent? \n ${text === test?.attempted_test_questions[iQuestion].test_question.question}`);
 
                     setIsChecking(false);                       // Set checking status to false
                     canvasRef.clear()                           // Clear canvas
