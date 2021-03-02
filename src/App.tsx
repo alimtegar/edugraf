@@ -7,6 +7,7 @@ import {
 
 // Components
 import Navbar from './components/Navbar';
+import Home from './components/Home';
 import Test from './components/Test';
 
 const App = () => {
@@ -16,12 +17,11 @@ const App = () => {
                 <Navbar />
                 <Switch>
                     {/* Remove this if homepage has been created */}
-                    <Redirect 
-                        exact
-                        from="/" 
-                        to="/tests/1/1" 
+                    <Route 
+                        exact 
+                        path="/"
+                        render={() => (<Home />)} 
                     />
-                    {/*  */}
                     <Redirect 
                         exact
                         from="/tests/:id" 
