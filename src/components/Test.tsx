@@ -65,21 +65,24 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
     // }
 
     return (
-        <div className="flex flex-col flex-grow bg-green-500 w-screen">
+        <div className="flex flex-col flex-grow bg-blue-100 w-screen">
             <TestPagination active={page} count={test?.question_count} />
 
             <div className="flex flex-col flex-grow px-3">
                 <div className="flex flex-col flex-grow justify-center items-center w-full">
-                    <span className="flex justify-center items-center bg-white w-32 h-32 text-7xl font-extrabold mb-6 rounded-xl">
+                    <span className="flex justify-center items-center bg-white w-32 h-32 text-7xl font-extrabold mb-6 rounded-xl shadow-sm">
                         {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
                     </span>
-                    <p className="text-white text-center">
-                        Tulislah huruf <strong>{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong>Kanvas</strong> <br />dibawah ini.
+                    <p className="text-blue-900 text-center font-semibold">
+                        Tulislah huruf <strong className="font-bold">{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong className="font-bold">Kanvas</strong> <br />dibawah ini.
                     </p>
                 </div>
 
                 <div className="mb-3">
                     <Canvas
+                        bgColor="blue-200"
+                        bgColorOn="transparent" // Change this
+                        textColor="blue-900"
                         h={72}
                         canvasRef={canvasRef}
                         setCanvasRef={setCanvasRef}
