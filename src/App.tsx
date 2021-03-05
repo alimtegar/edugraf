@@ -8,6 +8,8 @@ import {
 // Components
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Characters from './components/Characters';
+import Character from './components/Character';
 import Test from './components/Test';
 
 const App = () => {
@@ -16,12 +18,29 @@ const App = () => {
             <div className="flex flex-col w-screen min-h-screen overflow-hidden">
                 <Navbar />
                 <Switch>
-                    {/* Remove this if homepage has been created */}
                     <Route 
                         exact 
                         path="/"
                         render={() => (<Home />)} 
                     />
+                    <Route 
+                        exact 
+                        path="/chars/:charType/:char"
+                        render={(props: any) => (<Character {...props} />)} 
+                    />
+                    <Route 
+                        exact 
+                        path="/chars/:charType"
+                        render={(props: any) => (<Characters {...props} />)} 
+                    />
+                    
+                    {/*  */}
+                    <Redirect 
+                        exact
+                        from="/tests" 
+                        to="/tests/1/1" 
+                    />
+                    {/*  */}
                     <Redirect 
                         exact
                         from="/tests/:id" 

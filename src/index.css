@@ -25,3 +25,7 @@ a {
 .font-handwriting {
     font-family: 'Caveat', 'Nunito', sans-serif;
 }
+
+.aspect-1 {
+    aspect-ratio: 1;
+}

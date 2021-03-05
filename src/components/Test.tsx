@@ -6,6 +6,7 @@ import Tesseract, { recognize } from 'tesseract.js';
 // import * as worker from 'tesseract.js/dist/worker.min';
 
 // Components
+import Frame from './Frame';
 import TestPagination from './TestPagination';
 import Canvas from './Canvas';
 import Button from './Button';
@@ -43,7 +44,7 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
             recognize(canvasRef.toDataURL(), undefined, {
                 workerPath: '/workers/tesseract.js/worker.min.js',
                 workerBlobURL: false,
-              })
+            })
                 .then(({ data: { text: initText } }: Tesseract.RecognizeResult) => {
                     const text = initText.trim();
 
@@ -65,53 +66,55 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
     // }
 
     return (
-        <div className="flex flex-col flex-grow bg-blue-100 w-screen">
+        <div className="flex flex-col flex-grow bg-blue-200 w-screen">
             <TestPagination active={page} count={test?.question_count} />
 
-            <div className="flex flex-col flex-grow px-3">
-                <div className="flex flex-col flex-grow justify-center items-center w-full">
-                    <span className="flex justify-center items-center bg-white w-32 h-32 text-7xl font-extrabold mb-6 rounded-xl shadow-sm">
+            <main className="flex flex-grow flex-col justify-between">
+                <section className="flex flex-col justify-center items-center w-full p-12">
+                    <Frame size={28}>
                         {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
-                    </span>
-                    <p className="text-blue-900 text-center font-semibold">
-                        Tulislah huruf <strong className="font-bold">{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong className="font-bold">Kanvas</strong> <br />dibawah ini.
+                    </Frame>
+                    <p className="text-blue-900 text-center text-sm mt-6 font-semibold">
+                        Tulislah huruf <strong className="font-bold">{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
-                </div>
+                </section>
 
-                <div className="mb-3">
-                    <Canvas
-                        bgColor="blue-200"
-                        bgColorOn="transparent" // Change this
-                        textColor="blue-900"
-                        h={72}
-                        canvasRef={canvasRef}
-                        setCanvasRef={setCanvasRef}
-                    />
-                </div>
-
-                <div className="mb-3">
-                    {isChecking ? (
-                        <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-full" disabled>
-                            Loading...
-                        </button>
-                    ) : (
-                        <Button
-                            {...canvasRef ?
-                                { onClick: () => check() }
-                                : { disabled: true, }
-                            }
-                            w="full"
-                            h={12}
-                            borderR="full"
-                        >
-                            Jawab
-                        </Button>
-                    )}
-                </div>
-            </div>
+                <section className="mt-auto px-3 pb-3">
+                    <div className="mb-3">
+                        <Canvas
+                            bgColor="blue-50"
+                            bgColorOn="transparent" // Change this
+                            textColor="blue-900"
+                            h={64}
+                            canvasRef={canvasRef}
+                            setCanvasRef={setCanvasRef}
+                        />
+                    </div>
+                    <div>
+                        {isChecking ? (
+                            <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-full" disabled>
+                                Loading...
+                            </button>
+                        ) : (
+                            <Button
+                                {...canvasRef ?
+                                    { onClick: () => check() }
+                                    : { disabled: true, }
+                                }
+                                w="full"
+                                h={12}
+                                borderR="full"
+                            >
+                                Jawab
+                            </Button>
+                        )}
+                    </div>
+                </section>
+            </main>
         </div>
-
     )
 };
+
+
 
 export default withRouter(TestComponent);
