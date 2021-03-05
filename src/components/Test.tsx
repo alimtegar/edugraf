@@ -70,7 +70,7 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
             <TestPagination active={page} count={test?.question_count} />
 
             <main className="flex flex-grow flex-col justify-between">
-                <section className="flex flex-col justify-center items-center w-full p-12">
+                <section className="flex flex-col justify-center items-center w-full p-11">
                     <Frame size={28}>
                         {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
                     </Frame>
@@ -79,8 +79,8 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
                     </p>
                 </section>
 
-                <section className="mt-auto px-3 pb-3">
-                    <div className="mb-3">
+                <section className="mt-auto px-4 pb-4">
+                    <div className="mb-4">
                         <Canvas
                             bgColor="blue-50"
                             bgColorOn="transparent" // Change this

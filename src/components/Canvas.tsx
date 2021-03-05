@@ -44,11 +44,11 @@ const Canvas = ({ bgColor = 'white', bgColorOn = 'gray-300', textColor = 'bleck'
 
     return (
         <div className={`flex flex-col bg-white h-${h} rounded-lg shadow-sm overflow-hidden`}>
-            <div className={`flex justify-end items-center bg-${bgColor} p-1.5`}>
-                <strong className={`text-${textColor} ml-3 mr-auto`}>Kanvas</strong>
+            <div className={`flex justify-end items-center bg-${bgColor} p-1`}>
+                <strong className={`text-${textColor} ml-4 mr-auto`}>Kanvas</strong>
 
                 {tools.map((tool, key) => (
-                    <span className="ml-1.5" key={Math.random()}>
+                    <span key={Math.random()}>
                         <Button
                             w={10}
                             h={10}

@@ -9,8 +9,12 @@ module.exports = {
       top: {
         '0.75': '3px',
       },
+      width: {
+        '10.5': '42px',
+      },
       height: {
         '0.75': '3px',
+        '10.5': '42px',
         '90': '360px',
       },
       padding: {

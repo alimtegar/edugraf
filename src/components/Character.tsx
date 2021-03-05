@@ -25,7 +25,7 @@ const Character = () => {
     return (
         <main className="flex flex-grow flex-col bg-blue-200">
             <div className="h-0.75"></div>
-            <section className="flex flex-col justify-center items-center w-full px-12 py-12">
+            <section className="flex flex-col justify-center items-center w-full px-11 py-11">
                 <Frame size={28}>A</Frame>
                 <p className="text-blue-900 text-sm text-center font-semibold mt-6">Ketahui cara penulisan dan pengucupan dari huruf <strong className="font-bold">A</strong> di bawah ini.</p>
             </section>
@@ -41,7 +41,7 @@ const Character = () => {
 
 
 
-            <div className="text-blue-900 mt-auto px-3 pb-3">
+            <div className="text-blue-900 mt-auto px-4 pb-4">
                 {/* <div className="flex justify-between items-center mb-3"> */}
                 {/* <h2 className="font-bold leading-snug"> */}
                 {/* Menu */}
@@ -63,7 +63,7 @@ const Character = () => {
                     </Button>
                 </div> */}
 
-                <div className="grid grid-cols-2 gap-1.5 mb-3">
+                <div className="grid grid-cols-2 gap-2 mb-4">
                     {menu.map((menuItem, i) => (
                         <CharacterMenuItemComponent {...menuItem} key={i} />
                     ))}
