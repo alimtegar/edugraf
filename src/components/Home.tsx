@@ -15,14 +15,14 @@ const Home = () => {
                     title: 'Tabel Huruf',
                     description: 'Tabel huruf dan cara penulisannya',
                     icon: (<img src="/icons/blocks.svg" className="h-14" alt="icon" />),
-                    to: '/chars/letters',
+                    to: '/characters/letters',
                 },
-                // {
-                //     title: 'Tabel Angka',
-                //     description: 'Tabel angka dan cara penulisannya',
-                //     icon: (<img src="/icons/blocks.svg" className="h-14" alt="icon" />),
-                //     to: '/chars/letters',
-                // },
+                {
+                    title: 'Tabel Angka',
+                    description: 'Tabel angka dan cara penulisannya',
+                    icon: (<img src="/icons/blocks.svg" className="h-14" alt="icon" />),
+                    to: '/characters/letters',
+                },
             ],
         },
         {
@@ -64,7 +64,7 @@ const Home = () => {
                                 <strong className="font-bold">{menuItem.subMenu.length}</strong> Item
                             </span> */}
                         </div>
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className="grid grid-cols-1 gap-2">
                             {menuItem.subMenu.map((subMenuItem, i) => (
                                 <Link to={subMenuItem.to} key={i}>
                                     <HomeSubMenuItem {...subMenuItem} />

@@ -1,19 +1,23 @@
 type Props = {
     children: React.ReactNode,
-    size: number,
+    size: number | string,
+    textSize: string,
+    rounded: string,
 };
 
-const Frame = ({ children, size }: Props) => {
+const Frame = ({ children, size, textSize, rounded }: Props) => {
     return (
         <span className={`
             flex 
             justify-center 
             items-center 
             bg-white 
-            text-7xl font-extrabold
+            text-black
+            text-${textSize}
+            font-extrabold
             aspect-1
             w-${size} 
-            rounded-xl 
+            rounded-${rounded}
             shadow-sm
         `}>
             {children}
@@ -22,3 +26,6 @@ const Frame = ({ children, size }: Props) => {
 };
 
 export default Frame;
+
+// 7xl 
+// xl

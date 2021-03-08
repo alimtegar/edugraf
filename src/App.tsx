@@ -25,12 +25,12 @@ const App = () => {
                     />
                     <Route 
                         exact 
-                        path="/chars/:charType/:char"
+                        path="/characters/:characterType/:character"
                         render={(props: any) => (<Character {...props} />)} 
                     />
                     <Route 
                         exact 
-                        path="/chars/:charType"
+                        path="/characters/:characterType"
                         render={(props: any) => (<Characters {...props} />)} 
                     />
                     

@@ -71,7 +71,7 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
 
             <main className="flex flex-grow flex-col justify-between">
                 <section className="flex flex-col justify-center items-center w-full p-11">
-                    <Frame size={28}>
+                    <Frame size={28} textSize="6xl" rounded="xl">
                         {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
                     </Frame>
                     <p className="text-blue-900 text-center text-sm mt-6 font-semibold">
@@ -104,6 +104,7 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
                                 w="full"
                                 h={12}
                                 borderR="full"
+                                shadow="sm"
                             >
                                 Jawab
                             </Button>

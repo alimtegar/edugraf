@@ -9,18 +9,20 @@ type Props = {
     h: number | string,
     borderR?: string,
     center?: boolean,
+    shadow?: string,
 };
 
 const Button = ({ 
     children, 
-    bgColor = 'red-500', 
-    bgColorOn = 'red-600',
+    bgColor = 'pink-500', 
+    bgColorOn = 'pink-600',
     textColor = 'white', 
     textColorOn = 'white',
     w, 
     h, 
     borderR = 'lg', 
     center = false, 
+    shadow = 'none',
     ...props 
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
@@ -36,6 +38,7 @@ const Button = ({
             active:text-${textColorOn}
             font-extrabold
             rounded-${borderR}
+            shadow-${shadow}
             focus:outline-none
         `}
         {...props}

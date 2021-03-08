@@ -1,7 +1,22 @@
-import { Link } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
-const Characters = () => {
-    const letters: string = "abcdefghijklmnopqrstuvwxyz";
+// Components
+import Frame from './Frame';
+
+type MatchParams = {
+    characterType?: string | undefined;
+}
+
+
+
+const Characters = ({ match }: RouteComponentProps<MatchParams>) => {
+    const { params: { characterType, } } = match;
+    let characters: string = "";
+
+    switch(characterType) {
+        case 'letters': characters = 'abcdefghijklmnopqrstuvwxyz'; break;
+        case 'numbers': characters = '1234567890'; break;
+    }
 
     return (
         <div className="flex-grow bg-blue-200 text-blue-900">
@@ -9,11 +24,11 @@ const Characters = () => {
                 <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
             </div>
             <div className="grid grid-cols-4 gap-2 p-4">
-                {letters.split('').map((letter, i) => (
-                    <Link to={`/chars/letters/${letter}`} key={i}>
-                        <div className="flex justify-center items-center bg-white text-4xl font-extrabold w-full h-full rounded-lg shadow-sm" style={{ aspectRatio: "1/1" }}>
-                            {letter.toUpperCase()}
-                        </div>
+                {characters && characters.split('').map((character, i) => (
+                    <Link to={`/characters/letters/${character}`} key={i}>
+                        <Frame size="full" textSize="4xl" rounded="lg">
+                            {character.toUpperCase()}
+                        </Frame>
                     </Link>
                 ))}
             </div>
