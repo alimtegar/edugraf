@@ -29,3 +29,11 @@ a {
 .aspect-1 {
     aspect-ratio: 1;
 }
+
+.slick-slider {
+    position: unset;
+}
+
+.slick-slider .slick-list {
+    overflow: unset;
+}

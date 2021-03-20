@@ -4,16 +4,15 @@ import { RouteComponentProps, Link } from 'react-router-dom';
 import Frame from './Frame';
 
 type MatchParams = {
-    characterType?: string | undefined;
+    category?: string | undefined;
 }
 
-
-
 const Characters = ({ match }: RouteComponentProps<MatchParams>) => {
-    const { params: { characterType, } } = match;
+    const { params: { category, } } = match;
     let characters: string = "";
 
-    switch(characterType) {
+    switch(category) {
+        case 'symbols': characters = '+-*/=^()[]{}<>|&:;?!'; break;
         case 'letters': characters = 'abcdefghijklmnopqrstuvwxyz'; break;
         case 'numbers': characters = '1234567890'; break;
     }
@@ -25,7 +24,7 @@ const Characters = ({ match }: RouteComponentProps<MatchParams>) => {
             </div>
             <div className="grid grid-cols-4 gap-2 p-4">
                 {characters && characters.split('').map((character, i) => (
-                    <Link to={`/characters/letters/${character}`} key={i}>
+                    <Link to={`/characters/category/letters/${character}`} key={i}>
                         <Frame size="full" textSize="4xl" rounded="lg">
                             {character.toUpperCase()}
                         </Frame>
