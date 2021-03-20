@@ -1,6 +1,5 @@
 type CharacterMenu = {
     title: string,
-    description: string,
     icon: any,
 };
 

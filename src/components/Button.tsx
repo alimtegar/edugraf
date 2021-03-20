@@ -12,18 +12,18 @@ type Props = {
     shadow?: string,
 };
 
-const Button = ({ 
-    children, 
-    bgColor = 'pink-500', 
+const Button = ({
+    children,
+    bgColor = 'pink-500',
     bgColorOn = 'pink-600',
-    textColor = 'white', 
+    textColor = 'white',
     textColorOn = 'white',
-    w, 
-    h, 
-    borderR = 'lg', 
-    center = false, 
+    w,
+    h,
+    borderR = 'full',
+    center = false,
     shadow = 'none',
-    ...props 
+    ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
         className={`
@@ -34,6 +34,7 @@ const Button = ({
             xhover:bg-${bgColorOn}
             active:bg-${bgColorOn}
             text-${textColor}
+            text-sm
             hover:text-${textColorOn}
             active:text-${textColorOn}
             font-extrabold

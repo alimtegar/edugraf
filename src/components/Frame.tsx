@@ -12,13 +12,13 @@ const Frame = ({ children, size, textSize, rounded }: Props) => {
             justify-center 
             items-center 
             bg-white 
-            text-black
             text-${textSize}
+            text-gray-900
             font-extrabold
             aspect-1
             w-${size} 
             rounded-${rounded}
-            shadow-sm
+            shadow-default
         `}>
             {children}
         </span>

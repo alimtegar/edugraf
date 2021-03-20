@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import Slider from "react-slick";
+
 
 // Components
 import HomeSubMenuItem from './HomeSubMenuItem';
@@ -11,6 +13,12 @@ const Home = () => {
         {
             title: 'Materi Belajar',
             subMenu: [
+                {
+                    title: 'Tabel Simbol',
+                    description: 'Tabel huruf dan cara penulisannya',
+                    icon: (<img src="/icons/blocks.svg" className="h-14" alt="icon" />),
+                    to: '/characters/letters',
+                },
                 {
                     title: 'Tabel Huruf',
                     description: 'Tabel huruf dan cara penulisannya',
@@ -49,7 +57,7 @@ const Home = () => {
                 {/* Profile Name */}
                 <p className="text-sm font-semibold">Selamat datang,</p>
                 <h1 className="text-lg font-bold leading-snug">
-                    Alim Tegar
+                    John Doe
                 </h1>
             </header>
 
@@ -64,7 +72,7 @@ const Home = () => {
                                 <strong className="font-bold">{menuItem.subMenu.length}</strong> Item
                             </span> */}
                         </div>
-                        <div className="grid grid-cols-1 gap-2">
+                        <div className="grid grid-cols-1 gap-4">
                             {menuItem.subMenu.map((subMenuItem, i) => (
                                 <Link to={subMenuItem.to} key={i}>
                                     <HomeSubMenuItem {...subMenuItem} />

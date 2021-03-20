@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import SignatureCanvas from 'react-signature-canvas';
 import Tesseract, { recognize } from 'tesseract.js';
-// import * as worker from 'tesseract.js/dist/worker.min';
+import { FaVolumeUp } from 'react-icons/fa';
 
 // Components
 import Frame from './Frame';
@@ -71,20 +71,25 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
 
             <main className="flex flex-grow flex-col justify-between">
                 <section className="flex flex-col justify-center items-center w-full p-11">
-                    <Frame size={28} textSize="6xl" rounded="xl">
-                        {test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}
-                    </Frame>
+                    <div className="relative">
+                        <Frame size={28} textSize="6xl" rounded="xl">
+                            {test ? test?.attempted_test_questions[iQuestion].test_question.question : "X"}
+                        </Frame>
+                        <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
+                            <Button w={11} h={11} center shadow="md">
+                                <FaVolumeUp size="0.83rem" />
+                            </Button>
+                        </span>
+                    </div>
                     <p className="text-blue-900 text-center text-sm mt-6 font-semibold">
-                        Tulislah huruf <strong className="font-bold">{test ? test?.attempted_test_questions[iQuestion].test_question.question : "?"}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        Tulislah huruf <strong className="font-bold">{test ? test?.attempted_test_questions[iQuestion].test_question.question : "X"}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 
                 <section className="mt-auto px-4 pb-4">
                     <div className="mb-4">
                         <Canvas
-                            bgColor="blue-50"
-                            bgColorOn="transparent" // Change this
-                            textColor="blue-900"
+
                             h={64}
                             canvasRef={canvasRef}
                             setCanvasRef={setCanvasRef}
@@ -104,9 +109,9 @@ const TestComponent = ({ match, history }: RouteComponentProps<MatchParams>) => 
                                 w="full"
                                 h={12}
                                 borderR="full"
-                                shadow="sm"
+                                shadow="default"
                             >
-                                Jawab
+                                Kirim Jawaban
                             </Button>
                         )}
                     </div>

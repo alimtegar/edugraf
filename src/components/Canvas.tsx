@@ -8,8 +8,10 @@ import Button from './Button';
 
 type Props = {
     bgColor?: string,
-    bgColorOn?: string,
+    btnBgColorOn?: string,
     textColor?: string,
+    btnTextColorOn?: string,
+    btnShadow?: string,
     h: number,
     canvasRef: SignatureCanvas | null,
     setCanvasRef: React.Dispatch<React.SetStateAction<SignatureCanvas | null>>,
@@ -21,42 +23,53 @@ type CanvasTool = {
     isActivable: boolean,
 };
 
-const Canvas = ({ bgColor = 'white', bgColorOn = 'gray-300', textColor = 'bleck', h, canvasRef, setCanvasRef }: Props) => {
+const Canvas = ({ 
+    bgColor = 'white', 
+    textColor = 'blue-900', 
+    btnBgColorOn = 'blue-50', 
+    btnTextColorOn = 'blue-900', 
+    btnShadow = 'none', 
+    h, 
+    canvasRef, 
+    setCanvasRef 
+}: Props) => {
     const [penColor, setPenColor] = useState<'black' | 'white'>('black');
     const [activeToolKey, setActiveToolKey] = useState<number>(2);
     const tools: CanvasTool[] = [
         {
             onClick: () => canvasRef?.clear(),
-            icon: (<FaTrash color="inherit" size="1rem" />),
+            icon: (<FaTrash color="inherit" size="0.83rem" />),
             isActivable: false,
         },
         {
             onClick: () => setPenColor('white'),
-            icon: (<FaEraser color="inherit" size="1rem" />),
+            icon: (<FaEraser color="inherit" size="0.83rem" />),
             isActivable: true,
         },
         {
             onClick: () => setPenColor('black'),
-            icon: (<FaPen color="inherit" size="1rem" />),
+            icon: (<FaPen color="inherit" size="0.83rem" />),
             isActivable: true,
         },
     ];
 
     return (
-        <div className={`flex flex-col bg-white h-${h} rounded-lg shadow-sm overflow-hidden`}>
-            <div className={`flex justify-end items-center bg-${bgColor} p-1`}>
-                <strong className={`text-${textColor} ml-4 mr-auto`}>Kanvas</strong>
+        <div className={`flex flex-col bg-white h-${h} rounded-lg shadow-default overflow-hidden`}>
+            <div className={`flex justify-end items-center bg-${bgColor} p-1.5`}>
+                <strong className={`text-${textColor} text-sm ml-2.5 mr-auto`}>Kanvas</strong>
 
                 {tools.map((tool, key) => (
                     <span key={Math.random()}>
                         <Button
                             w={10}
                             h={10}
-                            bgColor={key === activeToolKey ? bgColorOn : 'transparent'}
-                            bgColorOn={bgColorOn}
-                            textColor={textColor}
-                            borderR="lg"
+                            bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
+                            bgColorOn={btnBgColorOn}
+                            textColor={key === activeToolKey ? btnTextColorOn : textColor}
+                            textColorOn={btnTextColorOn}
+                            borderR="md"
                             center={true}
+                            shadow={key === activeToolKey ? btnShadow : 'none'}
                             onClick={() => {
                                 tool.onClick();
 

@@ -6,7 +6,7 @@ import { default as Props } from '../types/HomeSubMenuItem';
 
 const HomeSubMenuItemComponent = ({ title, description, icon }: Props) => {
     return (
-        <div className="group flex flex-col rounded-lg shadow-sm overflow-hidden">
+        <div className="group flex flex-col rounded-lg shadow-default overflow-hidden">
             <div className="flex justify-between items-center bg-blue-200 py-6 px-6">
                 <h2 className="text-lg font-bold">{title}</h2>
                 {icon}
