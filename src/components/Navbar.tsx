@@ -1,27 +1,20 @@
+import { Link } from 'react-router-dom';
 
-import {Link} from 'react-router-dom';
-// import { FaChevronLeft } from 'react-icons/fa';
-// import { ImHome } from 'react-icons/im';
-
-// Components
-import Button from './Button';
-
-const Navbar = () => {
-    return (
-        <nav className="flex justify-between items-center bg-blue-200 text-blue-900 h-14 p-1">
-            <Button bgColor="transparent" textColor="blue-900" w={10} h={10} center>
-                {/* <FaChevronLeft size="1rem" className="transform -translate-y-0.25" /> */}
-            </Button>
-            
-            <Link to="/" className="font-handwriting font-semibold text-2xl transform -translate-y-0.5">
-                Sibisa
-            </Link>
-
-            <Button bgColor="transparent" textColor="blue-900" w={10} h={10} center>
-                {/* <ImHome size="1rem" className="transform -translate-y-0.25" /> */}
-            </Button>
-        </nav>
-    );
+type Props = {
+    leftButton?: JSX.Element
+    rightButton?: JSX.Element
 };
+
+const Navbar = ({ leftButton, rightButton }: Props) => (
+    <nav className="flex justify-between items-center bg-blue-200 text-blue-900 h-14 p-1">
+        {leftButton ? leftButton : (<span className="w-11" />)}
+
+        <Link to="/" className="font-handwriting font-semibold text-2xl">
+            Sibisa
+        </Link>
+
+        {rightButton ? rightButton : (<span className="w-11" />)}
+    </nav>
+);
 
 export default Navbar;

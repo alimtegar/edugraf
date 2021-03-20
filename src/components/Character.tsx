@@ -1,5 +1,6 @@
+import Navbar from './Navbar';
 import { RouteComponentProps } from 'react-router-dom';
-import { FaVolumeUp, FaPen } from 'react-icons/fa';
+import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 
 // Types
 import CharacterMenuItem from '../types/CharacterMenuItem';
@@ -13,7 +14,7 @@ type MatchParams = {
     character?: string | undefined;
 }
 
-const Character = ({ match }: RouteComponentProps<MatchParams>) => {
+const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { character, } } = match;
 
     const menu: CharacterMenuItem[] = [
@@ -24,6 +25,20 @@ const Character = ({ match }: RouteComponentProps<MatchParams>) => {
 
     return (
         <main className="flex flex-grow flex-col bg-blue-200">
+            <Navbar leftButton={(
+                <Button
+                    bgColor="transparent"
+                    bgColorOn="blue-300"
+                    textColor="blue-900"
+                    textColorOn="blue-900"
+                    w={11}
+                    h={11}
+                    center
+                    onClick={history.goBack}
+                >
+                    <FaChevronLeft size="0.83rem" />
+                </Button>)}
+            />
             {/* Space */}
             <div className="h-0.75"></div>
             {/*  */}

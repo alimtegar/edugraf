@@ -1,3 +1,4 @@
+// Types
 import { ButtonHTMLAttributes } from 'react';
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
     shadow?: string,
 };
 
-const Button = ({
+const ButtonComponent = ({
     children,
     bgColor = 'pink-500',
     bgColorOn = 'pink-600',
@@ -48,4 +49,4 @@ const Button = ({
     </button>
 );
 
-export default Button;
+export default ButtonComponent;

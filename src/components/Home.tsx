@@ -1,3 +1,5 @@
+import Navbar from './Navbar';
+
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
 import HomeSubMenu from './HomeSubMenu';
@@ -51,10 +53,11 @@ const Home = () => {
             ],
         },
     ];
-    
+
 
     return (
         <div className="flex-grow bg-blue-50">
+            <Navbar />
             <header className="flex justify-center items-center bg-blue-200 text-blue-900 pt-4 pb-8 rounded-b-3xl shadow">
                 {/* Profile Photo */}
                 <div className="bg-gray-200 w-24 h-24 mr-4 border-3 border-white rounded-full shadow-sm overflow-hidden">
