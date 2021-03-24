@@ -3,7 +3,6 @@ import { FaChevronLeft } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
-import Button from './Button';
 import Frame from './Frame';
 
 type MatchParams = {

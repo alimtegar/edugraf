@@ -27,7 +27,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     useEffect(() => {
         axios.get('http://localhost:8000/stages/category/' + category)
             .then((res) => setStages(res.data))
-            .catch((err) => console.log(err));
+            .catch((err) => console.error(err));
     }, [category])
 
     return (
