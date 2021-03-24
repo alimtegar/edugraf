@@ -1,6 +1,6 @@
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import axios from 'axios';
-import Rate from 'rc-rate';
+// import Rate from 'rc-rate';
 
 // Types
 import Stage from '../types/Stage';
