@@ -23,6 +23,7 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
                 textColorOn="blue-900"
                 w={11}
                 h={11}
+                borderR="md"
                 center
                 onClick={leftButton.onClick}
             >
@@ -42,6 +43,7 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
                 textColorOn="blue-900"
                 w={11}
                 h={11}
+                borderR="md"
                 center
                 onClick={rightButton.onClick}
             >

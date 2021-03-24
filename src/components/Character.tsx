@@ -35,7 +35,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             <div className="h-0.75"></div>
             {/*  */}
 
-            <section className="flex flex-col justify-center items-center w-full px-11 py-11">
+            <section className="flex flex-col justify-center items-center w-full p-10">
                 <Frame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</Frame>
                 <p className="text-blue-900 text-sm text-center font-semibold mt-6">Pelajari lebih lengkap tentang huruf <strong className="font-bold">A</strong> dengan menu di bawah ini.</p>
             </section>

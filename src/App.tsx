@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Characters from './components/Characters';
 import Character from './components/Character';
 import Stages from './components/Stages';
+import AttemptedQuestion from './components/AttemptedQuestion';
 
 const App = () => {
     return (
@@ -37,6 +38,12 @@ const App = () => {
                         exact 
                         path="/stages/category/:category"
                         render={(props: any) => (<Stages {...props} />)} 
+                    />
+                    {/* Attempted Stage Page */}
+                    <Route 
+                        exact 
+                        path="/attempted-stages/:attemptedStageId/attempted-questions/n/:n"
+                        render={(props: any) => (<AttemptedQuestion {...props} />)} 
                     />
                 </Switch>
             </div>

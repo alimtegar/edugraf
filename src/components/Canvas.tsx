@@ -55,8 +55,8 @@ const Canvas = ({
 
     return (
         <div className={`flex flex-col bg-white h-${h} rounded-lg shadow-default overflow-hidden`}>
-            <div className={`flex justify-end items-center bg-${bgColor} p-1.5`}>
-                <strong className={`text-${textColor} text-sm ml-2.5 mr-auto`}>Kanvas</strong>
+            <div className={`flex justify-end items-center bg-${bgColor} p-2 border-b-3 border-blue-50`}>
+                <strong className={`text-${textColor} text-sm ml-3 mr-auto`}>Kanvas</strong>
 
                 {tools.map((tool, key) => (
                     <span key={Math.random()}>
