@@ -8,6 +8,7 @@ import {
 import Home from './components/Home';
 import Characters from './components/Characters';
 import Character from './components/Character';
+import Stages from './components/Stages';
 
 const App = () => {
     return (
@@ -20,7 +21,7 @@ const App = () => {
                         path="/"
                         render={() => (<Home />)} 
                     />
-                    {/* Character Page */}
+                    {/* Characters Page */}
                     <Route 
                         exact 
                         path="/characters/category/:category/:character"
@@ -30,6 +31,12 @@ const App = () => {
                         exact 
                         path="/characters/category/:category"
                         render={(props: any) => (<Characters {...props} />)} 
+                    />
+                    {/* Stages Page */}
+                    <Route 
+                        exact 
+                        path="/stages/category/:category"
+                        render={(props: any) => (<Stages {...props} />)} 
                     />
                 </Switch>
             </div>

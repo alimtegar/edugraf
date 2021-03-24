@@ -73,7 +73,23 @@ const Home = () => {
                 </div>
             </header>
 
+            {/* <section className="grid gap-4 p-4">
+                <div className="bg-blue-200 h-12 rounded-lg shadow">
+
+                </div>
+                <div className="bg-blue-200 h-12 rounded-lg shadow">
+
+                </div>
+                <div className="bg-blue-200 h-12 rounded-lg shadow">
+
+                </div>
+            </section> */}
+
             <section className="grid grid-cols-1 gap-4 px-4 py-4">
+                {/* <div>
+                    Senam
+                </div> */}
+
                 {menu.map((menuItem, i) => (
                     <div className="text-blue-900" key={i}>
                         <div className="flex justify-between items-center mb-4">
