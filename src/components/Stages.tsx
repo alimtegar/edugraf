@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
-import Rate from 'rc-rate';
-import 'rc-rate/assets/index.css';
 import axios from 'axios';
+
+// Styles
+import 'rc-rate/assets/index.css';
 
 // Components
 import Navbar from './Navbar';
-import Button from './Button';
 import StagesComponent from './Stage';
 
 // Types
@@ -32,19 +32,11 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
 
     return (
         <div className="flex-grow bg-blue-200 text-blue-900">
-            <Navbar leftButton={(
-                <Button
-                    bgColor="transparent"
-                    bgColorOn="blue-300"
-                    textColor="blue-900"
-                    textColorOn="blue-900"
-                    w={11}
-                    h={11}
-                    center
-                    onClick={history.goBack}
-                >
-                    <FaChevronLeft size="0.83rem" />
-                </Button>)}
+            <Navbar
+                leftButton={{
+                    onClick: history.goBack,
+                    icon: <FaChevronLeft size="0.83rem" />
+                }}
             />
 
             <section className="grid gap-2 p-4">

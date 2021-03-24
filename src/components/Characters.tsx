@@ -22,20 +22,13 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
 
     return (
         <div className="flex-grow bg-blue-200 text-blue-900">
-            <Navbar leftButton={(
-                <Button
-                    bgColor="transparent"
-                    bgColorOn="blue-300"
-                    textColor="blue-900"
-                    textColorOn="blue-900"
-                    w={11}
-                    h={11}
-                    center
-                    onClick={history.goBack}
-                >
-                    <FaChevronLeft size="0.83rem" />
-                </Button>)}
+            <Navbar
+                leftButton={{
+                    onClick: history.goBack,
+                    icon: <FaChevronLeft size="0.83rem" />
+                }}
             />
+
             <div className="text-center py-4 px-6 pb-6">
                 <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
             </div>

@@ -25,19 +25,11 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
 
     return (
         <main className="flex flex-grow flex-col bg-blue-200">
-            <Navbar leftButton={(
-                <Button
-                    bgColor="transparent"
-                    bgColorOn="blue-300"
-                    textColor="blue-900"
-                    textColorOn="blue-900"
-                    w={11}
-                    h={11}
-                    center
-                    onClick={history.goBack}
-                >
-                    <FaChevronLeft size="0.83rem" />
-                </Button>)}
+            <Navbar
+                leftButton={{
+                    onClick: history.goBack,
+                    icon: <FaChevronLeft size="0.83rem" />
+                }}
             />
             {/* Space */}
             <div className="h-0.75"></div>
