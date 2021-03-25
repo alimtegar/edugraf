@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import SignatureCanvas from 'react-signature-canvas';
@@ -29,13 +29,6 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
     const [attemptedQuestion, setAttemptedQuestion] = useState<AttemptedQuestion | null>(null);
     const [isChecking, setIsChecking] = useState<boolean>(false);
 
-    // Effect
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${attemptedStageId}/attempted-questions/n/${n}`)
-            .then((res) => setAttemptedQuestion(res.data))
-            .catch((err) => console.log(err));
-    }, [attemptedStageId, n]);
-
     // Functions
     const check = () => {
         setIsChecking(true);
@@ -45,25 +38,56 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
                 workerPath: '/workers/tesseract.js/worker.min.js',
                 workerBlobURL: false,
             })
-                .then(({ data: { text: initText } }: Tesseract.RecognizeResult) => {
-                    const text = initText.trim();
-
-                    alert(`(This alert just demo and just temporary) \n\n Question: ${attemptedQuestion?.question.question} \n Answer: ${text} \n Is Corrent? \n ${text === attemptedQuestion?.question.question}`);
-
-                    setIsChecking(false);                       // Set checking status to false
-                    canvasRef.clear()                           // Clear canvas
-
-                    if (attemptedQuestion && n + 1 <= attemptedQuestion?.attempted_stage.stage.question_count) {
-                        history.push(`/tests/${attemptedStageId}/${n + 1}`);   // Navigate to next n
-                    }
-                })
+                .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))
                 .catch((err) => console.log(err));
         }
     };
 
-    // const answer = () => {
-    //     // ...
-    // }
+    const answer = (answer: string) => {
+        axios.put(`${process.env.REACT_APP_API_URL}/attempted-questions/${attemptedQuestion?.id}`, {
+            answer: answer,
+        })
+            .then(() => {
+                setIsChecking(false);
+                next(!!(attemptedQuestion && n + 1 <= attemptedQuestion?.attempted_stage.stage.question_count), n + 1);
+
+                canvasRef?.clear()
+            })
+            .catch((err) => {
+                setIsChecking(false);
+                console.error(err);
+            });
+    }
+
+    const next = useCallback((condition: boolean, nextN: number) => {
+        const nextPath = condition
+            ? `/attempted-stages/${attemptedStageId}/attempted-questions/n/${nextN}`
+            : `/attempted-stages/${attemptedStageId}`;
+
+        history.push(nextPath);
+    }, [history, attemptedStageId]);
+
+    // Effect
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${attemptedStageId}/attempted-questions/n/${n}`)
+            .then((res) => {
+                const initAttemptedQuestion: AttemptedQuestion = res.data;
+                
+                // If attempted question is answered
+                if (initAttemptedQuestion.answer) {
+                    // Get number from other unanswered attempted questions
+                    const unansweredOtherN = initAttemptedQuestion.attempted_stage.attempted_questions.findIndex((other) => !other.answer) + 1;
+
+                    next(!!(unansweredOtherN), unansweredOtherN);
+                } else {
+                    setAttemptedQuestion(initAttemptedQuestion);
+                }
+            })
+            .catch((err) => {                 
+                console.error(err);
+                history.push('/404');
+            });
+    }, [history, next, attemptedStageId, n]);
 
     return (
         <div className="flex flex-col flex-grow bg-blue-200 w-screen">
