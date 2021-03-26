@@ -21,7 +21,7 @@ const ButtonComponent = ({
     textColorOn = 'white',
     w,
     h,
-    borderR = 'full',
+    borderR = 'lg',
     center = false,
     shadow = 'none',
     ...props

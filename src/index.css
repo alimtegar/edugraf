@@ -30,10 +30,37 @@ a {
     aspect-ratio: 1;
 }
 
+
+/* Slick Slider */
+
 .slick-slider {
     position: unset;
 }
 
 .slick-slider .slick-list {
     overflow: unset;
+}
+
+.slick-slider .slick-list .slick-slide>div {
+    display: flex;
+}
+
+
+/* RC Rate */
+
+.rc-rate-star {
+    color: #fff;
+    filter: drop-shadow(1px 3px 0 rgba(0, 0, 0, 0.1));
+}
+
+.rc-rate-star:focus,
+.rc-rate-star [role='radio']:focus {
+    outline: none;
+}
+
+.rc-rate-star-half .rc-rate-star-first,
+.rc-rate-star-full .rc-rate-star-second,
+.rc-rate-star-half:hover .rc-rate-star-first,
+.rc-rate-star-full:hover .rc-rate-star-second {
+    color: rgba(236, 72, 153);
 }

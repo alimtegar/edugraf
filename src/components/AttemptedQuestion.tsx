@@ -101,12 +101,12 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
                             {attemptedQuestion ? attemptedQuestion?.question.question : '?'}
                         </Frame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
-                            <Button w={11} h={11} center shadow="md">
+                            <Button w={11} h={11} center borderR="full" shadow="md">
                                 <FaVolumeUp size="0.83rem" />
                             </Button>
                         </span>
                     </div>
-                    <p className="text-blue-900 text-center text-sm mt-6 font-semibold">
+                    <p className="text-blue-900 text-center text-sm mt-8 font-semibold leading-none">
                         Tulislah huruf <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : '?'}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
@@ -122,7 +122,7 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
                     </div>
                     <div>
                         {isChecking ? (
-                            <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-full" disabled>
+                            <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-lg" disabled>
                                 Loading...
                             </button>
                         ) : (
@@ -133,7 +133,6 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
                                 }
                                 w="full"
                                 h={12}
-                                borderR="full"
                                 shadow="default"
                             >
                                 Kirim Jawaban

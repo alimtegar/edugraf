@@ -14,7 +14,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     let characters: string = "";
 
     switch (category) {
-        case 'symbols': characters = '+-×/✓=^()[]{}<>|&:;?!~*'; break;
+        case 'symbols': characters = '+-×/=^<:;~*?!>()[]{}|&'; break; //✓
         case 'letters': characters = 'abcdefghijklmnopqrstuvwxyz'; break;
         case 'numbers': characters = '1234567890'; break;
     }
@@ -28,13 +28,13 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 }}
             />
 
-            <div className="text-center py-4 px-6 pb-6">
+            <div className="text-center pt-2 px-12 mb-8">
                 <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
             </div>
-            <div className="grid grid-cols-4 gap-2 p-4">
+            <div className="grid grid-cols-4 gap-2 px-8">
                 {characters && characters.split('').map((character, i) => (
                     <Link to={`/characters/category/letters/${character}`} key={i}>
-                        <Frame size="full" textSize="4xl" rounded="lg">
+                        <Frame size="full" textSize="3xl" rounded="lg">
                             {character.toUpperCase()}
                         </Frame>
                     </Link>

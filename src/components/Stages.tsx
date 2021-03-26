@@ -3,9 +3,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
 
-// Styles
-import 'rc-rate/assets/index.css';
-
 // Components
 import Navbar from './Navbar';
 import StagesComponent from './Stage';
@@ -34,7 +31,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
         <div className="flex-grow bg-blue-200 text-blue-900">
             <Navbar
                 leftButton={{
-                    onClick: history.goBack,
+                    onClick: () => history.replace('/'),
                     icon: <FaChevronLeft size="0.83rem" />
                 }}
             />

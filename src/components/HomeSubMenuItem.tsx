@@ -11,9 +11,9 @@ const HomeSubMenuItemComponent = ({ title, description, icon }: Props) => {
                 <h2 className="text-lg font-bold">{title}</h2>
                 {icon}
             </div>
-            <div className="flex justify-between items-center bg-white text-gray-500 text-sm font-semibold px-6 py-3">
+            {/* <div className="flex justify-between items-center bg-white text-gray-500 text-sm font-semibold px-6 py-3">
                 {description} <FaChevronRight size="0.66rem" />
-            </div>
+            </div> */}
         </div>
     );
 }

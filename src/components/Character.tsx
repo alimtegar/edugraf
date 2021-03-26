@@ -35,21 +35,20 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             <div className="h-0.75"></div>
             {/*  */}
 
-            <section className="flex flex-col justify-center items-center w-full p-10">
+            <section className="flex flex-col justify-center items-center w-full pt-10 px-12 mb-8">
                 <Frame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</Frame>
-                <p className="text-blue-900 text-sm text-center font-semibold mt-6">Pelajari lebih lengkap tentang huruf <strong className="font-bold">A</strong> dengan menu di bawah ini.</p>
+                <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">A</strong> dengan menu di bawah ini.</p>
             </section>
-            <div className="grid grid-cols gap-2 mt-auto mb-4 px-4">
+            <div className="grid grid-cols gap-2 mb-8 px-8">
                 {menu.map((menuItem, i) => (
                     <CharacterMenuItemComponent {...menuItem} key={i} />
                 ))}
             </div>
-            <section className="px-4 mb-4">
+            <section className="px-4 mt-auto mb-4">
                 <div>
                     <Button
                         w="full"
                         h={12}
-                        borderR="full"
                         shadow="default"
                     >
                         Latihan Menulis
