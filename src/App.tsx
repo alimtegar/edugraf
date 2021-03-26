@@ -11,6 +11,7 @@ import Character from './components/Character';
 import Stages from './components/Stages';
 import AttemptedQuestion from './components/AttemptedQuestion';
 import AttemptedStage from './components/AttemptedStage';
+import NotFound from './components/NotFound';
 
 const App = () => {
     return (
@@ -51,6 +52,12 @@ const App = () => {
                         exact 
                         path="/attempted-stages/:id"
                         render={(props: any) => (<AttemptedStage {...props} />)} 
+                    />
+                    {/* 404 */}
+                    <Route 
+                        exact 
+                        path="/404"
+                        render={() => (<NotFound />)} 
                     />
                 </Switch>
             </div>
