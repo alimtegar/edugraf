@@ -3,7 +3,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
-import Frame from './Frame';
+import CharacterFrame from './CharacterFrame';
 
 type MatchParams = {
     category?: string | undefined;
@@ -34,9 +34,9 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
             <div className="grid grid-cols-4 gap-2 px-8">
                 {characters && characters.split('').map((character, i) => (
                     <Link to={`/characters/category/letters/${character}`} key={i}>
-                        <Frame size="full" textSize="3xl" rounded="lg">
+                        <CharacterFrame size="full" textSize="3xl" rounded="lg">
                             {character.toUpperCase()}
-                        </Frame>
+                        </CharacterFrame>
                     </Link>
                 ))}
             </div>

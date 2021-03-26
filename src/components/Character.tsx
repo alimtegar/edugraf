@@ -6,7 +6,7 @@ import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 import CharacterMenuItem from '../types/CharacterMenuItem';
 
 // Components
-import Frame from './Frame';
+import CharacterFrame from './CharacterFrame';
 import CharacterMenuItemComponent from './CharacterMenuItem';
 import Button from './Button';
 
@@ -36,7 +36,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             {/*  */}
 
             <section className="flex flex-col justify-center items-center w-full pt-10 px-12 mb-8">
-                <Frame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</Frame>
+                <CharacterFrame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</CharacterFrame>
                 <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">A</strong> dengan menu di bawah ini.</p>
             </section>
             <div className="grid grid-cols gap-2 mb-8 px-8">

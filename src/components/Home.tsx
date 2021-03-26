@@ -1,10 +1,9 @@
 import Navbar from './Navbar';
-import Button from './Button';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
 import HomeSubMenu from './HomeSubMenu';
-import { FaRedo, FaPlay } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [

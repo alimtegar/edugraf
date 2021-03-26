@@ -6,7 +6,7 @@ import Rate from 'rc-rate';
 // Components
 import Navbar from './Navbar';
 import Button from './Button';
-import Frame from './Frame';
+// import CharacterFrame from './CharacterFrame';
 
 // Types
 import AttemptedStage from '../types/AttemptedStage';
@@ -63,7 +63,7 @@ const AttemptedStageComponent = ({ match, history }: RouteComponentProps<MatchPa
             </section>
             <section className="grid grid-cols-5 gap-2 px-12">
                 {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
-                    // <Frame size="full" textSize="lg" rounded="lg">
+                    // <CharacterFrame size="full" textSize="lg" rounded="lg">
                     <div className={`relative flex justify-center items-center bg-white text-body text-lg font-extrabold p-2 rounded-lg shadow`} key={attemptedQuestion.id}>
 
                         {/* <div className="flex justify-center items-center bg-pink-500 text-white h-full aspect-1 mr-2 rounded-lg shadow-md">
@@ -81,7 +81,7 @@ const AttemptedStageComponent = ({ match, history }: RouteComponentProps<MatchPa
                             </sub>
                         </span>
                     </div>
-                    // </Frame>
+                    // </CharacterFrame>
                 ))}
             </section>
             <section className="px-4 mt-auto mb-4">

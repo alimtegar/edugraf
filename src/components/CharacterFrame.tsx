@@ -5,7 +5,7 @@ type Props = {
     rounded: string,
 };
 
-const Frame = ({ children, size, textSize, rounded }: Props) => {
+const CharacterFrame = ({ children, size, textSize, rounded }: Props) => {
     return (
         <span className={`
             flex 
@@ -25,7 +25,4 @@ const Frame = ({ children, size, textSize, rounded }: Props) => {
     );
 };
 
-export default Frame;
-
-// 7xl 
-// xl
+export default CharacterFrame;

@@ -7,8 +7,8 @@ import { FaVolumeUp } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
-import Frame from './Frame';
-import TestPagination from './TestPagination';
+import CharacterFrame from './CharacterFrame';
+import AttemptedQuestionProgress from './AttemptedQuestionProgress';
 import Canvas from './Canvas';
 import Button from './Button';
 
@@ -92,14 +92,14 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
     return (
         <div className="flex flex-col flex-grow bg-blue-200 w-screen">
             <Navbar />
-            <TestPagination active={n} count={attemptedQuestion?.attempted_stage.stage.question_count} />
+            <AttemptedQuestionProgress active={n} count={attemptedQuestion?.attempted_stage.stage.question_count} />
 
             <main className="flex flex-grow flex-col justify-between">
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
-                        <Frame size={28} textSize="6xl" rounded="xl">
+                        <CharacterFrame size={28} textSize="6xl" rounded="xl">
                             {attemptedQuestion ? attemptedQuestion?.question.question : '?'}
-                        </Frame>
+                        </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
                             <Button w={11} h={11} center borderR="full" shadow="md">
                                 <FaVolumeUp size="0.83rem" />
