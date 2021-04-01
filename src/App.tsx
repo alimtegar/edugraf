@@ -3,6 +3,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 // Components
 import Home from './components/Home';
@@ -67,6 +68,7 @@ const App = () => {
                         render={() => (<Register />)} 
                     />
                 </Switch>
+                <ToastContainer />
             </div>
         </Router>
     );

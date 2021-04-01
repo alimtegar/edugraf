@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css';
 import 'rc-rate/assets/index.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

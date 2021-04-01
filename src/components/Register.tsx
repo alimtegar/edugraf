@@ -1,32 +1,76 @@
 import { useState } from 'react';
-import { FaBars, FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt } from 'react-icons/fa';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 // Components
 import Navbar from './Navbar';
 import Input from './Input';
 import Button from './Button';
+import ButtonLoading from './ButtonLoading';
+
+// Types
+type RegisterForm = {
+    name: string,
+    email: string,
+    password: string,
+    password_confirmation: string,
+};
 
 const Register = () => {
     // States
-    const [form, setForm] = useState({
-        full_name: '',
+    const initForm: RegisterForm = {
+        name: '',
         email: '',
         password: '',
-        confirm_password: '',
-    });
+        password_confirmation: '',
+    };
+    const [form, setForm] = useState<RegisterForm>(initForm);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
+    // Functions
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsLoading(true);
+        
+        axios.post(`${process.env.REACT_APP_API_URL}/register`, form)
+            .then((res) => {
+                toast.success(res.data.detail, {
+                    position: "top-center",
+                    autoClose: 10000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setIsLoading(false);
+                setForm(initForm);
+            })
+            .catch((err) => {
+                console.error(err);
+                toast.error(err.response.data.detail, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+                setIsLoading(false);
+            });
     }
 
     return (
         <div className="flex-grow bg-blue-50">
             <Navbar
                 leftButton={{
-                    icon: <FaSignInAlt size="0.83rem" />,
+                    icon: <FaSignInAlt size="1rem" />,
                     onClick: () => { }
                 }}
             />
@@ -34,16 +78,21 @@ const Register = () => {
                 <h1 className="text-lg font-bold leading-snug mb-2">
                     Daftar Sekarang!
                 </h1>
-                <p className="text-sm font-semibold">Daftar sekarang dan mulai belajar dengan Sibisa.</p>
+                <p className="text-sm font-semibold">Daftar sekarang dan mulai belajar dengan berbagai fitur Sibisa.</p>
             </header>
             <section className="text-gray-900 px-4">
-                <form className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md">
+                <form
+                    className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
+                    onSubmit={(e) => handleSubmit(e)}
+                >
                     <div className="mt-2 mb-3">
                         <Input
                             label="Nama Lengkap"
                             type="text"
-                            id="full_name"
-                            name="full_name"
+                            id="name"
+                            name="name"
+                            required
+                            value={form.name}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
@@ -53,8 +102,10 @@ const Register = () => {
                             type="email"
                             id="email"
                             name="email"
-                            onChange={(e) => handleChange(e)}
                             placeholder="e.g. example@mail.com"
+                            required
+                            value={form.email}
+                            onChange={(e) => handleChange(e)}
                         />
                     </div>
                     <div className="mt-2 mb-3">
@@ -63,6 +114,8 @@ const Register = () => {
                             type="password"
                             id="password"
                             name="password"
+                            required
+                            value={form.password}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
@@ -70,15 +123,21 @@ const Register = () => {
                         <Input
                             label="Konfirmasi Kata Sandi"
                             type="password"
-                            id="confirm_password"
-                            name="confirm_password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            required
+                            value={form.password_confirmation}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
                     <div className="mb-4">
-                        <Button w="full" h={12} shadow="default">
-                            Daftar
-                        </Button>
+                        {isLoading ? (
+                            <ButtonLoading />
+                        ) : (
+                            <Button w="full" h={12} shadow="default">
+                                Daftar
+                            </Button>
+                        )}
                     </div>
                     <div className="text-gray-700 text-sm text-center">Sudah punya akun? <a href="" className="text-pink-500 font-bold">Masuk</a> </div>
                 </form>
