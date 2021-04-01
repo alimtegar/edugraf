@@ -21,6 +21,8 @@ module.exports = {
       padding: {
         '12.5': '50px',
         '13': '52px',
+        '17': '68px',
+        '25': '100px',
       },
       borderWidth: {
         '3': '3px',

@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Navbar = ({ leftButton, rightButton }: Props) => (
-    <nav className="flex justify-between items-center bg-blue-200 text-blue-900 p-2">
+    <nav className="absolute w-full flex justify-between items-center text-blue-900 p-2">
         {leftButton !== undefined ? (
             <Button
                 bgColor="transparent"

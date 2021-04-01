@@ -12,6 +12,7 @@ import Stages from './components/Stages';
 import AttemptedQuestion from './components/AttemptedQuestion';
 import AttemptedStage from './components/AttemptedStage';
 import NotFound from './components/NotFound';
+import Register from './components/Register';
 
 const App = () => {
     return (
@@ -58,6 +59,12 @@ const App = () => {
                         exact 
                         path="/404"
                         render={() => (<NotFound />)} 
+                    />
+                    {/* Register */}
+                    <Route 
+                        exact 
+                        path="/register"
+                        render={() => (<Register />)} 
                     />
                 </Switch>
             </div>

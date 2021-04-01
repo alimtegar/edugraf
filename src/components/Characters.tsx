@@ -28,7 +28,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 }}
             />
 
-            <div className="text-center pt-2 px-12 mb-8">
+            <div className="text-center pt-17 px-12 mb-8">
                 <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
             </div>
             <div className="grid grid-cols-4 gap-2 px-8">
