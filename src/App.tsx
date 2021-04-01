@@ -14,6 +14,8 @@ import AttemptedQuestion from './components/AttemptedQuestion';
 import AttemptedStage from './components/AttemptedStage';
 import NotFound from './components/NotFound';
 import Register from './components/Register';
+import Login from './components/Login';
+import Activate from './components/Activate';
 
 const App = () => {
     return (
@@ -21,51 +23,63 @@ const App = () => {
             <div className="flex flex-col w-screen min-h-screen overflow-hidden">
                 <Switch>
                     {/* Home Page */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/"
-                        render={() => (<Home />)} 
+                        render={() => (<Home />)}
                     />
                     {/* Characters Page */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/characters/category/:category/:character"
-                        render={(props: any) => (<Character {...props} />)} 
+                        render={(props: any) => (<Character {...props} />)}
                     />
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/characters/category/:category"
-                        render={(props: any) => (<Characters {...props} />)} 
+                        render={(props: any) => (<Characters {...props} />)}
                     />
                     {/* Stages Page */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/stages/category/:category"
-                        render={(props: any) => (<Stages {...props} />)} 
+                        render={(props: any) => (<Stages {...props} />)}
                     />
                     {/* Attempted Question Page */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/attempted-stages/:attemptedStageId/attempted-questions/n/:n"
-                        render={(props: any) => (<AttemptedQuestion {...props} />)} 
+                        render={(props: any) => (<AttemptedQuestion {...props} />)}
                     />
                     {/* Attempted Stage Page */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/attempted-stages/:id"
-                        render={(props: any) => (<AttemptedStage {...props} />)} 
+                        render={(props: any) => (<AttemptedStage {...props} />)}
                     />
                     {/* 404 */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/404"
-                        render={() => (<NotFound />)} 
+                        render={() => (<NotFound />)}
                     />
                     {/* Register */}
-                    <Route 
-                        exact 
+                    <Route
+                        exact
                         path="/register"
-                        render={() => (<Register />)} 
+                        render={() => (<Register />)}
+                    />
+                    {/* Register */}
+                    <Route
+                        exact
+                        path="/login"
+                        render={() => (<Login />)}
+                    />
+                    {/* Activate */}
+                    <Route
+                        exact
+                        path="/activate/:token"
+                        render={(props: any) => (<Activate {...props} />)}
                     />
                 </Switch>
                 <ToastContainer />

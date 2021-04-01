@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaUserPlus } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -11,22 +11,22 @@ import Button from './Button';
 import ButtonLoading from './ButtonLoading';
 
 // Types
-type RegisterForm = {
+type LoginForm = {
     name: string,
     email: string,
     password: string,
     password_confirmation: string,
 };
 
-const Register = () => {
+const Login = () => {
     // States
-    const initForm: RegisterForm = {
+    const initForm: LoginForm = {
         name: '',
         email: '',
         password: '',
         password_confirmation: '',
     };
-    const [form, setForm] = useState<RegisterForm>(initForm);
+    const [form, setForm] = useState<LoginForm>(initForm);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // Functions
@@ -41,7 +41,7 @@ const Register = () => {
         e.preventDefault();
         setIsLoading(true);
 
-        axios.post(`${process.env.REACT_APP_API_URL}/register`, form)
+        axios.post(`${process.env.REACT_APP_API_URL}/Login`, form)
             .then((res) => {
                 toast.success(res.data.detail, {
                     position: "top-center",
@@ -72,26 +72,15 @@ const Register = () => {
             <Navbar />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">
-                    Daftar
+                    Masuk
                 </h1>
-                <p className="text-sm font-semibold">Daftar sekarang dan mulai belajar dengan berbagai fitur Sibisa.</p>
+                <p className="text-sm font-semibold">Masuk dan lanjutkan proses belajar anda dengan Sibisa.</p>
             </header>
             <section className="text-gray-900 px-4">
                 <form
                     className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
                     onSubmit={(e) => handleSubmit(e)}
                 >
-                    <div className="mt-2 mb-3">
-                        <Input
-                            label="Nama Lengkap"
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={form.name}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
                     <div className="mt-2 mb-3">
                         <Input
                             label="Email"
@@ -104,7 +93,7 @@ const Register = () => {
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    <div className="mt-2 mb-3">
+                    <div className="mt-2 mb-6">
                         <Input
                             label="Kata Sandi"
                             type="password"
@@ -115,28 +104,17 @@ const Register = () => {
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    <div className="mt-2 mb-6">
-                        <Input
-                            label="Konfirmasi Kata Sandi"
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            required
-                            value={form.password_confirmation}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
                     <div className="mb-4">
                         {isLoading ? (
                             <ButtonLoading />
                         ) : (
                             <Button w="full" h={12} shadow="default">
-                                Daftar
+                                Masuk
                             </Button>
                         )}
                     </div>
                     <div className="text-gray-700 text-sm text-center">
-                        Sudah punya akun? <Link to="/login" className="text-pink-500 font-bold">Masuk</Link>
+                        Belum punya akun? <Link to="/register" className="text-pink-500 font-bold">Daftar</Link>
                     </div>
                 </form>
             </section>
@@ -144,4 +122,4 @@ const Register = () => {
     )
 };
 
-export default Register;
+export default Login;
