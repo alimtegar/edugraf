@@ -1,7 +1,7 @@
 type HomeSubMenuItem = {
     title: string,
     description: string,
-    icon: any,
+    icon: JSX.Element,
     to: string,
 };
 
