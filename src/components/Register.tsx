@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import { FaUserLock } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
@@ -18,7 +18,7 @@ type RegisterForm = {
     password_confirmation: string,
 };
 
-const Register = () => {
+const Register = ({ history }: RouteComponentProps) => {
     // States
     const initForm: RegisterForm = {
         name: '',
@@ -69,7 +69,12 @@ const Register = () => {
 
     return (
         <div className="flex-grow bg-blue-50">
-            <Navbar />
+            <Navbar 
+                leftButton={{
+                    icon: (<FaUserLock size="1.16rem" />),
+                    onClick: () => history.push('/login'),
+                }}
+            />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">
                     Daftar

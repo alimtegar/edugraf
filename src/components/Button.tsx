@@ -38,7 +38,7 @@ const ButtonComponent = ({
             text-sm
             hover:text-${textColorOn}
             active:text-${textColorOn}
-            font-extrabold
+            font-bold
             rounded-${borderR}
             shadow-${shadow}
             focus:outline-none

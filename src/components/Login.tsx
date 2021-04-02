@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { FaUserPlus } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
+import { FaUserPlus } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
@@ -12,19 +12,15 @@ import ButtonLoading from './ButtonLoading';
 
 // Types
 type LoginForm = {
-    name: string,
     email: string,
     password: string,
-    password_confirmation: string,
 };
 
-const Login = () => {
+const Login = ({ history }: RouteComponentProps) => {
     // States
     const initForm: LoginForm = {
-        name: '',
         email: '',
         password: '',
-        password_confirmation: '',
     };
     const [form, setForm] = useState<LoginForm>(initForm);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -41,16 +37,11 @@ const Login = () => {
         e.preventDefault();
         setIsLoading(true);
 
-        axios.post(`${process.env.REACT_APP_API_URL}/Login`, form)
+        axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
             .then((res) => {
-                toast.success(res.data.detail, {
-                    position: "top-center",
-                    autoClose: 10000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                });
+                localStorage.setItem('token', JSON.stringify(res.data.token));
+                localStorage.setItem('user', JSON.stringify(res.data.user));
+
                 setIsLoading(false);
                 setForm(initForm);
             })
@@ -69,7 +60,12 @@ const Login = () => {
 
     return (
         <div className="flex-grow bg-blue-50">
-            <Navbar />
+            <Navbar 
+                leftButton={{
+                    icon: (<FaUserPlus size="1.16rem" />),
+                    onClick: () => history.push('/register'),
+                }}
+            />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">
                     Masuk

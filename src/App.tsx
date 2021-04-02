@@ -67,13 +67,13 @@ const App = () => {
                     <Route
                         exact
                         path="/register"
-                        render={() => (<Register />)}
+                        render={(props: any) => (<Register {...props} />)}
                     />
                     {/* Register */}
                     <Route
                         exact
                         path="/login"
-                        render={() => (<Login />)}
+                        render={(props: any) => (<Login {...props} />)}
                     />
                     {/* Activate */}
                     <Route

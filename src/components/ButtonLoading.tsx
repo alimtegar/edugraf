@@ -11,7 +11,7 @@ const ButtonLoading = ({ w = 'full', h = '12', borderR = 'lg', center }: Props) 
             ${center ? 'flex justify-center items-center' : ''}
             bg-gray-200 
             text-gray-500 
-            font-extrabold 
+            font-bold 
             w-${w}
             h-${h}
             rounded-${borderR}

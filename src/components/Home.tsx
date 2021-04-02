@@ -70,7 +70,7 @@ const Home = () => {
                 <div>
                     <p className="text-sm font-semibold">Selamat datang,</p>
                     <h1 className="text-lg font-bold leading-snug">
-                        John Doe
+                        Alim Tegar
                     </h1>
                 </div>
             </header>
