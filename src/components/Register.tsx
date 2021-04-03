@@ -135,7 +135,7 @@ const Register = ({ history }: RouteComponentProps) => {
                         {isLoading ? (
                             <LoadingButton />
                         ) : (
-                            <Button w="full" h={12} shadow="default">
+                            <Button>
                                 Daftar
                             </Button>
                         )}

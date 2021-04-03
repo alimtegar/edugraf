@@ -24,6 +24,7 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
                 w={11}
                 h={11}
                 borderR="md"
+                shadow="none"
                 center
                 onClick={leftButton.onClick}
             >
@@ -44,6 +45,7 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
                 w={11}
                 h={11}
                 borderR="md"
+                shadow="none"
                 center
                 onClick={rightButton.onClick}
             >

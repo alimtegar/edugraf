@@ -1,4 +1,3 @@
-// Types
 import { ButtonHTMLAttributes } from 'react';
 
 type Props = {
@@ -6,8 +5,8 @@ type Props = {
     bgColorOn?: string,
     textColor?: string,
     textColorOn?: string,
-    w: number | string,
-    h: number | string,
+    w?: number | string,
+    h?: number | string,
     borderR?: string,
     center?: boolean,
     shadow?: string,
@@ -19,11 +18,11 @@ const ButtonComponent = ({
     bgColorOn = 'pink-600',
     textColor = 'white',
     textColorOn = 'white',
-    w,
-    h,
+    w = 'full',
+    h = 12,
     borderR = 'lg',
     center = false,
-    shadow = 'none',
+    shadow = 'default',
     ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button

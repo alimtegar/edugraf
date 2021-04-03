@@ -9,6 +9,7 @@ import CharacterMenuItem from '../types/CharacterMenuItem';
 import CharacterFrame from './CharacterFrame';
 import CharacterMenuItemComponent from './CharacterMenuItem';
 import Button from './Button';
+import IconButton from './IconButton';
 
 type MatchParams = {
     character?: string | undefined;
@@ -41,16 +42,12 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             </section>
             <div className="grid grid-cols gap-2 mb-8 px-8">
                 {menu.map((menuItem, i) => (
-                    <CharacterMenuItemComponent {...menuItem} key={i} />
+                    <IconButton {...menuItem}  />
                 ))}
             </div>
             <section className="px-4 mt-auto mb-4">
                 <div>
-                    <Button
-                        w="full"
-                        h={12}
-                        shadow="default"
-                    >
+                    <Button>
                         Latihan Menulis
                     </Button>
                 </div>

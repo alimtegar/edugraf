@@ -112,7 +112,7 @@ const Login = ({ history }: RouteComponentProps) => {
                             {isLoading ? (
                                 <LoadingButton />
                             ) : (
-                                <Button w="full" h={12} shadow="default">
+                                <Button>
                                     Masuk
                                 </Button>
                             )}

@@ -16,18 +16,14 @@ const NotFound = () => (
                 </h2>
                 <p className="text-sm font-semibold mb-8">Data yang anda cari tidak ditemukan.</p>
                 <Link to="/">
-                    <Button
-                        w="32"
-                        h="12"
-                        shadow="default"
-                    >
+                    <Button w={32}>
                         Menu Utama
                     </Button>
                 </Link>
             </div>
         </section>
         {/* Navbar Space */}
-        <div className="h-15"></div> 
+        <div className="h-15"></div>
     </div>
 )
 

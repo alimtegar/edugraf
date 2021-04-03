@@ -40,8 +40,11 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['active'],
+      backgroundColor: ['active', 'group-active'],
+      textColor: ['active', 'group-active'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-interaction-variants')
+  ],
 }

@@ -86,12 +86,7 @@ const AttemptedStageComponent = ({ match, history }: RouteComponentProps<MatchPa
             </section>
             <section className="px-4 mt-auto mb-4">
                 <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
-                    <Button
-                        w="full"
-                        h={12}
-                        borderR="lg"
-                        shadow="default"
-                    >
+                    <Button>
                         Kembali ke Menu
                     </Button>
                 </Link>

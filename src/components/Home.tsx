@@ -10,6 +10,7 @@ import { FaPlay } from 'react-icons/fa';
 // Components
 import Navbar from './Navbar';
 import Slider from './Slider';
+import IconButton from './IconButton';
 import HomeSubMenuItem from './HomeSubMenuItem';
 
 const Home = () => {
@@ -91,12 +92,11 @@ const Home = () => {
                             Senam Pemanasan
                         </h2>
                     </div>
-                    <div className="flex items-center bg-white text-blue-900 text-sm font-bold p-2 rounded-lg shadow-default">
-                        <span className="flex justify-center items-center bg-pink-500 text-white w-10.5 h-10.5 font-extrabold text-xl mr-4 rounded-lg shadow-md">
-                            <FaPlay size="0.83rem" />
-                        </span>
-                        Langkah Pemanasan
-                    </div>
+                    <IconButton
+                        icon={(<FaPlay size="0.83rem" />)}
+                        title="Langkah Pemanasan"
+                        onClick={() => { }}
+                    />
                 </div>
 
 
@@ -110,7 +110,7 @@ const Home = () => {
                         </div>
                         <div className="relative -m-1">
                             <Slider settings={{
-                                dots: false, 
+                                dots: false,
                                 infinite: false,
                                 speed: 500,
                                 slidesToShow: 2,
