@@ -13,6 +13,7 @@ type Props = {
     description?: string,
     borderR?: string,
     shadow?: string,
+    isPing?: boolean,
 };
 
 const IconButton = ({
@@ -27,6 +28,7 @@ const IconButton = ({
     description,
     borderR = 'lg',
     shadow = 'default',
+    isPing = false,
     ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
@@ -44,6 +46,7 @@ const IconButton = ({
         {...props}
     >
         <div className={`
+            relative
             flex 
             justify-center 
             items-center 
@@ -59,6 +62,9 @@ const IconButton = ({
             rounded-${borderR} 
             shadow-${iconShadow}
         `}>
+            {isPing && (
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${iconBgColor} opacity-75`}></span>
+            )}
             {icon}
         </div>
         <div className="flex flex-col mr-auto">

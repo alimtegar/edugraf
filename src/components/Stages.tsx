@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
+
+// Contexts
+import AuthContext from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
@@ -17,12 +20,19 @@ type MatchParams = {
 const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, } } = match;
 
+    // Contexts
+    const authContext = useContext(AuthContext);
+
     // States
     const [stages, setStages] = useState<Stage[]>();
 
     // Effects
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`, {
+            headers: {
+                'Authorization': `${authContext.token.type} ${authContext.token.token}`,
+            }
+        })
             .then((res) => setStages(res.data))
             .catch((err) => console.error(err));
     }, [category])

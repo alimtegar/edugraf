@@ -1,4 +1,4 @@
-import Navbar from './Navbar';
+import { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 
@@ -6,8 +6,8 @@ import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 import CharacterMenuItem from '../types/CharacterMenuItem';
 
 // Components
+import Navbar from './Navbar';
 import CharacterFrame from './CharacterFrame';
-import CharacterMenuItemComponent from './CharacterMenuItem';
 import Button from './Button';
 import IconButton from './IconButton';
 
@@ -18,10 +18,46 @@ type MatchParams = {
 const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { character, } } = match;
 
+    // States
+    const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);
+
+    // Functions
+    const listenPronounciation = (character: string | undefined) => {
+        const synth = window.speechSynthesis;
+        const synthUtter = new SpeechSynthesisUtterance(character);
+
+        synthUtter.lang = 'id-ID';
+        synthUtter.onstart = () => setIsListeningPronounciation(true);
+        synthUtter.onend = () => setIsListeningPronounciation(false);
+
+        synth.speak(synthUtter);
+    }
+
+    const changeCase = () => { }
+    const seeWriting = () => { }
+    // 
+
     const menu: CharacterMenuItem[] = [
-        { title: 'Ubah Huruf Kecil', icon: character?.toLowerCase(), },
-        { title: 'Dengarkan Pengucapan', icon: <FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />, },
-        { title: 'Lihat Penulisan', icon: <FaPen size="0.83rem" className="transform -translate-y-0.25" />, },
+        {
+            title: 'Ubah Huruf Kecil',
+            icon: character?.toLowerCase(),
+            onClick: () => changeCase(),
+            isUsingPing: false,
+        },
+
+        {
+            title: 'Dengarkan Pengucapan',
+            icon: <FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />,
+            onClick: () => listenPronounciation(character), // AND with !isListeningPronounciation to prevent overlapping pronounciation
+            isUsingPing: true,
+        },
+
+        {
+            title: 'Lihat Penulisan',
+            icon: <FaPen size="0.83rem" className="transform -translate-y-0.25" />,
+            onClick: () => seeWriting(),
+            isUsingPing: false,
+        },
     ];
 
     return (
@@ -38,11 +74,18 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-12 mb-8">
                 <CharacterFrame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</CharacterFrame>
-                <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">A</strong> dengan menu di bawah ini.</p>
+                <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
             </section>
+
             <div className="grid grid-cols gap-2 mb-8 px-8">
-                {menu.map((menuItem, i) => (
-                    <IconButton {...menuItem}  />
+                {menu.map((menuItem) => (
+                    <IconButton
+                        icon={menuItem.icon}
+                        title={menuItem.title}
+                        onClick={menuItem.onClick}
+                        isPing={menuItem.isUsingPing && isListeningPronounciation}
+                        key={menuItem.title}
+                    />
                 ))}
             </div>
             <section className="px-4 mt-auto mb-4">

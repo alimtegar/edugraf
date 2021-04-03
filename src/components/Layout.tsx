@@ -18,7 +18,6 @@ const Layout = () => {
 
     // Functions
     const validateToken = useCallback(() => {
-        console.log('validating token running..')
         const storedAuth = localStorage.getItem('auth');
 
         if (storedAuth) {
