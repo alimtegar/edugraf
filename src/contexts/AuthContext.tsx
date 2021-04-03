@@ -1,21 +1,8 @@
 import { createContext } from "react";
 
-// Types
-import AuthContext from '../types/AuthContext';
+// Initial states
+import authContextInitialState from '../initial-states/authContextInitialState';
 
-const initState: AuthContext = {
-    user: {
-        id: 0,
-        name: '',
-        email: '',
-    },
-    token: {
-        token: '',
-        type: '',
-    },
-    setAuth: () => {},
-    removeAuth: () => {},
-};
-const AuthContextComponent = createContext(initState);
+const AuthContext = createContext(authContextInitialState);
 
-export default AuthContextComponent;
+export default AuthContext;

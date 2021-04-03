@@ -1,24 +1,14 @@
+// Initial states
+import authContextInitialState from '../initial-states/authContextInitialState';
+
 // Types
-import AuthContext from '../types/AuthContext';
 import Auth from '../types/Auth';
+import AuthContext from '../types/AuthContext';
 
 type Action =
   | { type: 'SET_AUTH', payload: Auth }
   | { type: 'REMOVE_AUTH' }
 
-const initState: AuthContext = {
-  user: {
-    id: 0,
-    name: '',
-    email: '',
-  },
-  token: {
-    token: '',
-    type: '',
-  },
-  setAuth: () => {},
-  removeAuth: () => {},
-};
 
 const setAuth = (data: Auth, state: AuthContext) => {
   console.log('ok1', {data});
@@ -35,7 +25,7 @@ const removeAuth = (state: AuthContext) => {
 
   return {
     ...state,
-    ...initState
+    ...authContextInitialState
   };
 };
 

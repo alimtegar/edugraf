@@ -1,30 +1,19 @@
 import { useReducer } from "react";
-import AuthContextComponent from "../contexts/AuthContext";
+import AuthContext from "../contexts/AuthContext";
 import AuthReducer from "../reducers/AuthReducer";
+
+// Initial state
+import authContextInitialState from "../initial-states/authContextInitialState";
 
 // Types
 import Auth from '../types/Auth';
-import AuthContext from '../types/AuthContext';
 
 type Props = {
     children: JSX.Element
 }
 
 const AuthContextProvider = ({ children }: Props) => {
-    const initState: AuthContext = {
-        user: {
-            id: 0,
-            name: '',
-            email: '',
-        },
-        token: {
-            token: '',
-            type: '',
-        },
-        setAuth: () => { },
-        removeAuth: () => { },
-    };
-    const [state, dispatch] = useReducer(AuthReducer, initState);
+    const [state, dispatch] = useReducer(AuthReducer, authContextInitialState);
 
     const setAuth = (data: Auth) => dispatch({
         type: 'SET_AUTH',
@@ -35,10 +24,9 @@ const AuthContextProvider = ({ children }: Props) => {
     });
 
     return (
-        <AuthContextComponent.Provider value={{ ...state, setAuth, removeAuth, }}>
-            {console.log({ ...state, setAuth, removeAuth, })}
+        <AuthContext.Provider value={{ ...state, setAuth, removeAuth, }}>
             {children}
-        </AuthContextComponent.Provider>
+        </AuthContext.Provider>
     );
 };
 
