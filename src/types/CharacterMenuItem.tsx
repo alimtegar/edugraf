@@ -1,6 +1,6 @@
-type CharacterMenu = {
+type CharacterMenuItem = {
     title: string,
     icon: any,
 };
 
-export default CharacterMenu
+export default CharacterMenuItem

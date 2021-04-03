@@ -1,10 +1,16 @@
-// Components
-import Navbar from './Navbar';
+import { useContext } from 'react';
+
+// Contexts
+import AuthContext from '../contexts/AuthContext';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
-import HomeSubMenu from './HomeSubMenu';
 import { FaPlay } from 'react-icons/fa';
+
+// Components
+import Navbar from './Navbar';
+import Slider from './Slider';
+import HomeSubMenuItem from './HomeSubMenuItem';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -56,6 +62,9 @@ const Home = () => {
         },
     ];
 
+    // Contexts
+    const authContext = useContext(AuthContext);
+
 
     return (
         <div className="flex-grow bg-blue-50">
@@ -70,7 +79,7 @@ const Home = () => {
                 <div>
                     <p className="text-sm font-semibold">Selamat datang,</p>
                     <h1 className="text-lg font-bold leading-snug">
-                        Alim Tegar
+                        {authContext.user.name}
                     </h1>
                 </div>
             </header>
@@ -99,7 +108,20 @@ const Home = () => {
                             </h2>
                             <span className="text-sm font-semibold leading-none"><strong className="font-bold">{menuItem.subMenu.length}</strong> Item</span>
                         </div>
-                        <HomeSubMenu subMenu={menuItem.subMenu} />
+                        <div className="relative -m-1">
+                            <Slider settings={{
+                                dots: false, 
+                                infinite: false,
+                                speed: 500,
+                                slidesToShow: 2,
+                            }}>
+                                {menuItem.subMenu.map((subMenuItem) => (
+                                    <div className="p-1" key={subMenuItem.to}>
+                                        <HomeSubMenuItem {...subMenuItem} />
+                                    </div>
+                                ))}
+                            </Slider>
+                        </div>
                     </div>
                 ))}
             </section>

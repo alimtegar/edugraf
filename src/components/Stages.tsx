@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // Components
 import Navbar from './Navbar';
-import StagesComponent from './Stage';
+import StagesItem from './StagesItem';
 
 // Types
 import Stage from '../types/Stage';
@@ -36,11 +36,13 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 }}
             />
 
-            <section className="grid gap-2 p-4">
-                {stages !== undefined ? stages.map((stage) => (
-                    <StagesComponent {...stage} key={stage.id} />
-                )) : null}
-            </section>
+            <main>
+                <section className="grid gap-2 p-4">
+                    {stages !== undefined ? stages.map((stage) => (
+                        <StagesItem {...stage} key={stage.id} />
+                    )) : null}
+                </section>
+            </main>
         </div>
     );
 };

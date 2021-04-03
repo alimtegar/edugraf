@@ -77,48 +77,52 @@ const Login = ({ history }: RouteComponentProps) => {
                 </h1>
                 <p className="text-sm font-semibold">Masuk dan lanjutkan proses belajar anda dengan Sibisa.</p>
             </header>
-            <section className="text-gray-900 px-4">
-                <form
-                    className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
-                    onSubmit={(e) => handleSubmit(e)}
-                >
-                    <div className="mt-2 mb-3">
-                        <Input
-                            label="Email"
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="e.g. example@mail.com"
-                            required
-                            value={form.email}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
-                    <div className="mt-2 mb-6">
-                        <Input
-                            label="Kata Sandi"
-                            type="password"
-                            id="password"
-                            name="password"
-                            required
-                            value={form.password}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
-                    <div className="mb-4">
-                        {isLoading ? (
-                            <LoadingButton />
-                        ) : (
-                            <Button w="full" h={12} shadow="default">
-                                Masuk
-                            </Button>
-                        )}
-                    </div>
-                    <div className="text-gray-700 text-sm text-center">
-                        Belum punya akun? <Link to="/register" className="text-pink-500 font-bold">Daftar</Link>
-                    </div>
-                </form>
-            </section>
+            <main>
+                <section className="text-gray-900 px-4">
+                    <form
+                        className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
+                        <div className="mt-2 mb-3">
+                            <Input
+                                label="Email"
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="e.g. example@mail.com"
+                                autoComplete="username"
+                                required
+                                value={form.email}
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="mt-2 mb-6">
+                            <Input
+                                label="Kata Sandi"
+                                type="password"
+                                id="password"
+                                name="password"
+                                autoComplete="current-password"
+                                required
+                                value={form.password}
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            {isLoading ? (
+                                <LoadingButton />
+                            ) : (
+                                <Button w="full" h={12} shadow="default">
+                                    Masuk
+                                </Button>
+                            )}
+                        </div>
+                        <div className="text-gray-700 text-sm text-center">
+                            Belum punya akun? <Link to="/register" className="text-pink-500 font-bold">Daftar</Link>
+                        </div>
+                    </form>
+                </section>
+            </main>
         </div>
     );
 };
