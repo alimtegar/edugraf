@@ -4,7 +4,7 @@ type Props = {
     count: number | undefined,
 }
 
-const TestPagination = ({ color = 'pink-500', active = 0, count }: Props) => {
+const Stepper = ({ color = 'pink-500', active = 0, count }: Props) => {
     return (
         <div>
             <ol className={`flex grid grid-cols-${count ? count : 1} shadow-sm`}>
@@ -21,4 +21,4 @@ const TestPagination = ({ color = 'pink-500', active = 0, count }: Props) => {
     );
 };
 
-export default TestPagination;
+export default Stepper;

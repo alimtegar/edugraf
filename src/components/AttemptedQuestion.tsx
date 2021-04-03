@@ -8,7 +8,7 @@ import { FaVolumeUp } from 'react-icons/fa';
 // Components
 import Navbar from './Navbar';
 import CharacterFrame from './CharacterFrame';
-import AttemptedQuestionProgress from './AttemptedQuestionProgress';
+import Stepper from './Stepper';
 import Canvas from './Canvas';
 import Button from './Button';
 
@@ -92,7 +92,7 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
     return (
         <div className="flex flex-col flex-grow bg-blue-200 w-screen">
             <Navbar />
-            <AttemptedQuestionProgress active={n} count={attemptedQuestion?.attempted_stage.stage.question_count} />
+            <Stepper active={n} count={attemptedQuestion?.attempted_stage.stage.question_count} />
 
             <main className="flex flex-grow flex-col justify-between">
                 <section className="flex flex-col justify-center items-center w-full p-10">
