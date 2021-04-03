@@ -8,7 +8,7 @@ import { FaUserLock } from 'react-icons/fa';
 import Navbar from './Navbar';
 import Input from './Input';
 import Button from './Button';
-import ButtonLoading from './ButtonLoading';
+import LoadingButton from './LoadingButton';
 
 // Types
 type RegisterForm = {
@@ -133,7 +133,7 @@ const Register = ({ history }: RouteComponentProps) => {
                     </div>
                     <div className="mb-4">
                         {isLoading ? (
-                            <ButtonLoading />
+                            <LoadingButton />
                         ) : (
                             <Button w="full" h={12} shadow="default">
                                 Daftar

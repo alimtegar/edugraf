@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState, } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { FaUserPlus } from 'react-icons/fa';
+import { toast, } from 'react-toastify';
+import { RouteComponentProps, Link, } from 'react-router-dom';
+import { FaUserPlus, } from 'react-icons/fa';
+
+// Contexts
+import AuthContext from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
 import Input from './Input';
 import Button from './Button';
-import ButtonLoading from './ButtonLoading';
+import LoadingButton from './LoadingButton';
 
 // Types
 type LoginForm = {
@@ -17,6 +20,9 @@ type LoginForm = {
 };
 
 const Login = ({ history }: RouteComponentProps) => {
+    // Context
+    const authContext = useContext(AuthContext);
+
     // States
     const initForm: LoginForm = {
         email: '',
@@ -39,8 +45,7 @@ const Login = ({ history }: RouteComponentProps) => {
 
         axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
             .then((res) => {
-                localStorage.setItem('token', JSON.stringify(res.data.token));
-                localStorage.setItem('user', JSON.stringify(res.data.user));
+                authContext.setAuth(res.data);
 
                 setIsLoading(false);
                 setForm(initForm);
@@ -60,7 +65,7 @@ const Login = ({ history }: RouteComponentProps) => {
 
     return (
         <div className="flex-grow bg-blue-50">
-            <Navbar 
+            <Navbar
                 leftButton={{
                     icon: (<FaUserPlus size="1.16rem" />),
                     onClick: () => history.push('/register'),
@@ -102,7 +107,7 @@ const Login = ({ history }: RouteComponentProps) => {
                     </div>
                     <div className="mb-4">
                         {isLoading ? (
-                            <ButtonLoading />
+                            <LoadingButton />
                         ) : (
                             <Button w="full" h={12} shadow="default">
                                 Masuk
@@ -115,7 +120,7 @@ const Login = ({ history }: RouteComponentProps) => {
                 </form>
             </section>
         </div>
-    )
+    );
 };
 
 export default Login;

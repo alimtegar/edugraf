@@ -21,6 +21,7 @@ const initState: AuthContext = {
 };
 
 const setAuth = (data: Auth, state: AuthContext) => {
+  console.log('ok1', {data});
   localStorage.setItem('auth', JSON.stringify(data))
 
   return {

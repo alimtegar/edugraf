@@ -26,18 +26,17 @@ const AuthContextProvider = ({ children }: Props) => {
     };
     const [state, dispatch] = useReducer(AuthReducer, initState);
 
-    const setAuth = (data: Auth) => {
-        dispatch({
-            type: 'SET_AUTH',
-            payload: data,
-        });
-    }
+    const setAuth = (data: Auth) => dispatch({
+        type: 'SET_AUTH',
+        payload: data,
+    });
     const removeAuth = () => dispatch({
         type: 'REMOVE_AUTH',
     });
 
     return (
         <AuthContextComponent.Provider value={{ ...state, setAuth, removeAuth, }}>
+            {console.log({ ...state, setAuth, removeAuth, })}
             {children}
         </AuthContextComponent.Provider>
     );

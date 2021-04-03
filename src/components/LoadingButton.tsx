@@ -5,7 +5,7 @@ type Props = {
     center?: boolean,
 };
 
-const ButtonLoading = ({ w = 'full', h = '12', borderR = 'lg', center }: Props) => (
+const LoadingButton = ({ w = 'full', h = '12', borderR = 'lg', center }: Props) => (
     <button
         className={`
             ${center ? 'flex justify-center items-center' : ''}
@@ -22,4 +22,4 @@ const ButtonLoading = ({ w = 'full', h = '12', borderR = 'lg', center }: Props) 
     </button>
 );
 
-export default ButtonLoading;
+export default LoadingButton;
