@@ -12,11 +12,12 @@ import Button from './Button';
 import IconButton from './IconButton';
 
 type MatchParams = {
+    category?: string | undefined;
     character?: string | undefined;
 }
 
 const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
-    const { params: { character, } } = match;
+    const { params: { category, character, } } = match;
 
     // States
     const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);
@@ -33,25 +34,25 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
         synth.speak(synthUtter);
     }
 
-    const changeCase = () => { }
+    const changeCase = (character: string | undefined): string | undefined => { 
+        return character && character === character?.toUpperCase() ? character?.toLowerCase() : character?.toUpperCase();
+    }
     const seeWriting = () => { }
     // 
 
-    const menu: CharacterMenuItem[] = [
+    let menu: CharacterMenuItem[] = [
         {
             title: 'Ubah Huruf Kecil',
-            icon: character?.toLowerCase(),
-            onClick: () => changeCase(),
+            icon: changeCase(character),
+            onClick: () => history.push(`/characters/category/${category}/${changeCase(character)}`),
             isUsingPing: false,
         },
-
         {
             title: 'Dengarkan Pengucapan',
             icon: <FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />,
             onClick: () => listenPronounciation(character), // AND with !isListeningPronounciation to prevent overlapping pronounciation
             isUsingPing: true,
         },
-
         {
             title: 'Lihat Penulisan',
             icon: <FaPen size="0.83rem" className="transform -translate-y-0.25" />,
@@ -64,7 +65,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
         <main className="flex flex-grow flex-col bg-blue-200">
             <Navbar
                 leftButton={{
-                    onClick: history.goBack,
+                    onClick: () => history.replace(`/characters/category/${category}`),
                     icon: <FaChevronLeft size="0.83rem" />
                 }}
             />
@@ -73,7 +74,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             {/*  */}
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-12 mb-8">
-                <CharacterFrame size={28} textSize="6xl" rounded="xl">{character?.toUpperCase()}</CharacterFrame>
+                <CharacterFrame size={28} textSize="6xl" rounded="xl">{character}</CharacterFrame>
                 <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
             </section>
 

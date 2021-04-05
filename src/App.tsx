@@ -1,10 +1,13 @@
 // Components
 import { AuthContextProvider } from './contexts/AuthContext';
+import { CharacterContextProvider } from './contexts/CharacterContext';
 import Layout from './components/Layout';
 
 const App = () => (
     <AuthContextProvider>
-        <Layout />
+        <CharacterContextProvider>
+            <Layout />
+        </CharacterContextProvider>
     </AuthContextProvider>
 );
 
