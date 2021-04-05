@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext, } from "react";
+import axios from 'axios';
 
 // Types
 import Auth from '../types/Auth';
@@ -10,6 +11,7 @@ type Props = {
 
 type Action =
   | { type: 'SET_AUTH', payload: Auth }
+  | { type: 'SET_AUTH_IS_LOADING', payload: boolean }
   | { type: 'REMOVE_AUTH' }
 
 
@@ -25,6 +27,7 @@ const initState: AuthContextState = {
     type: '',
   },
   setAuth: () => { },
+  setAuthIsLoading: () => { },
   removeAuth: () => { },
   isLoading: true,
 };
@@ -33,11 +36,18 @@ const initState: AuthContextState = {
 // Actions
 const setAuth = (data: Auth, state: AuthContextState) => {
   localStorage.setItem('auth', JSON.stringify(data))
+  axios.defaults.headers.common['Authorization'] = `${data.token.type} ${data.token.token}`;
 
   return {
     ...state,
     ...data,
-    isLoading: false,
+  };
+};
+
+const setAuthIsLoading = (data: boolean, state: AuthContextState) => {
+  return {
+    ...state,
+    isLoading: data,
   };
 };
 
@@ -55,6 +65,8 @@ const AuthReducer = (state: AuthContextState, action: Action) => {
   switch (action.type) {
     case "SET_AUTH":
       return setAuth(action.payload, state);
+    case "SET_AUTH_IS_LOADING":
+      return setAuthIsLoading(action.payload, state);
     case "REMOVE_AUTH":
       return removeAuth(state);
     default:
@@ -73,12 +85,16 @@ const AuthContextProvider = ({ children }: Props) => {
     type: 'SET_AUTH',
     payload: data,
   });
+  const setAuthIsLoading = (data: boolean) => dispatch({
+    type: 'SET_AUTH_IS_LOADING',
+    payload: data,
+  });
   const removeAuth = () => dispatch({
     type: 'REMOVE_AUTH',
   });
 
   return (
-    <AuthContext.Provider value={{ ...state, setAuth, removeAuth, }}>
+    <AuthContext.Provider value={{ ...state, setAuth, setAuthIsLoading, removeAuth, }}>
       {children}
     </AuthContext.Provider>
   );

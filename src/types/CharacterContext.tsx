@@ -1,8 +1,8 @@
+import Characters from './Characters';
+
 type CharacterContext = {
-    [key: string]: string[] | number[],
-    symbols: string[],
-    letters: string[],
-    numbers: number[],
+    characters: Characters,
+    listenPronounciation: (character: string | undefined, setIsListeningPronounciation: React.Dispatch<React.SetStateAction<boolean>>) => void,
 };
 
-export default CharacterContext;
+export default CharacterContext; 

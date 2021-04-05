@@ -38,17 +38,17 @@ const Canvas = ({
     const tools: CanvasTool[] = [
         {
             onClick: () => canvasRef?.clear(),
-            icon: (<FaTrash color="inherit" size="0.83rem" />),
+            icon: (<FaTrash color="inherit" size="1rem" />),
             isActivable: false,
         },
         {
             onClick: () => setPenColor('white'),
-            icon: (<FaEraser color="inherit" size="0.83rem" />),
+            icon: (<FaEraser color="inherit" size="1rem" />),
             isActivable: true,
         },
         {
             onClick: () => setPenColor('black'),
-            icon: (<FaPen color="inherit" size="0.83rem" />),
+            icon: (<FaPen color="inherit" size="1rem" />),
             isActivable: true,
         },
     ];
@@ -61,8 +61,8 @@ const Canvas = ({
                 {tools.map((tool, key) => (
                     <span key={Math.random()}>
                         <Button
-                            w={10}
-                            h={10}
+                            w={11}
+                            h={11}
                             bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}

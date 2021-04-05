@@ -8,8 +8,9 @@ type Props = {
     w?: number | string,
     h?: number | string,
     borderR?: string,
-    center?: boolean,
     shadow?: string,
+    center?: boolean,
+    isPing?: boolean,
 };
 
 const Button = ({
@@ -21,13 +22,15 @@ const Button = ({
     w = 'full',
     h = 12,
     borderR = 'lg',
-    center = false,
     shadow = 'default',
+    center = false,
+    isPing = false,
     ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
         className={`
             ${center ? 'flex justify-center items-center' : ''}
+            relative
             w-${w}
             h-${h}
             bg-${bgColor}
@@ -44,7 +47,12 @@ const Button = ({
         `}
         {...props}
     >
-        {children}
+        {isPing && (
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${bgColor} opacity-75`}></span>
+        )}
+        <span className="relative z-10">
+            {children}
+        </span>
     </button>
 );
 

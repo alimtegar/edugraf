@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Redirect, Route, } from "react-router-dom";
 
 // Contexts
@@ -13,23 +14,25 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
     // Context
     const authContext = useAuthContext();
 
-    console.log(authContext);
-
     if (authContext.isLoading) {
         // Loading
         return (<Loading />)
     } else {
         // Pass
-        return ((visibility === 'user') === !!authContext.token.token) ? (
-            <Route
-                path={path}
-                render={(props) => (<RenderedComponent {...props} />)}
-                {...props}
-            />
-        ) : (
-            <Redirect to={(visibility === 'user') ? '/login' : '/'} />
-        );
+        if ((visibility === 'user') === !!authContext.token.token) {
+            return (
+                <Route
+                    path={path}
+                    render={(props) => (<RenderedComponent {...props} />)}
+                    {...props}
+                />
+            );
+        } else {
+            return (<Redirect to={(visibility === 'user') ? '/login' : '/'} />);
+        }
     }
+
+    // return (<Loading />)
 };
 
 export default ProtectedRoute;

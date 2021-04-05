@@ -65,7 +65,9 @@ const IconButton = ({
             {isPing && (
                 <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${iconBgColor} opacity-75`}></span>
             )}
-            {icon}
+            <span className="relative z-10">
+                {icon}
+            </span>
         </div>
         <div className="flex flex-col mr-auto">
             <h3 className="text-sm font-bold leading-none">

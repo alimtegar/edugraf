@@ -30,10 +30,14 @@ const Layout = () => {
             })
                 .then((res) => {
                     authContext.setAuth(res.data);
+                    authContext.setAuthIsLoading(false);
                 })
                 .catch((err) => {
                     console.error(err);
+                    authContext.setAuthIsLoading(false);
                 });
+        } else {
+            authContext.setAuthIsLoading(false);
         }
     }, [authContext]);
 

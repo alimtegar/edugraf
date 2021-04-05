@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 
+// Contexts
+import { useCharacterContext } from '../contexts/CharacterContext';
+
 // Types
 import CharacterMenuItem from '../types/CharacterMenuItem';
 
@@ -19,21 +22,13 @@ type MatchParams = {
 const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, character, } } = match;
 
+    // Contexts
+    const characterContext = useCharacterContext();
+
     // States
     const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
 
     // Functions
-    const listenPronounciation = (character: string | undefined) => {
-        const synth = window.speechSynthesis;
-        const synthUtter = new SpeechSynthesisUtterance(character);
-
-        synthUtter.lang = 'id-ID';
-        synthUtter.onstart = () => setIsListeningPronounciation(true);
-        synthUtter.onend = () => setIsListeningPronounciation(false);
-
-        synth.speak(synthUtter);
-    }
-
     const changeCase = (character: string | undefined): string | undefined => {
         return character && character === character?.toUpperCase() ? character?.toLowerCase() : character?.toUpperCase();
     }
@@ -44,7 +39,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
         {
             title: 'Dengarkan Pengucapan',
             icon: <FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />,
-            onClick: () => listenPronounciation(character), // AND with !isListeningPronounciation to prevent overlapping pronounciation
+            onClick: () => characterContext.listenPronounciation(character, setIsListeningPronounciation), // AND with !isListeningPronounciation to prevent overlapping pronounciation
             isUsingPing: true,
         },
         {

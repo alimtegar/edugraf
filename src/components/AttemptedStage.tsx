@@ -45,7 +45,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
     return (
         <div className="attempted-stage flex flex-col flex-grow bg-blue-200 w-screen">
             <Navbar />
-            <section className="flex flex-col justify-center items-center text-blue-900 text-center pt-8 px-12 pb-12">
+            <section className="flex flex-col justify-center items-center text-blue-900 text-center pt-25 px-12 pb-12">
                 <div className="-my-2 pl-2 mb-4">
                     <Rate
                         value={attemptedStage ? getScore() / attemptedStage?.attempted_questions.length / 2 : 0}
@@ -73,7 +73,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-${attemptedQuestion.is_correct ? 'green-500' : 'red-500'} w-3 h-3 rounded-full shadow-md`} />
                         <span>
                             <sup>
-                                {attemptedQuestion.question.question}
+                                {attemptedStage?.stage.questions[i].question}
                             </sup>
                             /
                             <sub>

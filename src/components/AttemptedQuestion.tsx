@@ -5,6 +5,9 @@ import SignatureCanvas from 'react-signature-canvas';
 import Tesseract, { recognize } from 'tesseract.js';
 import { FaVolumeUp } from 'react-icons/fa';
 
+// Contexts
+import { useCharacterContext } from '../contexts/CharacterContext';
+
 // Components
 import Navbar from './Navbar';
 import CharacterFrame from './CharacterFrame';
@@ -14,6 +17,7 @@ import Button from './Button';
 
 // Types
 import { default as AttemptedQuestionState } from '../types/AttemptedQuestion';
+import LoadingButton from './LoadingButton';
 
 type MatchParams = {
     attemptedStageId?: string | undefined;
@@ -24,10 +28,14 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
     const { params: { attemptedStageId, n: initN } } = match;
     const n: number = initN ? parseInt(initN) : 1;
 
+    // Context
+    const characterContext = useCharacterContext();
+
     // States
     const [canvasRef, setCanvasRef] = useState<SignatureCanvas | null>(null);
     const [attemptedQuestion, setAttemptedQuestion] = useState<AttemptedQuestionState | null>(null);
     const [isChecking, setIsChecking] = useState<boolean>(false);
+    const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
 
     // Functions
     const check = () => {
@@ -49,7 +57,7 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
         })
             .then(() => {
                 setIsChecking(false);
-                next(!!(attemptedQuestion && n + 1 <= attemptedQuestion?.attempted_stage.stage.question_count), n + 1);
+                next(!!(attemptedQuestion && n + 1 <= attemptedQuestion?.attempted_stage.attempted_questions.length), n + 1);
 
                 canvasRef?.clear()
             })
@@ -92,16 +100,25 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
     return (
         <div className="flex flex-col flex-grow bg-blue-200 w-screen">
             <Navbar />
-            <Stepper active={n} count={attemptedQuestion?.attempted_stage.stage.question_count} />
 
-            <main className="flex flex-grow flex-col justify-between">
+            <main className="flex flex-grow flex-col justify-between pt-15">
+                <Stepper active={n} count={attemptedQuestion?.attempted_stage.attempted_questions.length} />
+
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
                         <CharacterFrame size={28} textSize="6xl" rounded="xl">
                             {attemptedQuestion ? attemptedQuestion?.question.question : '?'}
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
-                            <Button w={11} h={11} center borderR="full" shadow="md">
+                            <Button 
+                                w={11} 
+                                h={11} 
+                                borderR="full" 
+                                shadow="md"
+                                center  
+                                isPing={isListeningPronounciation}
+                                onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}
+                            >
                                 <FaVolumeUp size="0.83rem" />
                             </Button>
                         </span>
@@ -122,17 +139,13 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
                     </div>
                     <div>
                         {isChecking ? (
-                            <button className="bg-gray-200 text-gray-500 font-extrabold w-full h-12 rounded-lg" disabled>
-                                Loading...
-                            </button>
+                            <LoadingButton />
                         ) : (
                             <Button
                                 {...canvasRef ?
                                     { onClick: () => check() }
                                     : { disabled: true, }
                                 }
-                                w="full"
-                                h={12}
                                 shadow="default"
                             >
                                 Kirim Jawaban

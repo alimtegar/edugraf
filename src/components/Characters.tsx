@@ -32,7 +32,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                     <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
                 </section>
                 <section className="grid grid-cols-4 gap-2 px-8">
-                    {category && (characterContext[category] as Array<string | number>).map((character) => (
+                    {category && (characterContext.characters[category] as Array<string | number>).map((character) => (
                         <Link to={`/characters/category/${category}/${character}`} key={character}>
                             <CharacterFrame size="full" textSize="3xl" rounded="lg">
                                 {character}
