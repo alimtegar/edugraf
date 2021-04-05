@@ -47,7 +47,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
             />
 
             <main>
-                <section className="grid gap-2 p-4">
+                <section className="grid gap-2 pt-17 px-4 pb-4">
                     {stages !== undefined ? stages.map((stage) => (
                         <StagesItem {...stage} key={stage.id} />
                     )) : null}

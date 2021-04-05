@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 // Components
+import Logo from './Logo';
 import Button from './Button';
 
 type NavbarButton = {
@@ -32,8 +33,8 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
             </Button>
         ) : (<span className="w-11 h-11" />)}
 
-        <Link to="/" className="font-handwriting font-semibold text-2xl">
-            Sibisa
+        <Link to="/">
+            <Logo />
         </Link>
 
         {rightButton !== undefined ? (

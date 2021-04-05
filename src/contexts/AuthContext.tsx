@@ -26,6 +26,7 @@ const initState: AuthContextState = {
   },
   setAuth: () => { },
   removeAuth: () => { },
+  isLoading: true,
 };
 
 
@@ -36,6 +37,7 @@ const setAuth = (data: Auth, state: AuthContextState) => {
   return {
     ...state,
     ...data,
+    isLoading: false,
   };
 };
 
@@ -61,7 +63,7 @@ const AuthReducer = (state: AuthContextState, action: Action) => {
 };
 
 // Context
-const AuthContext = createContext(initState);
+const AuthContext = createContext<AuthContextState | undefined>(undefined);
 
 // Provider
 const AuthContextProvider = ({ children }: Props) => {
