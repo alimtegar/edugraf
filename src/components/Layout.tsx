@@ -1,20 +1,20 @@
-import { useContext, useEffect, useCallback, } from 'react';
+import { useEffect, useCallback, } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, } from "react-router-dom";
 import { ToastContainer, } from 'react-toastify';
 
 // Routes
-import routes from '../routes';
+import routes from '../Routes';
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 
 // Components
 import ProtectedRoute from './ProtectedRoute';
 
 const Layout = () => {
     // Contexts
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
     // Functions
     const validateToken = useCallback(() => {

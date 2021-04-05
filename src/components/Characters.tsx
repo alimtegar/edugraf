@@ -14,7 +14,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     let characters: string = "";
 
     switch (category) {
-        case 'symbols': characters = '+-×/=^<:;~*?!>()[]{}|&'; break; //✓
+        case 'symbols': characters = '+-×/=^<:;~*?!>()[]{}|━&'; break; //✓
         case 'letters': characters = 'abcdefghijklmnopqrstuvwxyz'; break;
         case 'numbers': characters = '1234567890'; break;
     }

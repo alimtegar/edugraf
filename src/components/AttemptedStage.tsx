@@ -9,18 +9,18 @@ import Button from './Button';
 // import CharacterFrame from './CharacterFrame';
 
 // Types
-import AttemptedStage from '../types/AttemptedStage';
+import { default as AttemptedStateState } from '../types/AttemptedStage';
 import AttemptedQuestion from '../types/AttemptedQuestion';
 
 type MatchParams = {
     id?: string | undefined;
 }
 
-const AttemptedStageComponent = ({ match, history }: RouteComponentProps<MatchParams>) => {
+const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { id } } = match;
 
     // States
-    const [attemptedStage, setAttemptedStage] = useState<AttemptedStage>();
+    const [attemptedStage, setAttemptedStage] = useState<AttemptedStateState>();
 
     // Functions
     const getScore = () => {
@@ -95,4 +95,4 @@ const AttemptedStageComponent = ({ match, history }: RouteComponentProps<MatchPa
     );
 };
 
-export default AttemptedStageComponent;
+export default AttemptedStage;

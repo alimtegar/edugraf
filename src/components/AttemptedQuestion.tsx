@@ -13,20 +13,20 @@ import Canvas from './Canvas';
 import Button from './Button';
 
 // Types
-import AttemptedQuestion from '../types/AttemptedQuestion';
+import { default as AttemptedQuestionState } from '../types/AttemptedQuestion';
 
 type MatchParams = {
     attemptedStageId?: string | undefined;
     n?: string | undefined;
 }
 
-const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<MatchParams>) => {
+const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { attemptedStageId, n: initN } } = match;
     const n: number = initN ? parseInt(initN) : 1;
 
     // States
     const [canvasRef, setCanvasRef] = useState<SignatureCanvas | null>(null);
-    const [attemptedQuestion, setAttemptedQuestion] = useState<AttemptedQuestion | null>(null);
+    const [attemptedQuestion, setAttemptedQuestion] = useState<AttemptedQuestionState | null>(null);
     const [isChecking, setIsChecking] = useState<boolean>(false);
 
     // Functions
@@ -71,8 +71,8 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${attemptedStageId}/attempted-questions/n/${n}`)
             .then((res) => {
-                const initAttemptedQuestion: AttemptedQuestion = res.data;
-                
+                const initAttemptedQuestion: AttemptedQuestionState = res.data;
+
                 // If attempted question is answered
                 if (initAttemptedQuestion.answer) {
                     // Get number from other unanswered attempted questions
@@ -83,7 +83,7 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
                     setAttemptedQuestion(initAttemptedQuestion);
                 }
             })
-            .catch((err) => {                 
+            .catch((err) => {
                 console.error(err);
                 history.push('/404');
             });
@@ -147,4 +147,4 @@ const AttemptedQuestionComponent = ({ match, history }: RouteComponentProps<Matc
 
 
 
-export default withRouter(AttemptedQuestionComponent);
+export default withRouter(AttemptedQuestion);

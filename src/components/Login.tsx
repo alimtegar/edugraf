@@ -1,11 +1,11 @@
-import { useContext, useState, } from 'react';
+import { useState, } from 'react';
 import axios from 'axios';
 import { toast, } from 'react-toastify';
 import { RouteComponentProps, Link, } from 'react-router-dom';
 import { FaUserPlus, } from 'react-icons/fa';
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import {useAuthContext} from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
@@ -21,7 +21,7 @@ type LoginForm = {
 
 const Login = ({ history }: RouteComponentProps) => {
     // Context
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
     // States
     const initForm: LoginForm = {

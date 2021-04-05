@@ -12,7 +12,7 @@ type AttemptedStage = {
 };
 
 
-const StageComponent = ({ id, stage, questions, history }: Stage & RouteComponentProps) => {
+const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentProps) => {
     const handleClick = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/attempted-stages`, {
             stage_id: id,
@@ -43,4 +43,4 @@ const StageComponent = ({ id, stage, questions, history }: Stage & RouteComponen
     );
 };
 
-export default withRouter(StageComponent);
+export default withRouter(StagesItem);

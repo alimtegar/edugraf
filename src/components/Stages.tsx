@@ -4,7 +4,7 @@ import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import {useAuthContext} from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
@@ -21,7 +21,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, } } = match;
 
     // Contexts
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
     // States
     const [stages, setStages] = useState<Stage[]>();

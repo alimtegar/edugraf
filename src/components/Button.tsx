@@ -12,7 +12,7 @@ type Props = {
     shadow?: string,
 };
 
-const ButtonComponent = ({
+const Button = ({
     children,
     bgColor = 'pink-500',
     bgColorOn = 'pink-600',
@@ -48,4 +48,4 @@ const ButtonComponent = ({
     </button>
 );
 
-export default ButtonComponent;
+export default Button;

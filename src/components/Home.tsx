@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import {useAuthContext} from '../contexts/AuthContext';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
@@ -64,7 +64,7 @@ const Home = () => {
     ];
 
     // Contexts
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
 
     return (

@@ -1,5 +1,5 @@
 // Components
-import AuthContextProvider from './components/AuthContextProvider';
+import { AuthContextProvider } from './contexts/AuthContext';
 import Layout from './components/Layout';
 
 const App = () => (

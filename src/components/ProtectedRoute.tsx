@@ -1,15 +1,14 @@
-import { useContext, } from 'react';
 import { Redirect, Route, } from "react-router-dom";
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 
 // Types
-import ProtectedRoute from '../types/ProtectedRoute';
+import { default as ProtectedRouteProps } from '../types/ProtectedRoute';
 
-const ProtectedRouteComponent = ({ renderedComponent: RenderedComponent, path, visibility, ...props }: ProtectedRoute) => {
+const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility, ...props }: ProtectedRouteProps) => {
     // Context
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
     return ((visibility === 'user') === !!authContext.token.token) ? (
         <Route
@@ -22,4 +21,4 @@ const ProtectedRouteComponent = ({ renderedComponent: RenderedComponent, path, v
     );
 };
 
-export default ProtectedRouteComponent;
+export default ProtectedRoute;

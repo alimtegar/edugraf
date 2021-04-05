@@ -3,7 +3,7 @@ import axios from 'axios';
 import { RouteComponentProps, } from 'react-router-dom';
 
 // Contexts
-import AuthContext from '../contexts/AuthContext';
+import {useAuthContext} from '../contexts/AuthContext';
 
 // Components
 import Loading from './Loading';
@@ -17,7 +17,7 @@ const Activate = ({ match }: RouteComponentProps<MatchParams>) => {
     const { params: { token, } } = match;
 
     // Contexts
-    const authContext = useContext(AuthContext);
+    const authContext = useAuthContext();
 
     // Functions
     const activate = useCallback(() => {
