@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
 
@@ -20,7 +20,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, character, } } = match;
 
     // States
-    const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);
+    const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
 
     // Functions
     const listenPronounciation = (character: string | undefined) => {
@@ -34,19 +34,13 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
         synth.speak(synthUtter);
     }
 
-    const changeCase = (character: string | undefined): string | undefined => { 
+    const changeCase = (character: string | undefined): string | undefined => {
         return character && character === character?.toUpperCase() ? character?.toLowerCase() : character?.toUpperCase();
     }
     const seeWriting = () => { }
     // 
 
-    let menu: CharacterMenuItem[] = [
-        {
-            title: 'Ubah Huruf Kecil',
-            icon: changeCase(character),
-            onClick: () => history.push(`/characters/category/${category}/${changeCase(character)}`),
-            isUsingPing: false,
-        },
+    const initMenu: CharacterMenuItem[] = [
         {
             title: 'Dengarkan Pengucapan',
             icon: <FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />,
@@ -60,6 +54,21 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             isUsingPing: false,
         },
     ];
+    const [menu, setMenu] = useState(initMenu);
+
+    useEffect(() => {
+        if (category === 'letters') {
+            setMenu([
+                ...initMenu,
+                {
+                    title: 'Ubah Huruf Kecil',
+                    icon: changeCase(character),
+                    onClick: () => history.push(`/characters/category/${category}/${changeCase(character)}`),
+                    isUsingPing: false,
+                },
+            ]);
+        }
+    }, [character])
 
     return (
         <main className="flex flex-grow flex-col bg-blue-200">
