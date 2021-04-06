@@ -2,8 +2,12 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 import axios from 'axios';
 // import Rate from 'rc-rate';
 
+// Components
+import Alert from './Alert';
+
 // Types
 import Stage from '../types/Stage';
+
 
 type AttemptedStage = {
     id: number,
@@ -14,17 +18,30 @@ type AttemptedStage = {
 
 const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentProps) => {
     const handleClick = () => {
-        axios.post(`${process.env.REACT_APP_API_URL}/attempted-stages`, {
-            stage_id: id,
-        })
-            .then((res) => {
-                const attemptedStage: AttemptedStage = res.data;
+        Alert.fire({
+            title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
+            html: (<p className="text-sm text-gray-600 font-semibold">Curabitur eu ligula sit amet elit.</p>),
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak',
+        }).then(({ isConfirmed }) => {
+            if (isConfirmed) {
+                axios.post(`${process.env.REACT_APP_API_URL}/attempted-stages`, {
+                    stage_id: id,
+                })
+                    .then((res) => {
+                        const attemptedStage: AttemptedStage = res.data;
 
-                if (attemptedStage.id) {
-                    history.push(`/attempted-stages/${attemptedStage.id}/attempted-questions/n/1`);
-                }
-            })
-            .catch((err) => console.error(err));
+                        if (attemptedStage.id) {
+                            history.push(`/attempted-stages/${attemptedStage.id}/attempted-questions/n/1`);
+                        }
+                    })
+                    .catch((err) => console.error(err));
+            }
+        })
     };
 
     return (

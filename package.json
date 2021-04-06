@@ -23,6 +23,7 @@
     "react-toastify": "^7.0.3",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^10.15.7",
+    "sweetalert2-react-content": "^3.3.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
     "tailwindcss-interaction-variants": "^5.0.0",
     "tesseract.js": "^2.1.1",
