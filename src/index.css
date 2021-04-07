@@ -74,7 +74,6 @@ input, textarea, button, select, a {
     padding-right: 3rem;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    opacity: 0.96;
 }
 
 .Toastify__toast-body {
@@ -89,6 +88,14 @@ input, textarea, button, select, a {
 
 .Toastify__close-button:focus {
     outline: none;
+}
+
+.Toastify__toast--error {
+    background-color: rgba(239, 68, 68);
+}
+
+.Toastify__toast--success {
+    background-color: rgba(16, 185, 129);
 }
 
 /* Position and sizing of burger button */

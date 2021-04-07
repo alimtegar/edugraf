@@ -5,7 +5,7 @@ import { RouteComponentProps, Link, } from 'react-router-dom';
 import { FaBars, } from 'react-icons/fa';
 
 // Contexts
-import {useAuthContext} from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
@@ -49,7 +49,6 @@ const Login = ({ history }: RouteComponentProps) => {
             .then((res) => {
                 authContext.setAuth(res.data);
 
-                setIsLoading(false);
                 setForm(initForm);
             })
             .catch((err) => {
@@ -108,18 +107,16 @@ const Login = ({ history }: RouteComponentProps) => {
                                 onChange={(e) => handleChange(e)}
                             />
                         </div>
-                        <div className="mb-4">
-                            {isLoading ? (
-                                <LoadingButton />
-                            ) : (
-                                <Button>
-                                    Masuk
-                                </Button>
-                            )}
-                        </div>
-                        <div className="text-gray-700 text-sm text-center">
+                        {isLoading ? (
+                            <LoadingButton />
+                        ) : (
+                            <Button>
+                                Masuk
+                            </Button>
+                        )}
+                        <p className="text-gray-500 text-sm font-semibold text-center mt-4">
                             Belum punya akun? <Link to="/register" className="text-pink-500 font-bold">Daftar</Link>
-                        </div>
+                        </p>
                     </form>
                 </section>
             </main>

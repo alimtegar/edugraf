@@ -29,7 +29,7 @@ const initState: AuthContextState = {
   setAuth: () => { },
   setAuthIsLoading: () => { },
   removeAuth: () => { },
-  isLoading: true,
+  isLoading: false,
 };
 
 
@@ -52,11 +52,12 @@ const setAuthIsLoading = (data: boolean, state: AuthContextState) => {
 };
 
 const removeAuth = (state: AuthContextState) => {
-  localStorage.setItem('auth', JSON.stringify('auth'))
+  localStorage.removeItem('auth');
+  delete axios.defaults.headers.common["Authorization"];
 
   return {
     ...state,
-    ...initState
+    ...initState,
   };
 };
 

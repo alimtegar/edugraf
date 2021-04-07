@@ -16,6 +16,7 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
 
     if (authContext.isLoading) {
         // Loading
+        console.log({authContext})
         return (<Loading />)
     } else {
         // Pass
@@ -31,8 +32,6 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
             return (<Redirect to={(visibility === 'user') ? '/login' : '/'} />);
         }
     }
-
-    // return (<Loading />)
 };
 
 export default ProtectedRoute;

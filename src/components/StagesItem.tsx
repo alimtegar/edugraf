@@ -20,7 +20,7 @@ const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentPro
     const handleClick = () => {
         Alert.fire({
             title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
-            html: (<p className="text-sm text-gray-600 font-semibold">Curabitur eu ligula sit amet elit.</p>),
+            html: (<p className="text-sm text-gray-500 font-semibold">Curabitur eu ligula sit amet elit.</p>),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -41,7 +41,7 @@ const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentPro
                     })
                     .catch((err) => console.error(err));
             }
-        })
+        });
     };
 
     return (

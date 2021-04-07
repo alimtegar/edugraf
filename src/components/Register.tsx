@@ -108,6 +108,7 @@ const Register = ({ history }: RouteComponentProps) => {
                             id="email"
                             name="email"
                             placeholder="e.g. example@mail.com"
+                            autoComplete="username"
                             required
                             value={form.email}
                             onChange={(e) => handleChange(e)}
@@ -119,6 +120,7 @@ const Register = ({ history }: RouteComponentProps) => {
                             type="password"
                             id="password"
                             name="password"
+                            autoComplete="new-password"
                             required
                             value={form.password}
                             onChange={(e) => handleChange(e)}
@@ -130,23 +132,22 @@ const Register = ({ history }: RouteComponentProps) => {
                             type="password"
                             id="password_confirmation"
                             name="password_confirmation"
+                            autoComplete="new-password"
                             required
                             value={form.password_confirmation}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    <div className="mb-4">
-                        {isLoading ? (
-                            <LoadingButton />
-                        ) : (
-                            <Button>
-                                Daftar
-                            </Button>
-                        )}
-                    </div>
-                    <div className="text-gray-700 text-sm text-center">
+                    {isLoading ? (
+                        <LoadingButton />
+                    ) : (
+                        <Button>
+                            Daftar
+                        </Button>
+                    )}
+                    <p className="text-gray-500 text-sm text-center font-semibold mt-4">
                         Sudah punya akun? <Link to="/login" className="text-pink-500 font-bold">Masuk</Link>
-                    </div>
+                    </p>
                 </form>
             </section>
         </div>

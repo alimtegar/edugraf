@@ -8,6 +8,7 @@ import { useSidebarContext } from '../contexts/SidebarContext';
 // Components
 import Button from './Button';
 import SidebarMenuItem from './SidebarMenuItem';
+import Alert from './Alert';
 
 // Types
 import { default as SidebarMenuItemProps } from '../types/SidebarMenuItem';
@@ -79,12 +80,32 @@ const Sidebar = () => {
                 <div className="focus:outline-none w-full p-8 absolute bottom-0">
                     <Button
                         bgColor="red-500"
-                        bgColorOn="blue-50"
+                        bgColorOn="red-600"
                         textColor="white"
                         textColorOn="white"
+                        onClick={() => {
+                            sidebarContext.close();
+                            setTimeout(() => {
+                                Alert.fire({
+                                    title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
+                                    html: (<p className="text-sm text-gray-500 font-semibold">Curabitur eu ligula sit amet elit.</p>),
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ya',
+                                    cancelButtonText: 'Tidak',
+                                }).then(({ isConfirmed }) => {
+                                    if (isConfirmed) {
+                                        authContext.removeAuth();
+                                    }
+                                });
+                            }, 275);
+                        }}
                     >
                         Keluar
-                </Button>
+                    </Button>
+                    <p className="text-gray-600 text-sm text-center font-semibold mt-4">© Sibisa {new Date().getFullYear()}</p>
                 </div>
             )}
         </Menu>
