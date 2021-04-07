@@ -13,6 +13,7 @@ import Alert from './Alert';
 // Types
 import { default as SidebarMenuItemProps } from '../types/SidebarMenuItem';
 
+
 const Sidebar = () => {
     // Contexts
     const authContext = useAuthContext();
@@ -30,7 +31,7 @@ const Sidebar = () => {
             to: '/edit-profile',
         },
         {
-            title: 'Ubah Profil',
+            title: 'Ubah Kata Sandi',
             icon: (<FaAsterisk size="0.83rem" />),
             to: '/change-password',
         },
@@ -76,8 +77,9 @@ const Sidebar = () => {
             {menu.map((menuItem) => (
                 <SidebarMenuItem {...menuItem} key={menuItem.to} />
             ))}
-            {authContext.token.token && (
-                <div className="focus:outline-none w-full p-8 absolute bottom-0">
+
+            <div className="focus:outline-none w-full p-8 absolute bottom-0">
+                {authContext.token.token && (
                     <Button
                         bgColor="red-500"
                         bgColorOn="red-600"
@@ -98,16 +100,18 @@ const Sidebar = () => {
                                 }).then(({ isConfirmed }) => {
                                     if (isConfirmed) {
                                         authContext.removeAuth();
+                                        authContext.setAuthIsLoading(false);
                                     }
                                 });
-                            }, 275);
+                            }, 500);
                         }}
                     >
                         Keluar
                     </Button>
-                    <p className="text-gray-600 text-sm text-center font-semibold mt-4">© Sibisa {new Date().getFullYear()}</p>
-                </div>
-            )}
+                )}
+                <p className="text-gray-600 text-sm text-center font-semibold mt-4">© Sibisa {new Date().getFullYear()}</p>
+            </div>
+
         </Menu>
     );
 };

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Redirect, Route, } from "react-router-dom";
 
 // Contexts
@@ -16,7 +15,6 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
 
     if (authContext.isLoading) {
         // Loading
-        console.log({authContext})
         return (<Loading />)
     } else {
         // Pass

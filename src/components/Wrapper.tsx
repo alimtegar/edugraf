@@ -21,7 +21,6 @@ const Wrapper = () => {
 
     // Functions
     const validateToken = useCallback(() => {
-        authContext.setAuthIsLoading(true);
         const storedAuth = localStorage.getItem('auth');
 
         if (storedAuth) {

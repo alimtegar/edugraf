@@ -9,6 +9,8 @@ import NotFound from './components/NotFound';
 import Register from './components/Register';
 import Login from './components/Login';
 import Activate from './components/Activate';
+import EditProfile from './components/EditProfile';
+import ChangePassword from './components/ChangePassword';
 
 // Types
 import ProtectedRoute from './types/ProtectedRoute';
@@ -73,6 +75,18 @@ const routes: ProtectedRoute[] = [
         path: '/activate/:token',
         renderedComponent: Activate,
         visibility: 'guest',
+    },
+    {
+        exact: true,
+        path: '/edit-profile',
+        renderedComponent: EditProfile,
+        visibility: 'user',
+    },
+    {
+        exact: true,
+        path: '/change-password',
+        renderedComponent: ChangePassword,
+        visibility: 'user',
     },
 ];
 

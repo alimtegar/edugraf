@@ -29,7 +29,7 @@ const initState: AuthContextState = {
   setAuth: () => { },
   setAuthIsLoading: () => { },
   removeAuth: () => { },
-  isLoading: false,
+  isLoading: true,
 };
 
 

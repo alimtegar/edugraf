@@ -38,17 +38,17 @@ const Canvas = ({
     const tools: CanvasTool[] = [
         {
             onClick: () => canvasRef?.clear(),
-            icon: (<FaTrash color="inherit" size="1rem" />),
+            icon: (<FaTrash color="inherit" size="0.83rem" />),
             isActivable: false,
         },
         {
             onClick: () => setPenColor('white'),
-            icon: (<FaEraser color="inherit" size="1rem" />),
+            icon: (<FaEraser color="inherit" size="0.83rem" />),
             isActivable: true,
         },
         {
             onClick: () => setPenColor('black'),
-            icon: (<FaPen color="inherit" size="1rem" />),
+            icon: (<FaPen color="inherit" size="0.83rem" />),
             isActivable: true,
         },
     ];
