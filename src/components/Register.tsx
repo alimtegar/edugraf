@@ -2,7 +2,10 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { FaUserLock } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
+
+// Contexts
+import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
 import Navbar from './Navbar';
@@ -19,6 +22,9 @@ type RegisterForm = {
 };
 
 const Register = ({ history }: RouteComponentProps) => {
+    // Contexts
+    const sidebarContext = useSidebarContext();
+
     // States
     const initForm: RegisterForm = {
         name: '',
@@ -69,12 +75,10 @@ const Register = ({ history }: RouteComponentProps) => {
 
     return (
         <div className="flex-grow bg-blue-50">
-            <Navbar 
-                leftButton={{
-                    icon: (<FaUserLock size="1.16rem" />),
-                    onClick: () => history.push('/login'),
-                }}
-            />
+            <Navbar leftButton={{
+                icon: (<FaBars size="0.83rem" />),
+                onClick: sidebarContext.toggle,
+            }} />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">
                     Daftar

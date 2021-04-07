@@ -1,12 +1,15 @@
 // Components
 import { AuthContextProvider } from './contexts/AuthContext';
 import { CharacterContextProvider } from './contexts/CharacterContext';
-import Layout from './components/Layout';
+import { SidebarContextProvider } from './contexts/SidebarContext';
+import Wrapper from './components/Wrapper';
 
 const App = () => (
     <AuthContextProvider>
         <CharacterContextProvider>
-            <Layout />
+            <SidebarContextProvider>
+                <Wrapper />
+            </SidebarContextProvider>
         </CharacterContextProvider>
     </AuthContextProvider>
 );

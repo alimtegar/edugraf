@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, } from "react-router-dom";
 import { ToastContainer, } from 'react-toastify';
 
+
 // Routes
 import routes from '../Routes';
 
@@ -11,8 +12,10 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 // Components
 import ProtectedRoute from './ProtectedRoute';
+import Sidebar from './Sidebar';
 
-const Layout = () => {
+
+const Wrapper = () => {
     // Contexts
     const authContext = useAuthContext();
 
@@ -48,18 +51,21 @@ const Layout = () => {
 
     return (
         <Router>
-            <div className="flex flex-col w-screen min-h-screen overflow-hidden">
-                <Switch>
-                    {routes.map((route) => (
-                        <ProtectedRoute
-                            {...route}
-                            key={route.path}
-                        />))}
-                </Switch>
-                <ToastContainer />
+            <div id="outer-container">
+                <Sidebar />
+                <div id="page-wrap" className="flex flex-col w-screen min-h-screen overflow-hidden">
+                    <Switch>
+                        {routes.map((route) => (
+                            <ProtectedRoute
+                                {...route}
+                                key={route.path}
+                            />))}
+                    </Switch>
+                    <ToastContainer />
+                </div>
             </div>
         </Router>
     );
 };
 
-export default Layout;
+export default Wrapper;

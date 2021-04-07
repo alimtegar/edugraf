@@ -14,11 +14,7 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-input,
-textarea,
-button,
-select,
-a {
+input, textarea, button, select, a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -48,27 +44,23 @@ a {
     display: flex;
 }
 
-
-/* RC Rate */
+/* RC Rate Star */
 
 .rc-rate-star {
     color: #fff;
     filter: drop-shadow(1px 3px 0 rgba(0, 0, 0, 0.1));
 }
 
-.rc-rate-star:focus,
-.rc-rate-star [role='radio']:focus {
+.rc-rate-star:focus, .rc-rate-star [role='radio']:focus {
     outline: none;
 }
 
-.rc-rate-star-half .rc-rate-star-first,
-.rc-rate-star-full .rc-rate-star-second,
-.rc-rate-star-half:hover .rc-rate-star-first,
-.rc-rate-star-full:hover .rc-rate-star-second {
+.rc-rate-star-half .rc-rate-star-first, .rc-rate-star-full .rc-rate-star-second, .rc-rate-star-half:hover .rc-rate-star-first, .rc-rate-star-full:hover .rc-rate-star-second {
     color: rgba(236, 72, 153);
 }
 
-/* React Toastify */
+/* Toastify */
+
 .Toastify__toast {
     font-family: inherit;
     /* text-sm */
@@ -98,15 +90,9 @@ a {
 .Toastify__close-button:focus {
     outline: none;
 }
-/* 
-.Toastify__toast--error {
-    background-color: rgba(239, 68, 68)
-} */
 
-/* SweetAlert2 */
-/* .swal2-title {
-    color: rgba(17, 24, 39) import ;	
-    font-size: 1.125rem;
-    font-weight: 700;
-    line-height: 1.375;
-} */
+/* Position and sizing of burger button */
+
+.bm-burger-button, .bm-cross-button {
+    display: none;
+}

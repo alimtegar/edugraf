@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { FaBars } from 'react-icons/fa';
 
 // Contexts
-import {useAuthContext} from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
@@ -12,6 +12,7 @@ import Navbar from './Navbar';
 import Slider from './Slider';
 import IconButton from './IconButton';
 import HomeSubMenuItem from './HomeSubMenuItem';
+import { useSidebarContext } from '../contexts/SidebarContext';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -65,11 +66,14 @@ const Home = () => {
 
     // Contexts
     const authContext = useAuthContext();
-
+    const sidebarContext = useSidebarContext();
 
     return (
         <div className="flex-grow bg-blue-50">
-            <Navbar />
+            <Navbar leftButton={{
+                icon: (<FaBars size="0.83rem" />),
+                onClick: sidebarContext.toggle,
+            }} />
             <header className="flex justify-center items-center bg-blue-200 text-blue-900 pt-17 pb-6 mb-4 rounded-b-3xl shadow">
                 {/* Profile Photo */}
                 <div className="bg-gray-200 w-20 h-20 mr-4 border-3 border-white rounded-full shadow-sm overflow-hidden">
