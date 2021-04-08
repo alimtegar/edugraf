@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
 // Contexts
-import { useAuthContext } from '../contexts/AuthContext';
 import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
@@ -24,7 +23,6 @@ type ChangePasswordForm = {
 
 const ChangePassword = ({ history }: RouteComponentProps) => {
     // Contexts
-    const authContext = useAuthContext();
     const sidebarContext = useSidebarContext();
 
     // States
@@ -117,7 +115,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
-                    <div className="mt-2 mb-3">
+                    <div className="mt-2 mb-6">
                         <Input
                             label="Konfirmasi Kata Sandi Baru"
                             type="password"
@@ -132,7 +130,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
                     {isLoading ? (
                         <LoadingButton />
                     ) : (
-                        <Button>
+                        <Button type="submit">
                             Ubah
                         </Button>
                     )}

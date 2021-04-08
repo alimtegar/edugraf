@@ -110,7 +110,7 @@ const Login = ({ history }: RouteComponentProps) => {
                         {isLoading ? (
                             <LoadingButton />
                         ) : (
-                            <Button>
+                            <Button type="submit">
                                 Masuk
                             </Button>
                         )}

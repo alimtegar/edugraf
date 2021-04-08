@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       translate: {
         '0.25': '1px',
+        '1/6': '16.666667%',
       },
       top: {
         '0.75': '3px',

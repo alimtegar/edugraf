@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // Types
 import Auth from '../types/Auth';
+import User from '../types/User';
 import { default as AuthContextState } from '../types/AuthContext';
 
 type Props = {
@@ -10,9 +11,10 @@ type Props = {
 }
 
 type Action =
-  | { type: 'SET_AUTH', payload: Auth }
-  | { type: 'SET_AUTH_IS_LOADING', payload: boolean }
-  | { type: 'REMOVE_AUTH' }
+  | { type: 'SET_AUTH', payload: Auth, }
+  | { type: 'SET_AUTH_IS_LOADING', payload: boolean, }
+  | { type: 'SET_AUTH_USER', payload: User, }
+  | { type: 'REMOVE_AUTH', }
 
 
 // Initial states
@@ -21,6 +23,7 @@ const initState: AuthContextState = {
     id: 0,
     name: '',
     email: '',
+    photo: '',
   },
   token: {
     token: '',
@@ -28,6 +31,7 @@ const initState: AuthContextState = {
   },
   setAuth: () => { },
   setAuthIsLoading: () => { },
+  setAuthUser: () => { },
   removeAuth: () => { },
   isLoading: true,
 };
@@ -51,6 +55,20 @@ const setAuthIsLoading = (data: boolean, state: AuthContextState) => {
   };
 };
 
+const setAuthUser = (data: User, state: AuthContextState) => {
+  const authContext: AuthContextState = {
+    ...state,
+    user: {
+      ...state.user,
+      ...data,
+    },
+  };
+
+  localStorage.setItem('auth', JSON.stringify(authContext))
+
+  return authContext;
+};
+
 const removeAuth = (state: AuthContextState) => {
   localStorage.removeItem('auth');
   delete axios.defaults.headers.common["Authorization"];
@@ -68,6 +86,8 @@ const AuthReducer = (state: AuthContextState, action: Action) => {
       return setAuth(action.payload, state);
     case "SET_AUTH_IS_LOADING":
       return setAuthIsLoading(action.payload, state);
+    case "SET_AUTH_USER":
+      return setAuthUser(action.payload, state);
     case "REMOVE_AUTH":
       return removeAuth(state);
     default:
@@ -90,12 +110,16 @@ const AuthContextProvider = ({ children }: Props) => {
     type: 'SET_AUTH_IS_LOADING',
     payload: data,
   });
+  const setAuthUser = (data: User) => dispatch({
+    type: 'SET_AUTH_USER',
+    payload: data,
+  });
   const removeAuth = () => dispatch({
     type: 'REMOVE_AUTH',
   });
 
   return (
-    <AuthContext.Provider value={{ ...state, setAuth, setAuthIsLoading, removeAuth, }}>
+    <AuthContext.Provider value={{ ...state, setAuth, setAuthIsLoading, setAuthUser, removeAuth, }}>
       {children}
     </AuthContext.Provider>
   );
@@ -108,7 +132,7 @@ function useAuthContext() {
     throw new Error('useAuthContext must be used within a AuthContextProvider')
   }
 
-  return authContext
+  return authContext;
 }
 
 export {
