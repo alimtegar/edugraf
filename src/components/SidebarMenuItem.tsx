@@ -13,7 +13,7 @@ const SidebarMenuItem = ({ title, icon, to }: SidebarMenuItemProps) => {
             activeClassName="bg-blue-50"
             to={to}
             exact
-            onClick={sidebarContext.close}
+            onClick={sidebarContext.closeSidebar}
         >
             <span className="mr-4">{icon}</span>
             <span className="leading-none">{title}</span>

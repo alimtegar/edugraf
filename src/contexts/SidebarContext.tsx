@@ -11,8 +11,8 @@ type Props = {
 // Initial states
 const initState: SidebarContextState = {
     isOpen: false,
-    toggle: () => { },
-    close: () => { },
+    toggleSidebar: () => { },
+    closeSidebar: () => { },
     handleStateChange: () => { },
 };
 
@@ -23,12 +23,12 @@ const SidebarContext = createContext(initState);
 const SidebarContextProvider = ({ children }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggle = () => setIsOpen(!isOpen);
-    const close = () => setIsOpen(false);
+    const toggleSidebar = () => setIsOpen(!isOpen);
+    const closeSidebar = () => setIsOpen(false);
     const handleStateChange = ({ isOpen }: State) => setIsOpen(isOpen);
 
     return (
-        <SidebarContext.Provider value={{ ...initState, isOpen, toggle, close, handleStateChange }}>
+        <SidebarContext.Provider value={{ ...initState, isOpen, toggleSidebar, closeSidebar, handleStateChange }}>
             {children}
         </SidebarContext.Provider>
     );

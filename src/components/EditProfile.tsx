@@ -68,13 +68,11 @@ const EditProfile = () => {
             });
     };
 
-    // const initPhoto = `${process.env.REACT_APP_API_URL}/${authContext.user.photo}`;
-
     return (
         <div className="flex-grow bg-blue-50">
             <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggle,
+                onClick: sidebarContext.toggleSidebar,
             }} />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">

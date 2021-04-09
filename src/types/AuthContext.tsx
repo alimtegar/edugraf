@@ -3,7 +3,7 @@ import User from './User';
 
 type AuthContext = Auth & {
     setAuth: (data: Auth) => void,
-    setAuthIsLoading: (data: boolean) => void,
+    setAuthLoading: (data: boolean) => void,
     setAuthUser: (data: User) => void,
     removeAuth: () => void,
     isLoading: boolean,

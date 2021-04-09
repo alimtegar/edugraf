@@ -1,10 +1,10 @@
 import { useState, } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { RouteComponentProps } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
 // Contexts
+import { useAuthContext } from '../contexts/AuthContext';
 import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
@@ -15,19 +15,18 @@ import LoadingButton from './LoadingButton';
 
 // Types
 type ChangePasswordForm = {
-    email: string,
     current_password: string,
     new_password: string,
     new_password_confirmation: string,
 };
 
-const ChangePassword = ({ history }: RouteComponentProps) => {
+const ChangePassword = () => {
     // Contexts
+    const authContext = useAuthContext();
     const sidebarContext = useSidebarContext();
 
     // States
     const initForm: ChangePasswordForm = {
-        email: '',
         current_password: '',
         new_password: '',
         new_password_confirmation: '',
@@ -47,7 +46,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
         e.preventDefault();
         setIsLoading(true);
 
-        axios.post(`${process.env.REACT_APP_API_URL}/register`, form)
+        axios.put(`${process.env.REACT_APP_API_URL}/profile/password`, form)
             .then((res) => {
                 toast.success(res.data.detail, {
                     position: "top-center",
@@ -77,7 +76,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
         <div className="flex-grow bg-blue-50">
             <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggle,
+                onClick: sidebarContext.toggleSidebar,
             }} />
             <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
                 <h1 className="text-lg font-bold leading-snug mb-2">
@@ -90,7 +89,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
                     className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
                     onSubmit={(e) => handleSubmit(e)}
                 >
-                    <input id="email" name="email" autoComplete="username" readOnly value={form.email} className="hidden" />
+                    <input id="email" name="email" autoComplete="username" readOnly value={authContext.user.email} className="hidden" />
                     <div className="mt-2 mb-3">
                         <Input
                             label="Kata Sandi Sekarang"
@@ -111,7 +110,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
                             name="new_password"
                             autoComplete="new-password"
                             required
-                            value={form.current_password}
+                            value={form.new_password}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>
@@ -123,7 +122,7 @@ const ChangePassword = ({ history }: RouteComponentProps) => {
                             name="new_password_confirmation"
                             autoComplete="new-password"
                             required
-                            value={form.current_password}
+                            value={form.new_password_confirmation}
                             onChange={(e) => handleChange(e)}
                         />
                     </div>

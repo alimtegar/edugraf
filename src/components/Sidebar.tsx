@@ -68,7 +68,7 @@ const Sidebar = () => {
                         borderR="md"
                         shadow="none"
                         center
-                        onClick={sidebarContext.toggle}
+                        onClick={sidebarContext.toggleSidebar}
                     >
                         <FaTimes size="0.83rem" />
                     </Button>
@@ -86,7 +86,7 @@ const Sidebar = () => {
                         textColor="white"
                         textColorOn="white"
                         onClick={() => {
-                            sidebarContext.close();
+                            sidebarContext.closeSidebar();
                             setTimeout(() => {
                                 Alert.fire({
                                     title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
@@ -100,7 +100,7 @@ const Sidebar = () => {
                                 }).then(({ isConfirmed }) => {
                                     if (isConfirmed) {
                                         authContext.removeAuth();
-                                        authContext.setAuthIsLoading(false);
+                                        authContext.setAuthLoading(false);
                                     }
                                 });
                             }, 500);

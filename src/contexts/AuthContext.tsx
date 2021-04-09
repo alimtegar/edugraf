@@ -12,7 +12,7 @@ type Props = {
 
 type Action =
   | { type: 'SET_AUTH', payload: Auth, }
-  | { type: 'SET_AUTH_IS_LOADING', payload: boolean, }
+  | { type: 'SET_AUTH_LOADING', payload: boolean, }
   | { type: 'SET_AUTH_USER', payload: User, }
   | { type: 'REMOVE_AUTH', }
 
@@ -30,7 +30,7 @@ const initState: AuthContextState = {
     type: '',
   },
   setAuth: () => { },
-  setAuthIsLoading: () => { },
+  setAuthLoading: () => { },
   setAuthUser: () => { },
   removeAuth: () => { },
   isLoading: true,
@@ -48,7 +48,7 @@ const setAuth = (data: Auth, state: AuthContextState) => {
   };
 };
 
-const setAuthIsLoading = (data: boolean, state: AuthContextState) => {
+const setAuthLoading = (data: boolean, state: AuthContextState) => {
   return {
     ...state,
     isLoading: data,
@@ -84,8 +84,8 @@ const AuthReducer = (state: AuthContextState, action: Action) => {
   switch (action.type) {
     case "SET_AUTH":
       return setAuth(action.payload, state);
-    case "SET_AUTH_IS_LOADING":
-      return setAuthIsLoading(action.payload, state);
+    case "SET_AUTH_LOADING":
+      return setAuthLoading(action.payload, state);
     case "SET_AUTH_USER":
       return setAuthUser(action.payload, state);
     case "REMOVE_AUTH":
@@ -106,8 +106,8 @@ const AuthContextProvider = ({ children }: Props) => {
     type: 'SET_AUTH',
     payload: data,
   });
-  const setAuthIsLoading = (data: boolean) => dispatch({
-    type: 'SET_AUTH_IS_LOADING',
+  const setAuthLoading = (data: boolean) => dispatch({
+    type: 'SET_AUTH_LOADING',
     payload: data,
   });
   const setAuthUser = (data: User) => dispatch({
@@ -119,7 +119,7 @@ const AuthContextProvider = ({ children }: Props) => {
   });
 
   return (
-    <AuthContext.Provider value={{ ...state, setAuth, setAuthIsLoading, setAuthUser, removeAuth, }}>
+    <AuthContext.Provider value={{ ...state, setAuth, setAuthLoading, setAuthUser, removeAuth, }}>
       {children}
     </AuthContext.Provider>
   );

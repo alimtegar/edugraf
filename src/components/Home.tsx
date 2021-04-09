@@ -73,7 +73,7 @@ const Home = () => {
         <div className="flex-grow bg-blue-50">
             <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggle,
+                onClick: sidebarContext.toggleSidebar,
             }} />
             <header className="flex justify-center items-center bg-blue-200 text-blue-900 pt-17 pb-6 mb-4 rounded-b-3xl shadow">
                 <span className="mr-4">

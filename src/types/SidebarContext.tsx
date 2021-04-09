@@ -2,8 +2,8 @@ import { State } from "react-burger-menu";
 
 type SidebarContext = {
     isOpen: boolean,
-    toggle: () => void,
-    close: () => void,
+    toggleSidebar: () => void,
+    closeSidebar: () => void,
     handleStateChange: (state: State) => void,
 };
 
