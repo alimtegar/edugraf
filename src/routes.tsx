@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Activate from './components/Activate';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
+import Practice from './components/Practice';
 
 // Types
 import ProtectedRoute from './types/ProtectedRoute';
@@ -86,6 +87,12 @@ const routes: ProtectedRoute[] = [
         exact: true,
         path: '/change-password',
         renderedComponent: ChangePassword,
+        visibility: 'user',
+    },
+    {
+        exact: true,
+        path: '/practice/category/:category/:character',
+        renderedComponent: Practice,
         visibility: 'user',
     },
 ];

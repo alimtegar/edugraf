@@ -41,8 +41,8 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
         <div className="flex-grow bg-blue-200 text-blue-900">
             <Navbar
                 leftButton={{
+                    icon: (<FaChevronLeft size="0.83rem" />),
                     onClick: () => history.replace('/'),
-                    icon: <FaChevronLeft size="0.83rem" />
                 }}
             />
 

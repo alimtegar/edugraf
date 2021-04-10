@@ -1,9 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import axios from 'axios';
+import { RouteComponentProps, } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
 import Tesseract, { recognize } from 'tesseract.js';
-import { FaVolumeUp } from 'react-icons/fa';
+import { FaChevronLeft, FaVolumeUp } from 'react-icons/fa';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -14,26 +13,24 @@ import CharacterFrame from './CharacterFrame';
 import Stepper from './Stepper';
 import Canvas from './Canvas';
 import Button from './Button';
+import Alert from './Alert';
 
 // Types
-import { default as AttemptedQuestionState } from '../types/AttemptedQuestion';
 import LoadingButton from './LoadingButton';
 
 type MatchParams = {
-    attemptedStageId?: string | undefined;
-    n?: string | undefined;
+    category?: string | undefined;
+    character?: string | undefined;
 }
 
-const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>) => {
-    const { params: { attemptedStageId, n: initN } } = match;
-    const n: number = initN ? parseInt(initN) : 1;
+const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
+    const { params: { category, character } } = match;
 
     // Context
     const characterContext = useCharacterContext();
 
     // States
     const [canvasRef, setCanvasRef] = useState<SignatureCanvas | null>(null);
-    const [attemptedQuestion, setAttemptedQuestion] = useState<AttemptedQuestionState | null>(null);
     const [isChecking, setIsChecking] = useState<boolean>(false);
     const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
 
@@ -52,79 +49,67 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
     };
 
     const answer = (answer: string) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/attempted-questions/${attemptedQuestion?.id}`, {
-            answer: answer,
-        })
-            .then(() => {
-                setIsChecking(false);
-                next(!!(attemptedQuestion && n + 1 <= attemptedQuestion?.attempted_stage.attempted_questions.length), n + 1);
+        setIsChecking(false);
+        canvasRef?.clear();
 
-                canvasRef?.clear()
-            })
-            .catch((err) => {
-                setIsChecking(false);
-                console.error(err);
-            });
-    }
+        if (answer === character) {
+            Alert.fire({
+                title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
+                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban Anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{character}</strong>).</p>),
+                icon: 'success',
+                confirmButtonText: 'Baik',
+            }).then(({ isConfirmed }) => {
+                if (isConfirmed) {
 
-    const next = useCallback((condition: boolean, nextN: number) => {
-        const nextPath = condition
-            ? `/attempted-stages/${attemptedStageId}/attempted-questions/n/${nextN}`
-            : `/attempted-stages/${attemptedStageId}`;
-
-        history.push(nextPath);
-    }, [history, attemptedStageId]);
-
-    // Effect
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${attemptedStageId}/attempted-questions/n/${n}`)
-            .then((res) => {
-                const initAttemptedQuestion: AttemptedQuestionState = res.data;
-
-                // If attempted question is answered
-                if (initAttemptedQuestion.answer) {
-                    // Get number from other unanswered attempted questions
-                    const unansweredOtherN = initAttemptedQuestion.attempted_stage.attempted_questions.findIndex((other) => !other.answer) + 1;
-
-                    next(!!(unansweredOtherN), unansweredOtherN);
-                } else {
-                    setAttemptedQuestion(initAttemptedQuestion);
                 }
-            })
-            .catch((err) => {
-                console.error(err);
-                history.push('/404');
             });
-    }, [history, next, attemptedStageId, n]);
+        } else {
+            Alert.fire({
+                title: (<span className="text-lg text-gray-900 font-bold leading-snug">Salah</span>),
+                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban Anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{character}</strong>).</p>),
+                icon: 'error',
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: 'Ulangi',
+            }).then(({ isConfirmed }) => {
+                if (isConfirmed) {
+
+                }
+            });
+        }
+    }
 
     return (
         <div className="flex flex-col flex-grow bg-blue-200 w-screen">
-            <Navbar />
+            <Navbar leftButton={{
+                icon: (<FaChevronLeft size="0.83rem" />),
+                onClick: () => history.replace(`/characters/category/${category}/${character}`),
+            }} />
 
             <main className="flex flex-grow flex-col justify-between pt-15">
-                <Stepper active={n} count={attemptedQuestion?.attempted_stage.attempted_questions.length} />
+                <Stepper active={1} count={1} />
 
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
                         <CharacterFrame size={28} textSize="6xl" rounded="xl">
-                            {attemptedQuestion ? attemptedQuestion?.question.question : ''}
+                            {character}
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
-                            <Button 
-                                w={11} 
-                                h={11} 
-                                borderR="full" 
+                            <Button
+                                w={11}
+                                h={11}
+                                borderR="full"
                                 shadow="md"
-                                center  
+                                center
                                 isPing={isListeningPronounciation}
-                                onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}
+                                onClick={() => characterContext.listenPronounciation(character, setIsListeningPronounciation)}
                             >
                                 <FaVolumeUp size="0.83rem" />
                             </Button>
                         </span>
                     </div>
                     <p className="text-blue-900 text-center text-sm mt-8 font-semibold leading-none">
-                        Tulislah huruf <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        Tulislah huruf <strong className="font-bold">{character}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 
@@ -160,4 +145,4 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
 
 
 
-export default withRouter(AttemptedQuestion);
+export default Practice;

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
-import { FaChevronLeft, FaVolumeUp, FaPen } from 'react-icons/fa';
+import { useState, useEffect, } from 'react';
+import { RouteComponentProps, Link, } from 'react-router-dom';
+import { FaChevronLeft, FaVolumeUp, FaPen, } from 'react-icons/fa';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -94,11 +94,11 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 ))}
             </div>
             <section className="px-4 mt-auto mb-4">
-                <div>
+                <Link to={`/practice/category/${category}/${character}`}>
                     <Button>
                         Latihan Menulis
                     </Button>
-                </div>
+                </Link>
             </section>
         </main>
     );
