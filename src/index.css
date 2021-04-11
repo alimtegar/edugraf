@@ -48,7 +48,7 @@ input, textarea, button, select, a {
 
 .rc-rate-star {
     color: #fff;
-    filter: drop-shadow(1px 3px 0 rgba(0, 0, 0, 0.1));
+    /* filter: drop-shadow(1px 3px 0 rgba(0, 0, 0, 0.1)); */
 }
 
 .rc-rate-star:focus, .rc-rate-star [role='radio']:focus {

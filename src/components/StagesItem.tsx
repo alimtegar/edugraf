@@ -1,6 +1,6 @@
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import axios from 'axios';
-// import Rate from 'rc-rate';
+import Rate from 'rc-rate';
 
 // Components
 import Alert from './Alert';
@@ -55,7 +55,7 @@ const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentPro
                 </h3>
                 <span className="text-xs font-semibold">{questions[0].question} - {questions[questions.length - 1].question}</span>
             </div>
-            {/* <Rate value={Math.ceil(Math.random() * 5)} /> */}
+            <Rate value={Math.ceil(Math.random() * 5)} />
         </div>
     );
 };
