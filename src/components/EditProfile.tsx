@@ -69,20 +69,20 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="flex-grow bg-blue-50">
+        <>
             <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
             }} />
-            <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
-                <h1 className="text-lg font-bold leading-snug mb-2">
+            <header className="text-center text-white pt-19 px-16 pb-10 rounded-b-3xl shadow">
+                <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Sunting Profil
                 </h1>
                 <p className="text-sm font-semibold">Sunting nama lengkap dan foto profil akun Sibisa Anda.</p>
             </header>
-            <section className="text-gray-900 px-4">
+            <section className="text-gray-700 px-4">
                 <form
-                    className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
+                    className="flex flex-col bg-white p-6 rounded-xl shadow-default"
                     onSubmit={(e) => handleSubmit(e)}
                 >
                     <PhotoDropzone
@@ -119,7 +119,7 @@ const EditProfile = () => {
                     )}
                 </form>
             </section>
-        </div>
+        </>
     )
 };
 

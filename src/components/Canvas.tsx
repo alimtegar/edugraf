@@ -23,15 +23,15 @@ type CanvasTool = {
     isActivable: boolean,
 };
 
-const Canvas = ({ 
-    bgColor = 'white', 
-    textColor = 'blue-900', 
-    btnBgColorOn = 'blue-50', 
-    btnTextColorOn = 'blue-900', 
-    btnShadow = 'none', 
-    h, 
-    canvasRef, 
-    setCanvasRef 
+const Canvas = ({
+    bgColor = 'transparent',
+    textColor = 'gray-400',
+    btnBgColorOn = 'primary-on',
+    btnTextColorOn = 'primary-dark',
+    btnShadow = 'none',
+    h,
+    canvasRef,
+    setCanvasRef
 }: Props) => {
     const [penColor, setPenColor] = useState<'black' | 'white'>('black');
     const [activeToolKey, setActiveToolKey] = useState<number>(2);
@@ -54,12 +54,12 @@ const Canvas = ({
     ];
 
     return (
-        <div className={`flex flex-col bg-white h-${h} rounded-lg shadow-default overflow-hidden`}>
-            <div className={`flex justify-end items-center bg-${bgColor} p-2 border-b-3 border-blue-50`}>
-                <strong className={`text-${textColor} text-sm ml-3 mr-auto`}>Kanvas</strong>
+        <div className={`flex flex-col bg-white h-${h} rounded-xl shadow-default overflow-hidden`}>
+            <div className={`flex justify-end items-center bg-${bgColor} p-2`}>
+                <strong className={`text-gray-700 text-sm ml-3 mr-auto`}>Kanvas</strong>
 
                 {tools.map((tool, key) => (
-                    <span key={Math.random()}>
+                    <span key={key}>
                         <Button
                             w={11}
                             h={11}
@@ -67,7 +67,7 @@ const Canvas = ({
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}
                             textColorOn={btnTextColorOn}
-                            borderR="md"
+                            borderR="full"
                             center={true}
                             shadow={key === activeToolKey ? btnShadow : 'none'}
                             onClick={() => {
@@ -85,14 +85,17 @@ const Canvas = ({
                 ))}
             </div>
 
-            <div className="flex-grow">
+            <div className="relative flex-grow">
                 <SignatureCanvas
                     penColor={penColor}
                     minWidth={6}
                     maxWidth={6}
-                    canvasProps={{ className: 'sigCanvas w-full h-full' }}
+                    canvasProps={{ className: 'sigCanvas relative z-10 w-full h-full' }}
                     ref={(ref) => setCanvasRef(ref)}
                 />
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((v) => (
+                    <div className={`absolute top-${v}/8 left-0 bg-gray-300 w-full h-0.5`} key={v} />
+                ))}
             </div>
         </div>
     )

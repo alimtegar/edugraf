@@ -19,14 +19,14 @@ type Props = {
 const IconButton = ({
     icon,
     iconSize = 11,
-    iconBgColor = 'pink-500',
-    iconBgColorOn = 'pink-600',
+    iconBgColor = 'secondary',
+    iconBgColorOn = 'secondary',
     iconTextColor = 'white',
     iconTextColorOn = 'white',
     iconShadow = 'md',
     title,
     description,
-    borderR = 'lg',
+    borderR = 'xl',
     shadow = 'default',
     isPing = false,
     ...props
@@ -37,7 +37,7 @@ const IconButton = ({
             flex 
             items-center 
             bg-white 
-            text-blue-900 
+            text-gray-700 
             p-2
             rounded-${borderR}
             shadow-${shadow}
@@ -59,8 +59,7 @@ const IconButton = ({
             w-${iconSize}
             h-${iconSize}
             mr-4 
-            rounded-${borderR} 
-            shadow-${iconShadow}
+            rounded-full
         `}>
             {isPing && (
                 <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${iconBgColor} opacity-75`}></span>

@@ -98,7 +98,7 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
     }, [history, next, attemptedStageId, n]);
 
     return (
-        <div className="flex flex-col flex-grow bg-blue-200 w-screen">
+        <>
             <Navbar />
 
             <main className="flex flex-grow flex-col justify-between pt-15">
@@ -114,7 +114,7 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
                                 w={11} 
                                 h={11} 
                                 borderR="full" 
-                                shadow="md"
+                                shadow="default"
                                 center  
                                 isPing={isListeningPronounciation}
                                 onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}
@@ -123,7 +123,7 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
                             </Button>
                         </span>
                     </div>
-                    <p className="text-blue-900 text-center text-sm mt-8 font-semibold leading-none">
+                    <p className="text-white text-center text-sm mt-8 font-semibold leading-none">
                         Tulislah huruf <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
@@ -154,7 +154,7 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
                     </div>
                 </section>
             </main>
-        </div>
+        </>
     )
 };
 

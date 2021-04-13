@@ -65,21 +65,22 @@ const Login = ({ history }: RouteComponentProps) => {
     }
 
     return (
-        <div className="flex-grow bg-blue-50">
+        <>
             <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
             }} />
-            <header className="text-center bg-blue-200 text-blue-900 pt-17 px-16 pb-16 rounded-b-3xl shadow">
-                <h1 className="text-lg font-bold leading-snug mb-2">
-                    Masuk
+            <header className="text-center text-white pt-19 px-16 pb-10 rounded-b-3xl">
+                <h1 className="text-lg font-extrabold leading-snug mb-2">
+                    Masuk Pengguna
                 </h1>
-                <p className="text-sm font-semibold">Masuk dan lanjutkan proses belajar anda dengan Sibisa.</p>
+                <p className="text-sm font-semibold">Masuk dan lanjutkan proses belajar anda dengan berbagai fitur Sibisa.</p>
             </header>
-            <main>
+
+            <main className="flex-grow">
                 <section className="text-gray-900 px-4">
                     <form
-                        className="flex flex-col bg-white -mt-8 p-6 rounded-lg shadow-md"
+                        className="flex flex-col bg-white x-mt-8 p-6 rounded-xl shadow-default"
                         onSubmit={(e) => handleSubmit(e)}
                     >
                         <div className="mt-2 mb-3">
@@ -95,7 +96,7 @@ const Login = ({ history }: RouteComponentProps) => {
                                 onChange={(e) => handleChange(e)}
                             />
                         </div>
-                        <div className="mt-2 mb-6">
+                        <div className="mt-2 mb-4">
                             <Input
                                 label="Kata Sandi"
                                 type="password"
@@ -114,13 +115,18 @@ const Login = ({ history }: RouteComponentProps) => {
                                 Masuk
                             </Button>
                         )}
-                        <p className="text-gray-500 text-sm font-semibold text-center mt-4">
-                            Belum punya akun? <Link to="/register" className="text-pink-500 font-bold">Daftar</Link>
+                        <p className="text-gray-500 text-sm font-semibold text-center my-4">
+                            Belum punya akun?
                         </p>
+                        <Link to="/register">
+                            <Button bgColor="red-500" bgColorOn="red-600" type="button">
+                                Daftar
+                        </Button>
+                        </Link>
                     </form>
                 </section>
             </main>
-        </div>
+        </>
     );
 };
 

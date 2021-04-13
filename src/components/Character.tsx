@@ -66,7 +66,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     }, [character])
 
     return (
-        <main className="flex flex-grow flex-col bg-blue-200">
+        <main className="flex flex-grow flex-col">
             <Navbar
                 leftButton={{
                     onClick: () => history.replace(`/characters/category/${category}`),
@@ -79,7 +79,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-12 mb-8">
                 <CharacterFrame size={28} textSize="6xl" rounded="xl">{character}</CharacterFrame>
-                <p className="text-blue-900 text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
+                <p className="text-white text-sm text-center font-semibold mt-8">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-8 px-8">
@@ -96,7 +96,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             <section className="px-4 mt-auto mb-4">
                 <Link to={`/practice/category/${category}/${character}`}>
                     <Button>
-                        Latihan Menulis
+                        Latihan
                     </Button>
                 </Link>
             </section>

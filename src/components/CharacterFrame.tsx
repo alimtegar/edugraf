@@ -13,7 +13,7 @@ const CharacterFrame = ({ children, size, textSize, rounded }: Props) => {
             items-center 
             bg-white 
             text-${textSize}
-            text-gray-900
+            text-gray-700
             font-extrabold
             aspect-1
             w-${size} 

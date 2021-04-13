@@ -2,6 +2,7 @@ import { useEffect, useCallback, } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, } from "react-router-dom";
 import { ToastContainer, } from 'react-toastify';
+import Particles from "react-particles-js";
 
 
 // Routes
@@ -51,9 +52,41 @@ const Wrapper = () => {
 
     return (
         <Router>
-            <div id="outer-container">
+            <div id="outer-container" className="bg-primary">
                 <Sidebar />
-                <div id="page-wrap" className="flex flex-col w-screen min-h-screen overflow-hidden">
+                <Particles
+                    height="100%"
+                    width="100%"
+                    className="absolute opacity-50 w-full h-screen"
+                    params={{
+                        particles: {
+                            "number": {
+                                "value": 5,
+                                "density": {
+                                    "enable": false
+                                }
+                            },
+                            "size": {
+                                "value": 100,
+                                "random": true,
+                                "anim": {
+                                    "speed": 4,
+                                    "size_min": 0.3
+                                }
+                            },
+                            "line_linked": {
+                                "enable": false
+                            },
+                            "move": {
+                                "random": true,
+                                "speed": 1,
+                                "direction": "top",
+                                "out_mode": "out"
+                            }
+                        },
+                    }}
+                />
+                <div id="page-wrap" className="relative z-10 flex flex-col w-screen min-h-screen overflow-hidden">
                     <Switch>
                         {routes.map((route) => (
                             <ProtectedRoute
@@ -61,8 +94,8 @@ const Wrapper = () => {
                                 key={route.path}
                             />))}
                     </Switch>
-                    <ToastContainer />
                 </div>
+                <ToastContainer />
             </div>
         </Router>
     );

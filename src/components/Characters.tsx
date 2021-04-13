@@ -19,7 +19,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const characterContext = useCharacterContext();
 
     return (
-        <div className="flex-grow bg-blue-200 text-blue-900">
+        <div className="flex-grow text-white">
             <Navbar
                 leftButton={{
                     onClick: () => history.replace('/'),
@@ -28,10 +28,10 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
             />
 
             <main>
-                <section className="text-center pt-17 px-12 mb-8">
-                    <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajarinya.</p>
+                <section className="text-center pt-19 px-12 mb-10">
+                    <p className="text-sm font-semibold">Pilih salah satu alfabet untuk mulai mempelajari detailnya.</p>
                 </section>
-                <section className="grid grid-cols-4 gap-2 px-8">
+                <section className="grid grid-cols-4 gap-2 px-8 mb-8">
                     {category && (characterContext.characters[category] as Array<string | number>).map((character) => (
                         <Link to={`/characters/category/${category}/${character}`} key={character}>
                             <CharacterFrame size="full" textSize="3xl" rounded="lg">

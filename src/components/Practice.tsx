@@ -80,7 +80,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
     }
 
     return (
-        <div className="flex flex-col flex-grow bg-blue-200 w-screen">
+        <div className="flex flex-col flex-grow">
             <Navbar leftButton={{
                 icon: (<FaChevronLeft size="0.83rem" />),
                 onClick: () => history.replace(`/characters/category/${category}/${character}`),
@@ -99,7 +99,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                                 w={11}
                                 h={11}
                                 borderR="full"
-                                shadow="md"
+                                shadow="default"
                                 center
                                 isPing={isListeningPronounciation}
                                 onClick={() => characterContext.listenPronounciation(character, setIsListeningPronounciation)}
@@ -108,7 +108,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                             </Button>
                         </span>
                     </div>
-                    <p className="text-blue-900 text-center text-sm mt-8 font-semibold leading-none">
+                    <p className="text-white text-center text-sm mt-8 font-semibold leading-none">
                         Tulislah huruf <strong className="font-bold">{character}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
@@ -131,7 +131,6 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                                     { onClick: () => check() }
                                     : { disabled: true, }
                                 }
-                                shadow="default"
                             >
                                 Kirim Jawaban
                             </Button>

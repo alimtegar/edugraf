@@ -4,9 +4,9 @@ type Props = {
     count: number | undefined,
 }
 
-const Stepper = ({ color = 'pink-500', active = 0, count }: Props) => {
+const Stepper = ({ color = 'secondary', active = 0, count }: Props) => {
     return (
-        <ol className={`flex grid grid-cols-${count ? count : 1} shadow-sm`}>
+        <ol className={`flex grid grid-cols-${count ? count : 1}`}>
             {[...Array(count)].map((_, key) => count && key <= active - 1 ? (
                 <li className={`relative bg-${color} border-${color} h-1`} key={key}>
                     {/* <span className="absolute top-1 left-1/2 transform -translate-x-1/2 border-transparent border-12" style={{ borderTopColor: 'inherit', }}></span> */}

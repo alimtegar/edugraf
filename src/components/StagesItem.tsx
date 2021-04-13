@@ -45,8 +45,8 @@ const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentPro
     };
 
     return (
-        <div className="flex items-center bg-white text-blue-900 p-2 rounded-lg shadow" onClick={handleClick}>
-            <div className="flex justify-center items-center bg-pink-500 text-white text-xl font-extrabold w-11 h-11 mr-4 rounded-lg shadow-md">
+        <div className="flex items-center bg-white text-gray-700 p-2 rounded-xl shadow" onClick={handleClick}>
+            <div className="flex justify-center items-center bg-secondary text-white text-xl font-extrabold w-11 h-11 mr-4 rounded-full shadow-sm">
                 {stage}
             </div>
             <div className="flex flex-col mr-auto">

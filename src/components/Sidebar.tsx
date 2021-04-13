@@ -60,12 +60,11 @@ const Sidebar = () => {
                 <div className="flex justify-end items-center w-full h-15 p-2">
                     <Button
                         bgColor="transparent"
-                        bgColorOn="blue-50"
-                        textColor="blue-900"
-                        textColorOn="blue-900"
+                        bgColorOn="primary-on"
+                        textColor="gray-400"
+                        textColorOn="primary-dark"
                         w={11}
                         h={11}
-                        borderR="md"
                         shadow="none"
                         center
                         onClick={sidebarContext.toggleSidebar}
@@ -74,6 +73,7 @@ const Sidebar = () => {
                     </Button>
                 </div>
             </div>
+            
             {menu.map((menuItem) => (
                 <SidebarMenuItem {...menuItem} key={menuItem.to} />
             ))}

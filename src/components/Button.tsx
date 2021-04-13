@@ -15,14 +15,14 @@ type Props = {
 
 const Button = ({
     children,
-    bgColor = 'pink-500',
-    bgColorOn = 'pink-600',
+    bgColor = 'secondary',
+    bgColorOn = 'secondary',
     textColor = 'white',
     textColorOn = 'white',
     w = 'full',
     h = 12,
-    borderR = 'lg',
-    shadow = 'default',
+    borderR = 'full',
+    shadow = 'none',
     center = false,
     isPing = false,
     ...props
@@ -38,9 +38,8 @@ const Button = ({
             active:bg-${bgColorOn}
             text-${textColor}
             text-sm
-            hover:text-${textColorOn}
             active:text-${textColorOn}
-            font-bold
+            font-extrabold
             rounded-${borderR}
             shadow-${shadow}
             focus:outline-none

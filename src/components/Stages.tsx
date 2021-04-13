@@ -40,7 +40,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     }, [category])
 
     return (
-        <div className="flex-grow bg-blue-200 text-blue-900 overflow-y-scroll">
+        <div className="flex-grow text-gray-700 overflow-y-scroll">
             <div className="sticky top-0 h-auto">
                 <Navbar
                     leftButton={{
@@ -63,8 +63,8 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                                 ],
                                 datasets: [{
                                     label: 'Skor',
-                                    backgroundColor: 'rgb(236, 72, 153)',
-                                    data: [10, 20, 70, 60, 80, 50, ],
+                                    backgroundColor: '#FC9F60',
+                                    data: [10, 20, 70, 60, 80, 50,],
                                 }]
                             }}
                             options={{
@@ -78,7 +78,8 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                                             display: true,
                                         },
                                         ticks: {
-                                            fontColor: 'rgb(30, 58, 138)',
+                                            fontColor: 'white',
+                                            // fontSize: '0.875rem',
                                         },
                                     }],
                                     yAxes: [{
@@ -106,9 +107,10 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                                     datalabels: {
                                         anchor: 'end',
                                         align: 'top',
-                                        color: 'rgb(30, 58, 138)',
+                                        color: 'white',
                                         font: {
-                                            weight: 500
+                                            weight: 500,
+                                            // size: '0.875rem',
                                         }
                                     },
                                 },
@@ -118,7 +120,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 </section>
             </div>
             <div className="sticky top-15 h-auto">
-                <section className="absolute w-full h-screen flex-grow bg-white h-full py-8 px-4 rounded-t-3xl shadow">
+                <section className="absolute w-full h-screen flex-grow bg-white bg-opacity-95 h-full pt-6 pb-4 px-4 rounded-t-2xl shadow">
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="font-bold leading-none">
                             Daftar Stage

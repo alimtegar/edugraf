@@ -9,8 +9,8 @@ const SidebarMenuItem = ({ title, icon, to }: SidebarMenuItemProps) => {
 
     return (
         <NavLink
-            className="menu-item flex items-center active:bg-blue-50 text-blue-900 text-sm font-bold p-4 focus:outline-none"
-            activeClassName="bg-blue-50"
+            className="menu-item flex items-center active:bg-primary-on text-gray-400 text-sm font-bold p-4 focus:outline-none"
+            activeClassName="bg-primary-on text-primary-dark"
             to={to}
             exact
             onClick={sidebarContext.closeSidebar}
