@@ -5,7 +5,7 @@ const buttonClass = 'relative w-24 h-12 text-sm mx-1 focus:outline-none font-bol
 
 const Alert = withReactContent(Swal.mixin({
     customClass: {
-        confirmButton: `${buttonClass} bg-blue-500 xactive:bg-blue-600 text-white hover:text-white`,
+        confirmButton: `${buttonClass} bg-blue-500 active:bg-blue-600 text-white hover:text-white`,
         cancelButton: `${buttonClass} bg-red-500 active:bg-red-600 text-white hover:text-white active:text-white`,
     },
     buttonsStyling: false,

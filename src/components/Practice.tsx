@@ -80,7 +80,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
     }
 
     return (
-        <div className="flex flex-col flex-grow">
+        <>
             <Navbar leftButton={{
                 icon: (<FaChevronLeft size="0.83rem" />),
                 onClick: () => history.replace(`/characters/category/${category}/${character}`),
@@ -108,37 +108,34 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                             </Button>
                         </span>
                     </div>
-                    <p className="text-white text-center text-sm mt-8 font-semibold leading-none">
+                    <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
                         Tulislah huruf <strong className="font-bold">{character}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 
-                <section className="mt-auto px-4 pb-4">
-                    <div className="mb-4">
-                        <Canvas
+                <section className="flex flex-grow px-4 mb-4">
+                    <Canvas
+                        canvasRef={canvasRef}
+                        setCanvasRef={setCanvasRef}
+                    />
+                </section>
 
-                            h={64}
-                            canvasRef={canvasRef}
-                            setCanvasRef={setCanvasRef}
-                        />
-                    </div>
-                    <div>
-                        {isChecking ? (
-                            <LoadingButton />
-                        ) : (
-                            <Button
-                                {...canvasRef ?
-                                    { onClick: () => check() }
-                                    : { disabled: true, }
-                                }
-                            >
-                                Kirim Jawaban
-                            </Button>
-                        )}
-                    </div>
+                <section className="mt-auto px-4 mb-4">
+                    {isChecking ? (
+                        <LoadingButton />
+                    ) : (
+                        <Button
+                            {...canvasRef ?
+                                { onClick: () => check() }
+                                : { disabled: true, }
+                            }
+                        >
+                            Kirim Jawaban
+                        </Button>
+                    )}
                 </section>
             </main>
-        </div>
+        </>
     )
 };
 

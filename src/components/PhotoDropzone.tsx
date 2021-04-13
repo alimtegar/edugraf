@@ -48,7 +48,7 @@ const PhotoDropzone = ({ initPhoto, setPhotoFile }: Props) => {
                         w={11}
                         h={11}
                         borderR="full"
-                        shadow="md"
+                        shadow="default"
                         center
                         onClick={open}
                     >

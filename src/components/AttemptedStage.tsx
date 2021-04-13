@@ -49,7 +49,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
             <main className="flex flex-grow flex-col justify-between pt-15">
                 <Stepper active={1} count={1} />
 
-                <section className="flex flex-col justify-center items-center text-white text-center pt-10 px-12 pb-12">
+                <section className="flex flex-col justify-center items-center text-white text-center pt-10 px-16 pb-11">
                     <div className="-my-2 pl-2 mb-4">
                         <Rate
                             value={attemptedStage ? getScore() / attemptedStage?.attempted_questions.length / 2 : 0}
@@ -62,7 +62,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <h1 className="text-6xl font-extrabold mb-4">
                         {getScore()}
                     </h1>
-                    <h2 className="text-lg font-extrabold leading-snug mb-1">Selamat!</h2>
+                    <h2 className="text-lg font-extrabold leading-snug mb-2">Selamat!</h2>
                     <p className="text-sm font-semibold">Curabitur eu ligula sit amet elit.</p>
                 </section>
                 <section className="grid grid-cols-5 gap-2 px-12">

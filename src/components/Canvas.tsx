@@ -12,7 +12,6 @@ type Props = {
     textColor?: string,
     btnTextColorOn?: string,
     btnShadow?: string,
-    h: number,
     canvasRef: SignatureCanvas | null,
     setCanvasRef: React.Dispatch<React.SetStateAction<SignatureCanvas | null>>,
 };
@@ -29,7 +28,6 @@ const Canvas = ({
     btnBgColorOn = 'primary-on',
     btnTextColorOn = 'primary-dark',
     btnShadow = 'none',
-    h,
     canvasRef,
     setCanvasRef
 }: Props) => {
@@ -54,7 +52,7 @@ const Canvas = ({
     ];
 
     return (
-        <div className={`flex flex-col bg-white h-${h} rounded-xl shadow-default overflow-hidden`}>
+        <div className={`flex flex-col bg-white flex-grow rounded-xl shadow-default overflow-hidden`}>
             <div className={`flex justify-end items-center bg-${bgColor} p-2`}>
                 <strong className={`text-gray-700 text-sm ml-3 mr-auto`}>Kanvas</strong>
 
