@@ -23,7 +23,7 @@ const Home = () => {
                 {
                     title: 'Tabel Simbol',
                     description: 'Tabel huruf dan cara penulisannya',
-                    icon: (<img src="/icons/blocks.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/4263/4263435.svg?token=exp=1618386423~hmac=ffb2340ebe54eea586717f3bf18e6906" className="h-10" alt="icon" />),
                     to: '/characters/category/symbols',
                 },
                 {
@@ -35,7 +35,7 @@ const Home = () => {
                 {
                     title: 'Tabel Angka',
                     description: 'Tabel angka dan cara penulisannya',
-                    icon: (<img src="/icons/blocks.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/3815/3815088.svg?token=exp=1618387303~hmac=2fdc03ac0cf403319230629d7b886e32" className="h-10" alt="icon" />),
                     to: '/characters/category/numbers',
                 },
             ],
@@ -43,6 +43,12 @@ const Home = () => {
         {
             title: 'Tes Kemampuan',
             subMenu: [
+                {
+                    title: 'Tes via Kertas',
+                    description: 'Tabel alfabet dan cara penulisannya',
+                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/684/684930.svg?token=exp=1618386207~hmac=9e5cccdb678032c65b2537d4296f9ac0" className="h-10" alt="icon" />),
+                    to: '/stages/category/symbols',
+                },
                 {
                     title: 'Tes Simbol',
                     description: 'Tabel alfabet dan cara penulisannya',

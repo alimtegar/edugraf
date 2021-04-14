@@ -28,6 +28,7 @@
     "react-signature-canvas": "^1.0.3",
     "react-slick": "^0.28.1",
     "react-toastify": "^7.0.3",
+    "react-webcam": "^5.2.3",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^10.15.7",
     "sweetalert2-react-content": "^3.3.1",

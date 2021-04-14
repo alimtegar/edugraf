@@ -125,10 +125,10 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                         <h2 className="font-bold leading-none">
                             Daftar Stage
                         </h2>
-                        <span className="text-sm font-semibold leading-none"><strong className="font-bold">5</strong> Item</span>
+                        <span className="text-sm font-semibold leading-none"><strong className="font-bold">{stages ? stages.length : 0}</strong> Item</span>
                     </div>
                     <div className="grid gap-2">
-                        {stages !== undefined ? stages.map((stage) => (
+                        {stages ? stages.map((stage) => (
                             <StagesItem {...stage} key={stage.id} />
                         )) : null}
                     </div>
