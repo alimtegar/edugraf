@@ -1,4 +1,5 @@
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { useState, useEffect, } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Rate from 'rc-rate';
 
@@ -7,16 +8,32 @@ import Alert from './Alert';
 
 // Types
 import Stage from '../types/Stage';
+import AttemptedStage from '../types/AttemptedStage';
 
-
-type AttemptedStage = {
-    id: number,
-    score: number,
-    stage_id: number,
+type MatchParams = {
+    category?: string | undefined;
 };
 
+const StagesItem = ({ id, stage, questions, }: Stage) => {
+    const history = useHistory();
+    const { category } = useParams<MatchParams>();
 
-const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentProps) => {
+    // States
+    const [bestScoreRate, setBestScoreRate] = useState(0);
+
+    // Effects
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/best/category/${category}/stage/${stage}`)
+            .then((res) => {
+                const bestAttemptedStage: AttemptedStage | null = res.data;
+                const bestScoreRate = bestAttemptedStage ? bestAttemptedStage.score / bestAttemptedStage.question_count * 0.5 : 0;
+
+                setBestScoreRate(bestScoreRate);
+            })
+            .catch((err) => console.error(err))
+    }, [category, stage]);
+
+    // Functions
     const handleClick = () => {
         Alert.fire({
             title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
@@ -55,9 +72,9 @@ const StagesItem = ({ id, stage, questions, history }: Stage & RouteComponentPro
                 </h3>
                 <span className="text-xs font-semibold">{questions[0].question} - {questions[questions.length - 1].question}</span>
             </div>
-            <Rate value={Math.ceil(Math.random() * 5)} />
+            <Rate value={bestScoreRate} />
         </div>
     );
 };
 
-export default withRouter(StagesItem);
+export default StagesItem;

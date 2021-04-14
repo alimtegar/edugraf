@@ -5,9 +5,6 @@ import axios from 'axios';
 import { Bar } from '@reactchartjs/react-chart.js';
 import 'chartjs-plugin-datalabels';
 
-// Contexts
-import { useAuthContext } from '../contexts/AuthContext';
-
 // Components
 import Navbar from './Navbar';
 import StagesItem from './StagesItem';
@@ -22,19 +19,12 @@ type MatchParams = {
 const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, } } = match;
 
-    // Contexts
-    const authContext = useAuthContext();
-
     // States
     const [stages, setStages] = useState<Stage[]>();
 
     // Effects
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`, {
-            headers: {
-                'Authorization': `${authContext.token.type} ${authContext.token.token}`,
-            }
-        })
+        axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
             .then((res) => setStages(res.data))
             .catch((err) => console.error(err));
     }, [category])
