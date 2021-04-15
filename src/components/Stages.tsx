@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
-import { Bar } from '@reactchartjs/react-chart.js';
-import 'chartjs-plugin-datalabels';
 
 // Components
 import Navbar from './Navbar';
@@ -11,6 +9,7 @@ import StagesItem from './StagesItem';
 
 // Types
 import Stage from '../types/Stage';
+import StagesChart from './StagesChart';
 
 type MatchParams = {
     category?: string | undefined;
@@ -39,74 +38,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                     }}
                 />
                 <section className="pt-17 px-8">
-                    <div className="-mx-1.5">
-                        <Bar
-                            type="bar"
-                            data={{
-                                labels: [
-                                    'Stage 1',
-                                    'Stage 2',
-                                    'Stage 5',
-                                    'Stage 3',
-                                    'Stage 1',
-                                    'Stage 4',
-                                ],
-                                datasets: [{
-                                    label: 'Skor',
-                                    backgroundColor: '#FC9F60',
-                                    data: [10, 20, 70, 60, 80, 50,],
-                                }]
-                            }}
-                            options={{
-                                scales: {
-                                    xAxes: [{
-                                        display: true,
-                                        gridLines: {
-                                            display: false,
-                                        },
-                                        scaleLabel: {
-                                            display: true,
-                                        },
-                                        ticks: {
-                                            fontColor: 'white',
-                                            // fontSize: '0.875rem',
-                                        },
-                                    }],
-                                    yAxes: [{
-                                        display: false,
-                                        gridLines: {
-                                            display: false,
-                                        },
-                                        scaleLabel: {
-                                            display: false,
-                                        },
-                                        ticks: {
-                                            min: 0,
-                                            max: 120,
-                                            stepSize: 20,
-                                        },
-                                    }]
-                                },
-                                tooltip: {
-                                    enabled: false,
-                                },
-                                legend: {
-                                    display: false,
-                                },
-                                plugins: {
-                                    datalabels: {
-                                        anchor: 'end',
-                                        align: 'top',
-                                        color: 'white',
-                                        font: {
-                                            weight: 500,
-                                            // size: '0.875rem',
-                                        }
-                                    },
-                                },
-                            }}
-                        />
-                    </div>
+                    <StagesChart />
                 </section>
             </div>
             <div className="sticky top-15 h-auto">

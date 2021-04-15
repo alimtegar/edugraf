@@ -46,7 +46,7 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
             cancelButtonText: 'Tidak',
         }).then(({ isConfirmed }) => {
             if (isConfirmed) {
-                axios.post(`${process.env.REACT_APP_API_URL}/attempted-stages`, {
+                axios.post(`${process.env.REACT_APP_API_URL}/attempted-stages/create`, {
                     stage_id: id,
                 })
                     .then((res) => {

@@ -58,7 +58,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                 <section className="flex justify-center items-center flex-wrap px-8">
                     {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
                         <div className="relative m-1" key={attemptedQuestion.id}>
-                            <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-${attemptedQuestion.is_correct ? 'blue-500' : 'red-500'} w-3 h-3 rounded-full shadow-md`} />
+                            <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-${attemptedQuestion.is_correct ? 'blue-500' : 'red-500'} w-3 h-3 rounded-full shadow-default`} />
                             <CharacterFrame
                                 size={11}
                                 textSize="xl"
