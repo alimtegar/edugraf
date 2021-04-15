@@ -5,7 +5,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
-import { FaPlay } from 'react-icons/fa';
+import { FaChild } from 'react-icons/fa';
 
 // Components
 import Navbar from './Navbar';
@@ -23,19 +23,19 @@ const Home = () => {
                 {
                     title: 'Tabel Simbol',
                     description: 'Tabel huruf dan cara penulisannya',
-                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/4263/4263435.svg?token=exp=1618386423~hmac=ffb2340ebe54eea586717f3bf18e6906" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/symbols.svg" className="h-10" alt="icon" />),
                     to: '/characters/category/symbols',
                 },
                 {
                     title: 'Tabel Huruf',
                     description: 'Tabel huruf dan cara penulisannya',
-                    icon: (<img src="/icons/blocks.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/letters.svg" className="h-10" alt="icon" />),
                     to: '/characters/category/letters',
                 },
                 {
                     title: 'Tabel Angka',
                     description: 'Tabel angka dan cara penulisannya',
-                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/3815/3815088.svg?token=exp=1618387303~hmac=2fdc03ac0cf403319230629d7b886e32" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/numbers.svg" className="h-10" alt="icon" />),
                     to: '/characters/category/numbers',
                 },
             ],
@@ -46,25 +46,25 @@ const Home = () => {
                 {
                     title: 'Tes di Kertas',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/684/684930.svg?token=exp=1618386207~hmac=9e5cccdb678032c65b2537d4296f9ac0" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/on-paper.svg" className="h-10" alt="icon" />),
                     to: '/stages/category/on-paper',
                 },
                 {
                     title: 'Tes Simbol',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src="/icons/pencil.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/on-canvas-symbols.svg" className="h-10" alt="icon" />),
                     to: '/stages/category/symbols',
                 },
                 {
                     title: 'Tes Huruf',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src="/icons/pencil.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/on-canvas-letters.svg" className="h-10" alt="icon" />),
                     to: '/stages/category/letters',
                 },
                 {
                     title: 'Tes Angka',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src="/icons/pencil.svg" className="h-10" alt="icon" />),
+                    icon: (<img src="/icons/on-canvas-numbers.svg" className="h-10" alt="icon" />),
                     to: '/stages/category/numbers',
                 },
             ],
@@ -105,7 +105,7 @@ const Home = () => {
                         </h2>
                         </div>
                         <IconButton
-                            icon={(<FaPlay size="0.83rem" className="ml-0.5" />)}
+                            icon={(<FaChild size="1.16rem" />)}
                             title="Senam Pemanasan"
                             onClick={() => { }}
                         />
