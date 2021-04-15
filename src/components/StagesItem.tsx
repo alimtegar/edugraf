@@ -70,7 +70,7 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
                 <h3 className="text-sm font-bold leading-none">
                     Stage {stage}
                 </h3>
-                <span className="text-xs font-semibold">{questions[0].question} - {questions[questions.length - 1].question}</span>
+                <span className="text-xs font-semibold">{questions[0].question}, ..., {questions[questions.length - 1].question}</span>
             </div>
             <Rate value={bestScoreRate} />
         </div>

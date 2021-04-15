@@ -44,10 +44,10 @@ const Home = () => {
             title: 'Tes Kemampuan',
             subMenu: [
                 {
-                    title: 'Tes via Kertas',
+                    title: 'Tes di Kertas',
                     description: 'Tabel alfabet dan cara penulisannya',
                     icon: (<img src="https://www.flaticon.com/svg/vstatic/svg/684/684930.svg?token=exp=1618386207~hmac=9e5cccdb678032c65b2537d4296f9ac0" className="h-10" alt="icon" />),
-                    to: '/stages/category/symbols',
+                    to: '/stages/category/on-paper',
                 },
                 {
                     title: 'Tes Simbol',

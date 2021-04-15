@@ -12,7 +12,7 @@ import Activate from './components/Activate';
 import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
 import Practice from './components/Practice';
-import AttemptedQuestionViaPaper from './components/AttemptedQuestionViaPaper';
+import AttemptedQuestionOnPaper from './components/AttemptedQuestionOnPaper';
 
 // Types
 import ProtectedRoute from './types/ProtectedRoute';
@@ -94,12 +94,6 @@ const routes: ProtectedRoute[] = [
         exact: true,
         path: '/practice/category/:category/:character',
         renderedComponent: Practice,
-        visibility: 'user',
-    },
-    {
-        exact: true,
-        path: '/attempted-question-via-paper',
-        renderedComponent: AttemptedQuestionViaPaper,
         visibility: 'user',
     },
 ];

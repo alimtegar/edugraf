@@ -1,7 +1,7 @@
-import { useState, } from 'react';
+import { useRef, useState, useEffect, } from 'react';
 import axios from 'axios';
 import { toast, } from 'react-toastify';
-import { RouteComponentProps, Link, } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { FaBars, } from 'react-icons/fa';
 
 // Contexts
@@ -20,7 +20,7 @@ type LoginForm = {
     password: string,
 };
 
-const Login = ({ history }: RouteComponentProps) => {
+const Login = () => {
     // Context
     const authContext = useAuthContext();
     const sidebarContext = useSidebarContext();
@@ -33,13 +33,20 @@ const Login = ({ history }: RouteComponentProps) => {
     const [form, setForm] = useState<LoginForm>(initForm);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
+    // Effects
+    useEffect(() => {
+        // componentWillUnmount
+        return () => {
+            // Clean up
+            setIsLoading(false); 
+        }
+    }, [])
+
     // Functions
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setForm({
+        ...form,
+        [e.target.name]: e.target.value,
+    });
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

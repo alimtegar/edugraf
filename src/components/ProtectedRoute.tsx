@@ -15,7 +15,7 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
 
     if (authContext.isLoading) {
         // Loading
-        return (<Loading />)
+        return (<Loading />);
     } else {
         // Pass
         if ((visibility === 'user') === !!authContext.token.token) {

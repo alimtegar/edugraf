@@ -11,6 +11,7 @@ import Stepper from './Stepper';
 
 // Types
 import { default as AttemptedStateState } from '../types/AttemptedStage';
+import CharacterFrame from './CharacterFrame';
 
 type MatchParams = {
     id?: string | undefined;
@@ -54,13 +55,24 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <h2 className="text-lg font-extrabold leading-snug mb-2">Selamat!</h2>
                     <p className="text-sm font-semibold">Curabitur eu ligula sit amet elit.</p>
                 </section>
-                <section className="grid grid-cols-5 gap-2 px-12">
+                <section className="flex justify-center items-center flex-wrap px-8">
                     {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
-                        <div className={`relative flex justify-center items-center bg-white text-body text-xl font-extrabold p-2 rounded-lg shadow`} key={attemptedQuestion.id}>
+                        <div className="relative m-1" key={attemptedQuestion.id}>
                             <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-${attemptedQuestion.is_correct ? 'blue-500' : 'red-500'} w-3 h-3 rounded-full shadow-md`} />
-                            <span>
+                            <CharacterFrame
+                                size={11}
+                                textSize="xl"
+                                rounded="lg"
+                                {...attemptedStage.stage.category === 'on-paper' ? {
+                                    aspect: false,
+                                    p: 4
+                                } : {
+                                    aspect: 1,
+                                    p: 0,
+                                }}
+                            >
                                 {attemptedStage?.stage.questions[i].question}
-                            </span>
+                            </CharacterFrame>
                         </div>
                     ))}
                 </section>
