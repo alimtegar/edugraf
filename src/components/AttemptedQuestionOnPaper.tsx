@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect, } from 'react';
 import Tesseract, { recognize } from 'tesseract.js';
-import { FaChevronLeft, FaVolumeUp, FaCamera, } from 'react-icons/fa';
+import { FaVolumeUp, } from 'react-icons/fa';
 import Webcam from "react-webcam";
 import axios from 'axios';
 
