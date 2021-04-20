@@ -1,4 +1,4 @@
-import { useState, useEffect, } from 'react';
+import { useState, useEffect, useMemo, } from 'react';
 import { RouteComponentProps, Link, } from 'react-router-dom';
 import { FaChevronLeft, FaVolumeUp, FaPen, } from 'react-icons/fa';
 
@@ -26,14 +26,13 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const characterContext = useCharacterContext();
 
     // States
-    const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
+    const [isWriting, setIsWriting] = useState(false);
+    const [isListeningPronounciation, setIsListeningPronounciation] = useState(false);
 
     // Functions
     const changeCase = (character: string | undefined): string | undefined => {
         return character && character === character?.toUpperCase() ? character?.toLowerCase() : character?.toUpperCase();
     }
-    const seeWriting = () => { }
-    // 
 
     const initMenu: CharacterMenuItem[] = [
         {
@@ -42,12 +41,12 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             onClick: () => characterContext.listenPronounciation(character, setIsListeningPronounciation), // AND with !isListeningPronounciation to prevent overlapping pronounciation
             isUsingPing: true,
         },
-        // {
-        //     title: 'Lihat Penulisan',
-        //     icon: <FaPen size="0.83rem" className="transform -translate-y-0.25" />,
-        //     onClick: () => seeWriting(),
-        //     isUsingPing: false,
-        // },
+        {
+            title: `${isWriting ? 'Sembunyikan' : 'Tampilkan'} Penulisan`,
+            icon: <FaPen size="0.83rem" className="transform -translate-y-0.25" />,
+            onClick: () => { setIsWriting((prevState) => !prevState) },
+            isUsingPing: false,
+        },
     ];
     const [menu, setMenu] = useState(initMenu);
 
@@ -63,7 +62,7 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 },
             ]);
         }
-    }, [character])
+    }, [character, category, history])
 
     return (
         <main className="flex flex-grow flex-col">
@@ -78,7 +77,10 @@ const Character = ({ match, history }: RouteComponentProps<MatchParams>) => {
             {/*  */}
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-16 mb-10">
-                <CharacterFrame size={28} textSize="6xl" rounded="xl">{character}</CharacterFrame>
+                <CharacterFrame size={28} textSize="6xl" rounded="xl">
+                    {/* {character} */}
+                    <img src={`/writings/${character}.${isWriting ? 'gif' : 'jpg'}`} alt={character} className="h-20 rounded-lg" />
+                </CharacterFrame>
                 <p className="text-white text-sm text-center font-semibold mt-10">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
             </section>
 
