@@ -10,7 +10,7 @@ type Props = {
 // Initial states
 const initState: CharacterContextState = {
   characters: {
-    symbols: ['+', '-', '×', '÷', '=', '<', '>', ':', ';', '~', '*', '?', '!', '(', ')', '[', ']', '{', '}', '|', '━', '&',],
+    symbols: ['-', ',', '!', '(', ')', '*', '+', '.', '/', ':', ';', '<', '=', '>', '?', '[', '\\', ']', '{', '|', '}', '×', '÷', '━',],
     letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',],
     numbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,],
   },
@@ -23,7 +23,7 @@ const CharacterContext = createContext(initState);
 // Provider
 const CharacterContextProvider = ({ children }: Props) => {
   const listenPronounciation = (character: string | undefined, setIsListeningPronounciation: React.Dispatch<React.SetStateAction<boolean>>) => {
-    console.log({character})
+    
     const synth = window.speechSynthesis;
     const synthUtter = new SpeechSynthesisUtterance(character);
 

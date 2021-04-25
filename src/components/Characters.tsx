@@ -18,6 +18,14 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     // Contexts
     const characterContext = useCharacterContext();
 
+    const getLinkCharacter = (character: string | number) => {
+        switch(category) {
+            case 'symbols': return encodeURIComponent(encodeURIComponent(character).replace(/\./g, '%2E'));
+            case 'letters': return typeof character === 'string' ? character.toLowerCase() : character;
+            default: return character;
+        };
+    };
+
     return (
         <div className="flex-grow text-white">
             <Navbar
@@ -33,7 +41,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 </section>
                 <section className="grid grid-cols-4 gap-2 px-8 mb-8">
                     {category && (characterContext.characters[category] as Array<string | number>).map((character) => (
-                        <Link to={`/characters/category/${category}/${character}`} key={character}>
+                        <Link to={`/characters/category/${category}/${getLinkCharacter(character)}`} key={character}>
                             <CharacterFrame size="full" textSize="3xl" rounded="lg">
                                 {character}
                             </CharacterFrame>
