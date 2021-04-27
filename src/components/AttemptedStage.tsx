@@ -71,7 +71,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                                     p: 0,
                                 }}
                             >
-                                {attemptedStage?.stage.questions[i].question}
+                                {attemptedQuestion.question.question}
                             </CharacterFrame>
                         </div>
                     ))}
