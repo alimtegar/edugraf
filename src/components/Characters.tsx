@@ -1,4 +1,4 @@
-import { RouteComponentProps, Link } from 'react-router-dom';
+import { RouteComponentProps, Link, Redirect } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
 // Contexts
@@ -22,21 +22,23 @@ type TranslatedCategories = {
 const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { category, } } = match;
 
+    // Memo
+    const translatedCategories: TranslatedCategories = {
+        symbols: 'simbol',
+        letters: 'huruf',
+        numbers: 'angka',
+    };
+
     // Contexts
     const characterContext = useCharacterContext();
 
+    // Functoins
     const getLinkCharacter = (category: string | undefined, character: string | number) => {
         switch (category) {
             case 'symbols': return encodeURIComponent(encodeURIComponent(character).replace(/\./g, '%2E'));
             case 'letters': return typeof character === 'string' ? character.toLowerCase() : character;
             default: return character;
         };
-    };
-
-    const translatedCategories: TranslatedCategories = {
-        symbols: 'simbol',
-        letters: 'huruf',
-        numbers: 'angka',
     };
 
     return (
@@ -53,13 +55,13 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                     <p className="text-sm font-semibold">Pilih salah satu <strong className="font-bold">{category ? translatedCategories[category] || 'karakter' : 'karakter'}</strong> untuk mulai mempelajari detailnya.</p>
                 </section>
                 <section className="grid grid-cols-4 gap-2 px-8 mb-8">
-                    {category && (characterContext.characters[category] as Array<string | number>).map((character) => (
+                    {(category && characterContext.characters[category]) ? (characterContext.characters[category] as Array<string | number>).map((character) => (
                         <Link to={`/characters/category/${category}/${getLinkCharacter(category, character)}`} key={character}>
                             <CharacterFrame size="full" textSize="3xl" rounded="lg">
                                 {character}
                             </CharacterFrame>
                         </Link>
-                    ))}
+                    )) : <Redirect to="/404" />}
                 </section>
             </main>
         </div>

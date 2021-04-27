@@ -80,7 +80,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
                         <Button>
                             Daftar Stage
-                    </Button>
+                        </Button>
                     </Link>
                 </section>
             </main>

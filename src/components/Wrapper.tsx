@@ -1,6 +1,6 @@
 import { useEffect, useCallback, } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { ToastContainer, } from 'react-toastify';
 import Particles from "react-particles-js";
 
@@ -93,6 +93,7 @@ const Wrapper = () => {
                                 {...route}
                                 key={route.path}
                             />))}
+                            <Redirect to='/404' />
                     </Switch>
                 </div>
                 <ToastContainer />

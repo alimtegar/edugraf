@@ -25,8 +25,11 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
             .then((res) => setStages(res.data))
-            .catch((err) => console.error(err));
-    }, [category])
+            .catch((err) => { 
+                console.error(err); 
+                history.push('/404'); 
+            });
+    }, [category, history])
 
     return (
         <div className="flex-grow text-gray-700 overflow-y-scroll">
