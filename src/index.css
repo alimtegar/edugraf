@@ -106,3 +106,18 @@ input, textarea, button, select, a {
 .swal2-popup {
     border-radius: 1rem !important;
 }
+
+.motoric-gym {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.motoric-gym .swal2-content {
+    padding: 0 !important;
+}
+
+.motoric-gym .slick-list {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}

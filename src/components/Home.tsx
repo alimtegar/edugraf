@@ -1,3 +1,4 @@
+import { useEffect, useCallback, } from 'react';
 import { FaBars } from 'react-icons/fa';
 
 // Contexts
@@ -14,6 +15,8 @@ import IconButton from './IconButton';
 import HomeSubMenuItem from './HomeSubMenuItem';
 import { useSidebarContext } from '../contexts/SidebarContext';
 import Photo from './Photo';
+import Alert from './Alert';
+import MotoricGym from './MotoricGym';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -75,6 +78,30 @@ const Home = () => {
     const authContext = useAuthContext();
     const sidebarContext = useSidebarContext();
 
+    // Functions
+    const showMotoricGym = useCallback(() => {
+        Alert.fire({
+            customClass: {
+                popup: 'motoric-gym',
+            },
+            title: (<span className="text-lg text-gray-900 font-bold leading-snug mb-2">Senam Motorik</span>),
+            html: (<MotoricGym />),
+            showCancelButton: false,
+            showConfirmButton: false,
+        }).then(() => {
+            localStorage.setItem('is-motoric-gym-watched', '1');
+        });
+    }, []);
+
+    // Effects
+    useEffect(() => {
+        const isMotoricGymWatched = localStorage.getItem('is-motoric-gym-watched');
+
+        if(!isMotoricGymWatched) {
+            showMotoricGym();
+        }
+    }, [showMotoricGym]);
+
     return (
         <div className="flex flex-col flex-grow">
             <Navbar leftButton={{
@@ -101,13 +128,13 @@ const Home = () => {
                     <div className="flex flex-col">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="font-bold leading-none">
-                                Senam Pemanasan
-                        </h2>
+                                Senam Motorik
+                            </h2>
                         </div>
                         <IconButton
                             icon={(<FaChild size="1.16rem" />)}
-                            title="Senam Pemanasan"
-                            onClick={() => { }}
+                            title="Senam Motorik"
+                            onClick={showMotoricGym}
                         />
                     </div>
 
