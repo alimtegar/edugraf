@@ -89,7 +89,7 @@ const Sidebar = () => {
                             sidebarContext.closeSidebar();
                             setTimeout(() => {
                                 Alert.fire({
-                                    title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
+                                    title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah anda yakin?</span>),
                                     html: (<p className="text-sm text-gray-500 font-semibold">Anda akan keluar dari akun <strong className="font-bold">{authContext.user.name}</strong>.</p>),
                                     icon: 'warning',
                                     showCancelButton: true,

@@ -36,7 +36,7 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
     // Functions
     const handleClick = () => {
         Alert.fire({
-            title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah Anda yakin?</span>),
+            title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah anda yakin?</span>),
             html: (<p className="text-sm text-gray-500 font-semibold">Anda diminta untuk tidak keluar saat mengerjakan Stage.</p>),
             icon: 'warning',
             showCancelButton: true,
@@ -70,9 +70,12 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
                 <h3 className="text-sm font-bold leading-none">
                     Stage {stage}
                 </h3>
-                <span className="text-xs font-semibold">{questions[0].question}, ..., {questions[questions.length - 1].question}</span>
+                <span className="text-xs font-semibold">
+                    {/* {questions[0].question}, ..., {questions[questions.length - 1].question} */}
+                    {questions[0].question}, {questions[1].question}, {category !== 'on-paper' ? questions[2].question + ',' : ''} ...
+                </span>
             </div>
-            <Rate value={bestScoreRate} />
+            <Rate value={bestScoreRate} allowHalf />
         </div>
     );
 };

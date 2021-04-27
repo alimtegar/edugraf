@@ -45,7 +45,7 @@ const EditProfile = () => {
         })
             .then((res) => {
                 authContext.setAuthUser(res.data);
-                toast.success('Profil akun Sibisa Anda berhasil disunting.', {
+                toast.success('Profil akun Sibisa berhasil disunting.', {
                     position: "top-center",
                     autoClose: 10000,
                     hideProgressBar: true,
@@ -78,7 +78,7 @@ const EditProfile = () => {
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Sunting Profil
                 </h1>
-                <p className="text-sm font-semibold">Sunting nama lengkap dan foto profil akun Sibisa Anda.</p>
+                <p className="text-sm font-semibold">Sunting nama lengkap dan foto profil akun Sibisa anda.</p>
             </header>
             <section className="text-gray-700 px-4">
                 <form

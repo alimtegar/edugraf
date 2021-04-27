@@ -18,7 +18,7 @@ const StagesChart = () => {
             .then((res) => {
                 const attemptedStages: AttemptedStage[] = res.data;
                 const backgroundColors = {
-                    'on-paper': 'yellow',
+                    'on-paper': '#FC9F60',
                     symbols: 'rgb(239, 68, 68)',
                     letters: 'rgb(59, 130, 246)',
                     numbers: 'rgb(139, 92, 246)',
@@ -44,8 +44,27 @@ const StagesChart = () => {
             .catch((err) => console.error(err));
     }, []);
 
-    return (
+    return data.length ? (
         <div className="-mx-1.5">
+            <div className="flex justify-between text-white text-xs font-bold mb-6">
+                <div className="flex">
+                    <div className="bg-secondary w-3 h-3 rounded-full mr-2" />
+                    Di kertas
+                </div>
+                <div className="flex">
+                    <div className="bg-red-500 w-3 h-3 rounded-full mr-2" />
+                    Simbol
+                </div>
+                <div className="flex">
+                    <div className="bg-blue-500 w-3 h-3 rounded-full mr-2" />
+                    Huruf
+                </div>
+                <div className="flex">
+                    <div className="bg-purple-500 w-3 h-3 rounded-full mr-2" />
+                    Angka
+                </div>
+            </div>
+
             <Bar
                 type="bar"
                 data={{
@@ -59,6 +78,11 @@ const StagesChart = () => {
                     ],
                 }}
                 options={{
+                    layout: {
+                        padding: {
+                            top: 8,
+                        }
+                    },
                     scales: {
                         xAxes: [{
                             display: true,
@@ -108,7 +132,7 @@ const StagesChart = () => {
                 }}
             />
         </div>
-    );
+    ) : <div />;
 };
 
 export default StagesChart;

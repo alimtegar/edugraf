@@ -55,7 +55,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
         if (answer === character) {
             Alert.fire({
                 title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
-                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban Anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{character}</strong>).</p>),
+                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{character && decodeURIComponent(character)}</strong>).</p>),
                 icon: 'success',
                 confirmButtonText: 'Baik',
             }).then(({ isConfirmed }) => {
@@ -66,7 +66,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
         } else {
             Alert.fire({
                 title: (<span className="text-lg text-gray-900 font-bold leading-snug">Salah</span>),
-                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban Anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{character}</strong>).</p>),
+                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{character && decodeURIComponent(character)}</strong>).</p>),
                 icon: 'error',
                 showCancelButton: true,
                 showConfirmButton: false,
@@ -92,7 +92,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
                         <CharacterFrame size={28} textSize="6xl" rounded="xl">
-                            {character}
+                            {character && decodeURIComponent(character)}
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
                             <Button
@@ -102,14 +102,14 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                                 shadow="default"
                                 center
                                 isPing={isListeningPronounciation}
-                                onClick={() => characterContext.listenPronounciation(character, setIsListeningPronounciation)}
+                                onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => {}}
                             >
                                 <FaVolumeUp size="0.83rem" />
                             </Button>
                         </span>
                     </div>
                     <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
-                        Tulislah huruf <strong className="font-bold">{character}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        Tulislah huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 

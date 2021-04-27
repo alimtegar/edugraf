@@ -1,5 +1,3 @@
-import Slider from './Slider';
-
 const LoadingMotoricGym = () => (
     <div className="flex justify-center items-center w-full h-full text-gray-400">
         <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -10,39 +8,24 @@ const LoadingMotoricGym = () => (
 );
 
 const MotoricGym = () => {
-    const videos = [
-        { src: "https://www.youtube.com/embed/0QV-q60OhdE" },
-        { src: "https://www.youtube.com/embed/0QV-q60OhdE" },
-        { src: "https://www.youtube.com/embed/0QV-q60OhdE" },
-    ];
+    const videoSrc = 'https://www.youtube.com/embed/sdxzbafkAHY';
 
     return (
         <div className="relative">
-            <Slider settings={{
-                dots: false,
-                infinite: false,
-                speed: 500,
-                slidesToShow: 1,
+            <div className="relative flex-grow bg-gray-200 rounded-lg overflow-hidden" style={{
+                aspectRatio: '4/3',
+                minHeight: 231,
             }}>
-                {videos.map((video) => (
-                    <div key={video.src}>
-                        <div className="relative flex-grow bg-gray-200" style={{
-                            aspectRatio: '4/3',
-                            minHeight: 231,
-                        }}>
-                            <iframe
-                                className="absolute z-10 w-full h-full"
-                                src={`${video.src}?modestbranding=1`}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                            <LoadingMotoricGym />
-                        </div>
-                    </div>
-                ))}
-            </Slider>
+                <iframe
+                    className="absolute z-10 w-full h-full"
+                    src={`${videoSrc}?modestbranding=1`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                />
+                <LoadingMotoricGym />
+            </div>
         </div>
     );
 };

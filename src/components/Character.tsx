@@ -1,4 +1,4 @@
-import { useState, } from 'react';
+import { useState, useEffect, } from 'react';
 import { RouteComponentProps, Link, } from 'react-router-dom';
 import { FaChevronLeft, FaVolumeUp, FaPen, } from 'react-icons/fa';
 
@@ -27,6 +27,15 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
     const [isWriting, setIsWriting] = useState(false);
     const [isListeningPronounciation, setIsListeningPronounciation] = useState(false);
 
+    // Effects
+    useEffect(() => {
+        // componentWillUnmount
+        return () => {
+            // Clean up
+            setIsListeningPronounciation(false); 
+        }
+    }, [])
+
     return (
         <main className="flex flex-grow flex-col">
             <Navbar
@@ -45,12 +54,12 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     {character && (
                         <img
                             src={`/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${encodeURIComponent(character)}.${isWriting ? 'gif' : 'jpg'}`}
-                            alt={character}
+                            alt={decodeURIComponent(character)}
                             className="h-20 rounded-lg"
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-white text-sm text-center font-semibold mt-10">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character}</strong> dengan menu di bawah ini.</p>
+                <p className="text-white text-sm text-center font-semibold mt-10">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-10 px-8">
@@ -58,7 +67,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     icon={(<FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />)}
                     title="Dengarkan Pengucapan"
                     isPing={isListeningPronounciation}
-                    onClick={() => characterContext.listenPronounciation(character, setIsListeningPronounciation)}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
+                    onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => {}}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
                 />
                 <IconButton
                     icon={(<FaPen size="0.83rem" className="transform -translate-y-0.25" />)}

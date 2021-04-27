@@ -23,6 +23,35 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
     // States
     const [attemptedStage, setAttemptedStage] = useState<AttemptedStateState>();
 
+    // Function
+    const getTitle = (score: number) => {
+        if (score >= 100) {
+            return 'Hebat';
+        } else if (score >= 80) {
+            return 'Keren';
+        } else if (score >= 60) {
+            return 'Lumayan';
+        } else if (score >= 40) {
+            return 'Pelan-Pelan Saja';
+        } else {
+            return 'Jangan Menyerah';
+        }
+    };
+
+    const getDescription = (score: number) => {
+        if (score >= 100) {
+            return 'Hebat sekali, pertahankan nilainya ya.';
+        } else if (score >= 80) {
+            return 'Wow keren, sedikit pasti dapat nilai sempurna.';
+        } else if (score >= 60) {
+            return 'Lumayan bagus, tetapi bisa ditingkatkan lagi.';
+        } else if (score >= 40) {
+            return 'Pelan-pelan saja, nanti pasti juga akan bisa.';
+        } else {
+            return 'Jangan menyerah ya, yuk coba sekali lagi!';
+        }
+    };
+
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${id}`)
@@ -52,8 +81,8 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <h1 className="text-6xl font-extrabold mb-4">
                         {attemptedStage ? attemptedStage.score : 0}
                     </h1>
-                    <h2 className="text-lg font-extrabold leading-snug mb-2">Selamat!</h2>
-                    <p className="text-sm font-semibold">Curabitur eu ligula sit amet elit.</p>
+                    <h2 className="text-lg font-extrabold leading-snug mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
+                    <p className="text-sm font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
                 </section>
                 <section className="flex justify-center items-center flex-wrap px-8">
                     {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
