@@ -111,7 +111,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
                 </p>
             </section>
 
-            <section className="grid px-4 mb-4">
+            <section className="grid px-4 mb-4 md:mx-auto md:w-1/3">
                 <IconButton
                     icon={<FaVolumeUp size="0.83rem" />}
                     title="Dengarkan Pengucapan"
@@ -120,7 +120,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
                 />
             </section>
 
-            <section className="flex flex-grow px-4 mb-4">
+            <section className="flex flex-grow px-4 mb-4 md:mx-auto md:w-1/3">
                 <div className="relative flex-grow bg-gray-200 rounded-xl overflow-hidden">
                     {imageSrc ? (
                         <img
@@ -144,7 +144,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
 
             </section>
 
-            <section className="mt-auto px-4 mb-4">
+            <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                 {isChecking ? (
                     <LoadingButton />
                 ) : (

@@ -88,14 +88,14 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
                     </p>
             </section>
 
-            <section className="flex flex-grow px-4 mb-4">
+            <section className="flex flex-grow px-4 mb-4 md:mx-auto md:w-1/3">
                 <Canvas
                     canvasRef={canvasRef}
                     setCanvasRef={setCanvasRef}
                 />
             </section>
 
-            <section className="mt-auto px-4 mb-4">
+            <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                 {isChecking ? (
                     <LoadingButton />
                 ) : (

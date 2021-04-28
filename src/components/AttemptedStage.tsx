@@ -84,7 +84,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <h2 className="text-lg font-extrabold leading-snug mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
                     <p className="text-sm font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
                 </section>
-                <section className="flex justify-center items-center flex-wrap px-8">
+                <section className="flex justify-center items-center flex-wrap px-8 md:mx-auto md:w-1/3">
                     {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
                         <div className="relative m-1" key={attemptedQuestion.id}>
                             <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-${attemptedQuestion.is_correct ? 'blue-500' : 'red-500'} w-3 h-3 rounded-full shadow-default`} />
@@ -105,7 +105,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         </div>
                     ))}
                 </section>
-                <section className="px-4 mt-auto mb-4">
+                <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
                         <Button>
                             Daftar Stage

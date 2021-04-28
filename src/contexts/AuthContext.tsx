@@ -71,6 +71,7 @@ const setAuthUser = (data: User, state: AuthContextState) => {
 
 const removeAuth = (state: AuthContextState) => {
   localStorage.removeItem('auth');
+  localStorage.removeItem('is-motoric-gym-watched');
   delete axios.defaults.headers.common["Authorization"];
 
   return {

@@ -119,7 +119,6 @@ input, textarea, button, select, a {
     padding: 0 !important;
 }
 
-.motoric-gym .slick-list {
-    border-radius: 0.5rem;
-    overflow: hidden;
+.slick-list {
+    overflow: hidden !important;
 }

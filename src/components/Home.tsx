@@ -108,7 +108,7 @@ const Home = () => {
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
             }} />
-            <header className="flex justify-center items-center text-white pt-15 pb-6">
+            <header className="flex justify-center items-center text-white pt-15 pb-6 md:pt-21 md:pb-12">
                 <span className="mr-4">
                     <Photo
                         {...authContext.user.photo && { photo: `${process.env.REACT_APP_API_URL}/${authContext.user.photo}` }}
@@ -123,7 +123,7 @@ const Home = () => {
                 </span>
             </header>
 
-            <main className="flex flex-grow">
+            <main className="flex flex-grow md:mx-auto md:w-1/2">
                 <section className="grid grid-cols-1 gap-4 flex-grow bg-white bg-opacity-95 text-gray-700 pt-6 pb-4 px-4 rounded-t-2xl shadow-default">
                     <div className="flex flex-col">
                         <div className="flex justify-between items-center mb-4">

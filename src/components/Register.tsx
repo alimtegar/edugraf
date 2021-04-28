@@ -80,15 +80,15 @@ const Register = ({ history }: RouteComponentProps) => {
                 onClick: sidebarContext.toggleSidebar,
             }} />
 
-            <header className="text-center text-white pt-17 px-16 pb-8">
+            <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Daftar Sekarang
                 </h1>
-                <p className="text-sm font-semibold">Daftar sekarang dan mulai belajar dengan berbagai fitur Sibisa.</p>
+                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Daftar sekarang dan mulai belajar dengan berbagai fitur Sibisa.</p>
             </header>
 
             <main className="flex-grow">
-                <section className="text-gray-900 px-4 mb-4">
+                <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3 md:pb-29">
                     <form
                         className="flex flex-col bg-white p-6 rounded-xl shadow-default"
                         onSubmit={(e) => handleSubmit(e)}

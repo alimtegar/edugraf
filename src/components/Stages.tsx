@@ -25,9 +25,9 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
             .then((res) => setStages(res.data))
-            .catch((err) => { 
-                console.error(err); 
-                history.push('/404'); 
+            .catch((err) => {
+                console.error(err);
+                history.push('/404');
             });
     }, [category, history])
 
@@ -40,11 +40,11 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                         onClick: () => history.replace('/'),
                     }}
                 />
-                <section className="pt-17 px-8">
+                <section className="pt-17 px-8 md:mx-auto md:w-1/2">
                     <StagesChart />
                 </section>
             </div>
-            <div className="sticky top-15 h-auto">
+            <div className="sticky top-15 h-auto md:mx-auto md:w-1/2">
                 <section className="absolute w-full h-screen flex-grow bg-white bg-opacity-95 h-full pt-6 pb-4 px-4 rounded-t-2xl shadow">
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="font-bold leading-none">

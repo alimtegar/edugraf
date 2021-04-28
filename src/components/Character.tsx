@@ -59,10 +59,10 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-white text-sm text-center font-semibold mt-10">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
+                <p className="text-white text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
             </section>
 
-            <div className="grid grid-cols gap-2 mb-10 px-8">
+            <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">
                 <IconButton
                     icon={(<FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />)}
                     title="Dengarkan Pengucapan"
@@ -84,7 +84,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     />
                 )}
             </div>
-            <section className="px-4 mt-auto mb-4">
+            <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                 <Link to={`/practice/category/${category}/${character}`}>
                     <Button>
                         Latihan Menulis

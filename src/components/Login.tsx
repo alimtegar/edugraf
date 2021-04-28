@@ -77,15 +77,15 @@ const Login = () => {
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
             }} />
-            <header className="text-center text-white pt-19 px-16 pb-10 rounded-b-3xl">
+            <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Masuk Pengguna
                 </h1>
-                <p className="text-sm font-semibold">Masuk dan lanjutkan proses belajar anda dengan berbagai fitur Sibisa.</p>
+                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Masuk dan lanjutkan proses belajar anda dengan berbagai fitur Sibisa.</p>
             </header>
 
             <main className="flex-grow">
-                <section className="text-gray-900 px-4">
+                <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3">
                     <form
                         className="flex flex-col bg-white x-mt-8 p-6 rounded-xl shadow-default"
                         onSubmit={(e) => handleSubmit(e)}
