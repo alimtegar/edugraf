@@ -82,7 +82,7 @@ const ChangePassword = () => {
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Ubah Kata Sandi
                 </h1>
-                <p className="text-sm font-semibold mx-auto md:w-1/5">Ubah kata sandi untuk keamanan akun Sibisa anda.</p>
+                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Ubah kata sandi untuk keamanan akun Sibisa anda.</p>
             </header>
             <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3">
                 <form

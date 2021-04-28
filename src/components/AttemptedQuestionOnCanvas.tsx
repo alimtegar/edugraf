@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import Tesseract, { recognize } from 'tesseract.js';
 import axios from 'axios';
