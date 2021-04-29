@@ -38,7 +38,7 @@ const Login = () => {
         // componentWillUnmount
         return () => {
             // Clean up
-            setIsLoading(false); 
+            setIsLoading(false);
         }
     }, [])
 
@@ -125,7 +125,7 @@ const Login = () => {
                         <p className="text-gray-500 text-sm font-semibold text-center my-4">
                             Belum punya akun?
                         </p>
-                        <Link to="/register">
+                        <Link to={`/register`}>
                             <Button bgColor="red-500" bgColorOn="red-600" type="button">
                                 Daftar
                         </Button>

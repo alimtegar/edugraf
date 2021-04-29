@@ -51,7 +51,7 @@ const Wrapper = () => {
     }, []);
 
     return (
-        <Router>
+        <Router basename="/app">
             <div id="outer-container" className="bg-primary">
                 <Sidebar />
                 <Particles
@@ -93,7 +93,7 @@ const Wrapper = () => {
                                 {...route}
                                 key={route.path}
                             />))}
-                            <Redirect to='/404' />
+                            <Redirect to={`${process.env.PUBLIC_URL}/404`} />
                     </Switch>
                 </div>
                 <ToastContainer />

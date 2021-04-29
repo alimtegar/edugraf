@@ -30,7 +30,7 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
             </Button>
         ) : (<span className="w-11 h-11" />)}
 
-        <Link to="/">
+        <Link to={`/`}>
             <Logo />
         </Link>
 
