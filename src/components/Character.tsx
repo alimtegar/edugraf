@@ -53,7 +53,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     {/* {character} */}
                     {character && (
                         <img
-                            src={`${process.env.PUBLIC_URL}/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${encodeURIComponent(character)}.${isWriting ? 'gif' : 'jpg'}`}
+                            src={`/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${encodeURIComponent(character)}.${isWriting ? 'gif' : 'jpg'}`}
                             alt={decodeURIComponent(character)}
                             className="h-20 rounded-lg"
                         />

@@ -51,7 +51,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
             />
 
             <main>
-                <section className="text-center pt-19 px-12 pb-10 md:pt-25 md: pb-16">
+                <section className="text-center pt-19 px-12 pb-10 md:pt-25 md:pb-16">
                     <p className="text-sm font-semibold">Pilih salah satu <strong className="font-bold">{category ? translatedCategories[category] || 'karakter' : 'karakter'}</strong> untuk mulai mempelajari detailnya.</p>
                 </section>
                 <section className="grid grid-cols-4 gap-2 px-8 mb-8 md:mx-auto md:grid-cols-8 md:w-1/2">

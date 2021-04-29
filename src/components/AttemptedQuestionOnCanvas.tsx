@@ -38,7 +38,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
 
         if (canvasRef) {
             recognize(canvasRef.toDataURL(), undefined, {
-                workerPath: `${process.env.PUBLIC_URL}/workers/tesseract.js/worker.min.js`,
+                workerPath: `/workers/tesseract.js/worker.min.js`,
                 workerBlobURL: false,
             })
                 .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))

@@ -21,7 +21,7 @@ const ProtectedRoute = ({ renderedComponent: RenderedComponent, path, visibility
         if ((visibility === 'user') === !!authContext.token.token) {
             return (
                 <Route
-                    path={process.env.PUBLIC_URL + path}
+                    path={path}
                     render={(props) => (<RenderedComponent {...props} />)}
                     {...props}
                 />
