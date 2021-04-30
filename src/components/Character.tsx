@@ -11,6 +11,9 @@ import CharacterFrame from './CharacterFrame';
 import Button from './Button';
 import IconButton from './IconButton';
 
+// Types
+import TranslatedCategory from '../types/TranslatedCategory';
+
 type MatchParams = {
     category?: string | undefined,
     character?: string | undefined,
@@ -19,6 +22,11 @@ type MatchParams = {
 const Character = ({ match, history, location }: RouteComponentProps<MatchParams>) => {
     const { params: { category, character } } = match;
     const letterCase = new URLSearchParams(location.search).get('letter-case') || 'uppercase';
+    const translatedCategory: TranslatedCategory = {
+        symbols: 'simbol',
+        letters: 'huruf',
+        numbers: 'angka',
+    };
 
     // Contexts
     const characterContext = useCharacterContext();
@@ -32,9 +40,10 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
         // componentWillUnmount
         return () => {
             // Clean up
-            setIsListeningPronounciation(false); 
+            setIsWriting(false)
+            setIsListeningPronounciation(false);
         }
-    }, [])
+    }, [character, category, letterCase]);
 
     return (
         <main className="flex flex-grow flex-col">
@@ -50,16 +59,15 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-16 mb-10">
                 <CharacterFrame size={28} textSize="6xl" rounded="xl">
-                    {/* {character} */}
-                    {character && (
+                    {category && character && (
                         <img
-                            src={`/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${encodeURIComponent(character)}.${isWriting ? 'gif' : 'jpg'}`}
+                            src={require(`../assets/images/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${decodeURIComponent(category === 'letters' ? (letterCase === 'uppercase' ? character.toUpperCase() : character.toLowerCase()) : character).charCodeAt(0)}.${isWriting ? 'gif' : 'jpg'}`).default}
                             alt={decodeURIComponent(character)}
                             className="h-20 rounded-lg"
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-white text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
+                <p className="text-white text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category]} <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">
@@ -67,7 +75,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     icon={(<FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />)}
                     title="Dengarkan Pengucapan"
                     isPing={isListeningPronounciation}
-                    onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => {}}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
+                    onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => { }}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
                 />
                 <IconButton
                     icon={(<FaPen size="0.83rem" className="transform -translate-y-0.25" />)}

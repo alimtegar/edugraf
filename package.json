@@ -66,6 +66,7 @@
   "devDependencies": {
     "@types/react-burger-menu": "^2.8.0",
     "@types/react-router-dom": "^5.1.7",
-    "@types/react-slick": "^0.23.4"
+    "@types/react-slick": "^0.23.4",
+    "file-loader": "^6.1.1"
   }
 }

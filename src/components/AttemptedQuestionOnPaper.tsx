@@ -83,7 +83,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
 
         if (imageSrc) {
             recognize(imageSrc, undefined, {
-                workerPath: `/workers/tesseract.js/worker.min.js`,
+                workerPath: `${process.env.PUBLIC_URL}/workers/tesseract.js/worker.min.js`,
                 workerBlobURL: false,
             })
                 .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))
