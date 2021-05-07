@@ -6,8 +6,7 @@ type Props = {
 
 const Logo = ({ h = 6 }: Props) => (
     <h1 className="font-handwriting font-semibold text-2xl">
-        {/* Sibisa */}
-        <img src={logo} alt="Sibisa" className={`w-auto h-${h}`} />
+        <img src={logo} alt={process.env.REACT_APP_NAME} className={`w-auto h-${h}`} />
     </h1>
 );
 

@@ -1,5 +1,25 @@
 module.exports = {
-  // purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: {
+    content: [
+      './src/**/*.{js,jsx,ts,tsx}',
+      './public/index.html',
+    ],
+    options: {
+      safelist: [
+        /^w-/,
+        /^h-/,
+        /^bg-/,
+        /^text-/,
+        /^rounded-/,
+        /^shadow-/,
+        /^top-/,
+        /^aspect-/,
+        /^p-/,
+        /^border-/,
+        /^grid-cols-/,
+      ],
+    },
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
