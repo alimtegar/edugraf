@@ -8,7 +8,7 @@ const LoadingMotoricGym = () => (
 );
 
 const MotoricGym = () => {
-    const videoSrc = 'https://www.youtube.com/embed/sdxzbafkAHY';
+    const videoSrc = 'https://www.youtube.com/embed/22cvGBs-xpg';
 
     return (
         <div className="relative">
