@@ -1,5 +1,5 @@
 import { useEffect, useCallback, } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaTimes, } from 'react-icons/fa';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -88,6 +88,8 @@ const Home = () => {
             html: (<MotoricGym />),
             showCancelButton: false,
             showConfirmButton: false,
+            showCloseButton: true,
+            closeButtonHtml: (<FaTimes size="0.83rem" />),
         }).then(() => {
             localStorage.setItem('is-motoric-gym-watched', '1');
         });

@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
-
 body {
     background-color: #00b3a1;
     margin: 0;
@@ -40,6 +39,10 @@ input, textarea, button, select, a {
 
 .slick-slider .slick-list .slick-slide>div {
     display: flex;
+}
+
+.slick-list {
+    overflow: hidden !important;
 }
 
 /* RC Rate Star */
@@ -109,6 +112,14 @@ input, textarea, button, select, a {
     border-radius: 1rem !important;
 }
 
+.swal2-close {
+    width: 44px !important;
+    height: 44px !important;
+    margin: 0.5rem;
+}
+
+/* Motoric Gym */
+
 .motoric-gym {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
@@ -117,8 +128,4 @@ input, textarea, button, select, a {
 
 .motoric-gym .swal2-content {
     padding: 0 !important;
-}
-
-.slick-list {
-    overflow: hidden !important;
 }

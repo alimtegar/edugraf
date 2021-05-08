@@ -7,6 +7,7 @@ const Alert = withReactContent(Swal.mixin({
     customClass: {
         confirmButton: `${buttonClass} bg-blue-500 active:bg-blue-600 text-white hover:text-white`,
         cancelButton: `${buttonClass} bg-red-500 active:bg-red-600 text-white hover:text-white active:text-white`,
+        closeButton: `w-11 h-11`, // Doesn't work
     },
     buttonsStyling: false,
 }));
