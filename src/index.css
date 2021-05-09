@@ -115,7 +115,19 @@ input, textarea, button, select, a {
 .swal2-close {
     width: 44px !important;
     height: 44px !important;
-    margin: 0.5rem;
+    color: #9ca3af !important;
+    margin: 0.66rem;
+    border-radius: 1000px !important;
+}
+
+.swal2-close:focus {
+    outline: none !important;
+    box-shadow: unset !important;
+}
+
+.swal2-close:active {
+    color: #0AB5A3 !important;
+    background-color: rgba(0, 181, 163, 0.125) !important;
 }
 
 /* Motoric Gym */
