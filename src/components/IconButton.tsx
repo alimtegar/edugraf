@@ -20,7 +20,7 @@ const IconButton = ({
     icon,
     iconSize = 11,
     iconBgColor = 'secondary',
-    iconBgColorOn = 'secondary',
+    iconBgColorOn = 'secondary-on',
     iconTextColor = 'white',
     iconTextColorOn = 'white',
     iconShadow = 'md',

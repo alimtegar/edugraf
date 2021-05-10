@@ -29,7 +29,7 @@ module.exports = {
         'primary-dark': '#146759',
         'primary-on': 'rgba(0, 181, 163, 0.125)',
         'secondary': '#FC9F60',
-        // 'secondary-on': '#feb27b',
+        'secondary-on': '#ED965A',
         'white-on': 'rgba(255, 255, 255, 0.2)',
       },
       textColor: {
@@ -38,7 +38,7 @@ module.exports = {
         'primary-dark': '#146759',
         'primary-on': 'rgba(0, 181, 163, 0.125)',
         'secondary': '#FC9F60',
-        // 'secondary-on': '#feb27b',
+        'secondary-on': '#ED965A',
         'white-on': 'rgba(255, 255, 255, 0.2)',
       },
       borderColor: {
@@ -47,7 +47,7 @@ module.exports = {
         'primary-dark': '#146759',
         'primary-on': 'rgba(0, 181, 163, 0.125)',
         'secondary': '#FC9F60',
-        // 'secondary-on': '#feb27b',
+        'secondary-on': '#ED965A',
         'white-on': 'rgba(255, 255, 255, 0.2)',
       },
       translate: {

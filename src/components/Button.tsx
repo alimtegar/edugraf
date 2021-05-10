@@ -16,7 +16,7 @@ type Props = {
 const Button = ({
     children,
     bgColor = 'secondary',
-    bgColorOn = 'secondary',
+    bgColorOn = 'secondary-on',
     textColor = 'white',
     textColorOn = 'white',
     w = 'full',
@@ -34,7 +34,6 @@ const Button = ({
             w-${w}
             h-${h}
             bg-${bgColor}
-            xhover:bg-${bgColorOn}
             active:bg-${bgColorOn}
             text-${textColor}
             text-sm
