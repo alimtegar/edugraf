@@ -113,7 +113,7 @@ const Home = () => {
             <header className="flex justify-center items-center text-white pt-15 pb-6 md:pt-21 md:pb-12">
                 <span className="mr-4">
                     <Photo
-                        {...authContext.user.photo && { photo: `${process.env.REACT_APP_API_URL}/${authContext.user.photo}` }}
+                        {...authContext.user.photo && { photo: authContext.user.photo, }}
                         size={20}
                     />
                 </span>

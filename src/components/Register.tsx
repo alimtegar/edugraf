@@ -148,14 +148,14 @@ const Register = ({ history }: RouteComponentProps) => {
                                 Daftar
                             </Button>
                         )}
-                        <p className="text-gray-500 text-sm text-center font-semibold my-4">
+                        {/* <p className="text-gray-500 text-sm text-center font-semibold my-4">
                             Sudah punya akun?
                         </p>
                         <Link to={`/login`}>
                             <Button bgColor="red-500" bgColorOn="red-600" type="button">
                                 Masuk
                             </Button>
-                        </Link>
+                        </Link> */}
                     </form>
                 </section>
             </main>

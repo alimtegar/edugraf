@@ -48,9 +48,9 @@ const Button = ({
         {isPing && (
             <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-${bgColor} opacity-75`}></span>
         )}
-        <span className="relative z-10">
-            {children}
-        </span>
+        {isPing ? (
+            <span className="relative z-10">{children}</span>
+        ) : children}
     </button>
 );
 

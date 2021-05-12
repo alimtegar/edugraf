@@ -1,18 +1,19 @@
 import { useState, useEffect, } from 'react';
 import axios from 'axios';
 import { toast, } from 'react-toastify';
-import { Link, } from 'react-router-dom';
+// import { Link, } from 'react-router-dom';
 import { FaBars, } from 'react-icons/fa';
 
 // Contexts
-import { useAuthContext } from '../contexts/AuthContext';
-import { useSidebarContext } from '../contexts/SidebarContext';
+import { useAuthContext, } from '../contexts/AuthContext';
+import { useSidebarContext, } from '../contexts/SidebarContext';
 
 // Components
 import Navbar from './Navbar';
 import Input from './Input';
 import Button from './Button';
 import LoadingButton from './LoadingButton';
+import GoogleLoginButton from './GoogleLoginButton';
 
 // Types
 type LoginForm = {
@@ -31,7 +32,7 @@ const Login = () => {
         password: '',
     };
     const [form, setForm] = useState<LoginForm>(initForm);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // Effects
     useEffect(() => {
@@ -54,7 +55,10 @@ const Login = () => {
 
         axios.post(`${process.env.REACT_APP_API_URL}/login`, form)
             .then((res) => {
-                authContext.setAuth(res.data);
+                authContext.setAuth({
+                    ...res.data,
+                    loginWith: 'email',
+                });
 
                 setForm(initForm);
             })
@@ -69,7 +73,7 @@ const Login = () => {
                 });
                 setIsLoading(false);
             });
-    }
+    };
 
     return (
         <>
@@ -77,11 +81,14 @@ const Login = () => {
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
             }} />
+
             <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
                     Masuk Pengguna
                 </h1>
-                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Masuk dan lanjutkan proses belajar anda dengan berbagai fitur Sibisa.</p>
+                <p className="text-sm font-semibold md:mx-auto md:w-1/5">
+                    Masuk dan lanjutkan proses belajar anda dengan berbagai fitur Sibisa.
+                </p>
             </header>
 
             <main className="flex-grow">
@@ -122,14 +129,24 @@ const Login = () => {
                                 Masuk
                             </Button>
                         )}
-                        <p className="text-gray-500 text-sm font-semibold text-center my-4">
-                            Belum punya akun?
-                        </p>
+
+                        <span className="text-gray-500 text-sm font-semibold text-center my-4">
+                            Atau masuk dengan
+                        </span>
+
+                        <GoogleLoginButton />
+
+                        
+
+                        {/* <p className="text-gray-500 text-sm font-semibold text-center mt-4">
+                            Belum punya akun? <Link to={`/register`}><a className="text-secondary font-extrabold">Daftar</a></Link>
+                        </p> */}
+                        {/* 
                         <Link to={`/register`}>
                             <Button bgColor="red-500" bgColorOn="red-600" type="button">
                                 Daftar
                         </Button>
-                        </Link>
+                        </Link> */}
                     </form>
                 </section>
             </main>

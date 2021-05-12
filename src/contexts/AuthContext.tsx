@@ -29,6 +29,7 @@ const initState: AuthContextState = {
     token: '',
     type: '',
   },
+  loginWith: '',
   setAuth: () => { },
   setAuthLoading: () => { },
   setAuthUser: () => { },

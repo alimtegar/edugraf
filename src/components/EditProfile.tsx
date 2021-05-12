@@ -86,7 +86,7 @@ const EditProfile = () => {
                     onSubmit={(e) => handleSubmit(e)}
                 >
                     <PhotoDropzone
-                        {...authContext.user.photo && { initPhoto: `${process.env.REACT_APP_API_URL}/${authContext.user.photo}` }}
+                        {...authContext.user.photo && { initPhoto: authContext.user.photo, }}
                         setPhotoFile={setPhotoFile}
                     />
                     <div className="mt-2 mb-3">
