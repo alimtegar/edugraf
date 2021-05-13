@@ -1,0 +1,20 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256">
+  <defs>
+    <clipPath id="clip-path">
+      <rect x="-383.26" y="90.28" width="256" height="256" rx="41.42" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="256" height="256" rx="128" fill="none"/>
+    </clipPath>
+  </defs>
+  <title>Artboard 2</title>
+  <g clip-path="url(#clip-path)">
+    <circle cx="-99.9" cy="55.9" r="237.4" fill="#fff" opacity="0.22"/>
+  </g>
+  <rect width="256" height="256" rx="128" fill="#00b3a1"/>
+  <g clip-path="url(#clip-path-2)">
+    <circle cx="283.36" cy="-34.38" r="237.4" fill="#fff" opacity="0.22"/>
+  </g>
+  <path d="M135.71,73.43H120.29a5.09,5.09,0,0,0-5.15,5.15v25.59h25.72V78.58A5.09,5.09,0,0,0,135.71,73.43Z" fill="#fff"/>
+  <path d="M115.27,154.34l7,17.94,3.39,8.66a2.45,2.45,0,0,0,2.38,1.63,2.58,2.58,0,0,0,2.39-1.63s1.5-3.89,3.38-8.66c3-7.65,7-17.81,7-17.94v-42H115.27Z" fill="#fff"/>
+</svg>
