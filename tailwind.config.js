@@ -31,6 +31,9 @@ module.exports = {
         'secondary': '#FC9F60',
         'secondary-on': '#ED965A',
         'white-on': 'rgba(255, 255, 255, 0.2)',
+        'red': { '500': '#FF2C55', },
+        'blue': { '500': '#3B82F6', },
+        'purple': { '500': '#996eff', },
       },
       textColor: {
         'primary': '#0AB5A3',

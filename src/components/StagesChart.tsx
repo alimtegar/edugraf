@@ -3,8 +3,13 @@ import axios from 'axios';
 import { Bar, } from '@reactchartjs/react-chart.js';
 import 'chartjs-plugin-datalabels';
 
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config.js'
+
 // Types
 import AttemptedStage from '../types/AttemptedStage';
+
+const fullConfig = resolveConfig(tailwindConfig)
 
 const StagesChart = () => {
     // States
@@ -18,10 +23,10 @@ const StagesChart = () => {
             .then((res) => {
                 const attemptedStages: AttemptedStage[] = res.data;
                 const backgroundColors = {
-                    'on-paper': '#FC9F60',
-                    symbols: 'rgb(239, 68, 68)',
-                    letters: 'rgb(59, 130, 246)',
-                    numbers: 'rgb(139, 92, 246)',
+                    'on-paper': fullConfig.theme.backgroundColor['secondary'],
+                    symbols: fullConfig.theme.backgroundColor['red'][500],
+                    letters: fullConfig.theme.backgroundColor['blue'][500],  
+                    numbers: fullConfig.theme.backgroundColor['purple'][500], 
                 };
 
                 let _labels: string[] = [];
