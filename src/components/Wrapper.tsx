@@ -57,31 +57,37 @@ const Wrapper = () => {
                 <Particles
                     height="100%"
                     width="100%"
-                    className="absolute opacity-50 w-full h-screen"
+                    className="absolute w-full h-screen"
                     params={{
                         particles: {
-                            "number": {
-                                "value": 8,
-                                "density": {
-                                    "enable": false
+                            number: {
+                                value: 8,
+                                density: {
+                                    enable: false
                                 }
                             },
-                            "size": {
-                                "value": 100,
-                                "random": true,
-                                "anim": {
-                                    "speed": 4,
-                                    "size_min": 0.3
-                                }
+                            size: {
+                                value: 100,
+                                random: true,
+                                // anim: {
+                                //     speed: 0.5,
+                                //     size_min: 0.3
+                                // }
                             },
-                            "line_linked": {
-                                "enable": false
+                            line_linked: {
+                                enable: false
                             },
-                            "move": {
-                                "random": true,
-                                "speed": 1,
-                                "direction": "top",
-                                "out_mode": "out"
+                            move: {
+                                random: true,
+                                speed: 1,
+                                direction: 'top',
+                                out_mode: 'out'
+                            },
+                            opacity: {
+                                anim: {
+                                    enable: false,
+                                },
+                                value: 0.2,
                             }
                         },
                     }}

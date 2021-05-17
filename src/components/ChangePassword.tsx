@@ -90,7 +90,7 @@ const ChangePassword = () => {
                     onSubmit={(e) => handleSubmit(e)}
                 >
                     <input id="email" name="email" autoComplete="username" readOnly value={authContext.user.email} className="hidden" />
-                    <div className="mt-2 mb-3">
+                    {/* <div className="mt-2 mb-3">
                         <Input
                             label="Kata Sandi Sekarang"
                             type="password"
@@ -101,7 +101,7 @@ const ChangePassword = () => {
                             value={form.current_password}
                             onChange={(e) => handleChange(e)}
                         />
-                    </div>
+                    </div> */}
                     <div className="mt-2 mb-3">
                         <Input
                             label="Kata Sandi Baru"
