@@ -31,9 +31,9 @@ module.exports = {
         'secondary': '#FC9F60',
         'secondary-on': '#ED965A',
         'white-on': 'rgba(255, 255, 255, 0.2)',
-        'red': { '500': '#FF2C55', },
-        'blue': { '500': '#3B82F6', },
-        'purple': { '500': '#996eff', },
+        'red': { '500': '#FF2C55', '600': '#E3284C', },
+        'blue': { '500': '#3B82F6', '600': '#3575DD', },
+        'purple': { '500': '#996eff', '600': '#8963E5', },
       },
       textColor: {
         'primary': '#0AB5A3',
@@ -109,8 +109,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ['active', 'group-active'],
-      textColor: ['active', 'group-active'],
+      backgroundColor: ['active', 'group-active',],
+      textColor: ['active', 'group-active',],
+      textDecoration: ['active', 'group-active',],
     },
   },
   plugins: [

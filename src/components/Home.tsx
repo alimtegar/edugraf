@@ -1,5 +1,6 @@
 import { useEffect, useCallback, } from 'react';
 import { FaBars, FaTimes, } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -21,7 +22,7 @@ import MotoricGym from './MotoricGym';
 const Home = () => {
     const menu: HomeMenuItem[] = [
         {
-            title: 'Materi Belajar',
+            title: 'Materi Pembelajaran',
             subMenu: [
                 {
                     title: 'Tabel Simbol',
@@ -44,10 +45,10 @@ const Home = () => {
             ],
         },
         {
-            title: 'Tes Kemampuan',
+            title: 'Tes Menulis',
             subMenu: [
                 {
-                    title: 'Tes dg. Kertas',
+                    title: 'Tes Alat Tulis',
                     description: 'Tabel alfabet dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/stages-on-paper.svg`).default} className="h-10" alt="icon" />),
                     to: '/stages/category/on-paper',
@@ -112,16 +113,20 @@ const Home = () => {
             }} />
             <header className="flex justify-center items-center text-white pt-15 pb-6 md:pt-21 md:pb-12">
                 <span className="mr-4">
-                    <Photo
-                        {...authContext.user.photo && { photo: authContext.user.photo, }}
-                        size={20}
-                    />
+                    <Link to="/edit-profile">
+                        <Photo
+                            {...authContext.user.photo && { photo: authContext.user.photo, }}
+                            size={20}
+                        />
+                    </Link>
                 </span>
                 <span>
                     <p className="text-sm font-semibold leading-snug">Selamat datang,</p>
-                    <h1 className="text-lg font-extrabold leading-snug">
-                        {authContext.user.name}
-                    </h1>
+                    <Link to="/edit-profile">
+                        <h1 className="text-lg font-extrabold leading-snug active:underline">
+                            {authContext.user.name}
+                        </h1>
+                    </Link>
                 </span>
             </header>
 

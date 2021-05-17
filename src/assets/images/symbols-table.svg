@@ -3,8 +3,8 @@
 <svg version="1.1" id="color" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#EF4444;}
-	.st1{opacity:0.1;}
+	.st0{fill:#FF2C55;}
+	.st1{opacity:0.1;enable-background:new    ;}
 	.st2{fill:#FFFFFF;}
 </style>
 <title>symbols</title>
@@ -21,7 +21,7 @@
 		C273.4,218.7,266.2,211.5,266.2,202.7z"/>
 	<path class="st2" d="M346.2,154.7c0-8.8-7.2-16-16-16l0,0c-8.8,0-16,7.2-16,16s7.2,16,16,16l0,0C339,170.7,346.2,163.5,346.2,154.7
 		z"/>
-	<path class="st2" d="M346.2,250.7c0-8.8-7.2-16-16-16l0,0c-8.8,0-16,7.1-16,16c0,8.8,7.1,16,16,16c0,0,0,0,0,0l0,0
+	<path class="st2" d="M346.2,250.7c0-8.8-7.2-16-16-16l0,0c-8.8,0-16,7.1-16,16c0,8.8,7.1,16,16,16l0,0l0,0
 		C339,266.7,346.2,259.5,346.2,250.7z"/>
 </g>
 </svg>

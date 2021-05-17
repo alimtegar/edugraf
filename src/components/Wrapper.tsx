@@ -61,7 +61,7 @@ const Wrapper = () => {
                     params={{
                         particles: {
                             "number": {
-                                "value": 5,
+                                "value": 8,
                                 "density": {
                                     "enable": false
                                 }

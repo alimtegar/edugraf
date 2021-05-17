@@ -109,7 +109,8 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                         </span>
                     </div>
                     <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
-                        Tulislah huruf <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        {/* Tulislah (character category)... */}
+                        Tulislah <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 

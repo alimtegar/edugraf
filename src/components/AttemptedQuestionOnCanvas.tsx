@@ -17,6 +17,7 @@ import LoadingButton from './LoadingButton';
 
 // Types
 import AttemptedQuestion from '../types/AttemptedQuestion';
+import TranslatedCategory from '../types/TranslatedCategory';
 
 type Props = {
     attemptedQuestion: AttemptedQuestion,
@@ -84,7 +85,8 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
                     </span>
                 </div>
                 <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
-                    Tulislah huruf <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                    {/* Tulislah (character category)... */}
+                    Tulislah <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
             </section>
 
