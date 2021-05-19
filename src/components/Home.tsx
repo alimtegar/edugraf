@@ -123,7 +123,7 @@ const Home = () => {
                 <span>
                     <p className="text-sm font-semibold leading-snug">Selamat datang,</p>
                     <Link to="/edit-profile">
-                        <h1 className="text-lg font-extrabold leading-snug active:underline">
+                        <h1 className="text-lg font-extrabold leading-snug active:underline hover:underline">
                             {authContext.user.name}
                         </h1>
                     </Link>
@@ -131,8 +131,8 @@ const Home = () => {
             </header>
 
             <main className="flex flex-grow md:mx-auto md:w-1/2">
-                <section className="grid grid-cols-1 gap-4 flex-grow bg-white bg-opacity-95 text-gray-700 pt-6 pb-4 px-4 rounded-t-2xl shadow-default">
-                    <div className="flex flex-col">
+                <section className="flex-grow w-full bg-white bg-opacity-95 text-gray-700 pt-6 pb-4 px-4 rounded-t-2xl shadow-default">
+                    <div className="flex flex-col mb-4">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="font-bold leading-none">
                                 Senam Motorik
@@ -147,7 +147,7 @@ const Home = () => {
 
 
                     {menu.map((menuItem, i) => (
-                        <div className="flex flex-col" key={i}>
+                        <div className="flex flex-col mb-4" key={i}>
                             <div className="flex justify-between items-center mb-4">
                                 <h2 className="font-bold leading-none">
                                     {menuItem.title}

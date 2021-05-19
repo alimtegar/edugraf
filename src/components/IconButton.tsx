@@ -52,8 +52,10 @@ const IconButton = ({
             items-center 
             bg-${iconBgColor}
             group-active:bg-${iconBgColorOn}
+            group-hover:bg-${iconBgColorOn}
             text-${iconTextColor}
             group-active:text-${iconTextColorOn}
+            group-hover:text-${iconTextColorOn}
             text-xl 
             font-extrabold 
             w-${iconSize}

@@ -107,7 +107,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                 </section>
                 <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
-                        <Button>
+                        <Button shadow="default">
                             Daftar Stage
                         </Button>
                     </Link>

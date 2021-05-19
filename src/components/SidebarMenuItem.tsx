@@ -9,7 +9,7 @@ const SidebarMenuItem = ({ title, icon, to }: SidebarMenuItemProps) => {
 
     return (
         <NavLink
-            className="menu-item flex items-center xactive:bg-primary-on text-gray-400 text-sm font-bold p-4 focus:outline-none"
+            className="menu-item flex items-center active:bg-primary-on hover:bg-primary-on text-gray-400 active:text-primary-dark hover:text-primary-dark text-sm font-bold p-4 focus:outline-none"
             activeClassName="bg-primary-on text-primary-dark"
             to={to}
             exact

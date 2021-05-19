@@ -16,7 +16,7 @@ const NotFound = () => (
                 </h2>
                 <p className="text-sm font-semibold mb-6">Data yang anda cari tidak ditemukan.</p>
                 <Link to={`/`}>
-                    <Button w={32}>
+                    <Button w={32} shadow="default">
                         Dasbor
                     </Button>
                 </Link>

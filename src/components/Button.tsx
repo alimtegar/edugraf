@@ -35,9 +35,11 @@ const Button = ({
             h-${h}
             bg-${bgColor}
             active:bg-${bgColorOn}
+            hover:bg-${bgColorOn}
             text-${textColor}
             text-sm
             active:text-${textColorOn}
+            hover:text-${textColorOn}
             font-extrabold
             rounded-${borderR}
             shadow-${shadow}

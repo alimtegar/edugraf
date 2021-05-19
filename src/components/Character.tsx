@@ -80,7 +80,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                 <IconButton
                     icon={(<FaPen size="0.83rem" className="transform -translate-y-0.25" />)}
                     iconBgColor={isWriting ? 'red-500' : 'secondary'}
-                    iconBgColorOn={isWriting ? 'red-600' : 'secondary'}
+                    iconBgColorOn={isWriting ? 'red-600' : 'secondary-on'}
                     title={`${isWriting ? 'Sembunyikan' : 'Tampilkan'} Penulisan`}
                     onClick={() => setIsWriting((prevState) => !prevState)}
                 />
@@ -93,8 +93,8 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                 )}
             </div>
             <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
-                <Link to={`/practice/category/${category}/${character}`}>
-                    <Button>
+                <Link to={`/practice/category/${category}/${character}?letter-case=${letterCase}`}>
+                    <Button shadow="default">
                         Latihan Menulis
                     </Button>
                 </Link>

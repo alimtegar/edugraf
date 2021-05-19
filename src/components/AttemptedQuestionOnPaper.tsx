@@ -153,6 +153,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
                             { onClick: () => capture() }
                             : { disabled: true, }
                         }
+                        shadow="default"
                         center
                     >
                         Foto Jawaban

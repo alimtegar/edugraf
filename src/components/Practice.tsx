@@ -23,8 +23,9 @@ type MatchParams = {
     character?: string | undefined;
 }
 
-const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
+const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams>) => {
     const { params: { category, character } } = match;
+    const letterCase = new URLSearchParams(location.search).get('letter-case') || 'uppercase';
 
     // Context
     const characterContext = useCharacterContext();
@@ -35,6 +36,9 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
     const [isListeningPronounciation, setIsListeningPronounciation] = useState<boolean>(false);;
 
     // Functions
+    const formatCharacter = (category: string, character: string) =>
+        decodeURIComponent(category === 'letters' ? (letterCase === 'uppercase' ? character.toUpperCase() : character.toLowerCase()) : character);
+
     const check = () => {
         setIsChecking(true);
 
@@ -52,32 +56,34 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
         setIsChecking(false);
         canvasRef?.clear();
 
-        if (answer === character) {
-            Alert.fire({
-                title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
-                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{character && decodeURIComponent(character)}</strong>).</p>),
-                icon: 'success',
-                confirmButtonText: 'Baik',
-            }).then(({ isConfirmed }) => {
-                if (isConfirmed) {
+        if (category && character) {
+            if (answer === formatCharacter(category, character)) {
+                Alert.fire({
+                    title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
+                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
+                    icon: 'success',
+                    confirmButtonText: 'Baik',
+                }).then(({ isConfirmed }) => {
+                    if (isConfirmed) {
 
-                }
-            });
-        } else {
-            Alert.fire({
-                title: (<span className="text-lg text-gray-900 font-bold leading-snug">Salah</span>),
-                html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{character && decodeURIComponent(character)}</strong>).</p>),
-                icon: 'error',
-                showCancelButton: true,
-                showConfirmButton: false,
-                cancelButtonText: 'Ulangi',
-            }).then(({ isConfirmed }) => {
-                if (isConfirmed) {
+                    }
+                });
+            } else {
+                Alert.fire({
+                    title: (<span className="text-lg text-gray-900 font-bold leading-snug">Salah</span>),
+                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
+                    icon: 'error',
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: 'Ulangi',
+                }).then(({ isConfirmed }) => {
+                    if (isConfirmed) {
 
-                }
-            });
+                    }
+                });
+            }
         }
-    }
+    };
 
     return (
         <>
@@ -92,7 +98,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
                         <CharacterFrame size={28} textSize="6xl" rounded="xl">
-                            {character && decodeURIComponent(character)}
+                            {category && character && formatCharacter(category, character)}
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
                             <Button
@@ -102,7 +108,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                                 shadow="default"
                                 center
                                 isPing={isListeningPronounciation}
-                                onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => {}}
+                                onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => { }}
                             >
                                 <FaVolumeUp size="0.83rem" />
                             </Button>
@@ -110,7 +116,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                     </div>
                     <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
                         {/* Tulislah (character category)... */}
-                        Tulislah <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        Tulislah <strong className="font-bold">{category && character && formatCharacter(category, character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 
@@ -130,6 +136,7 @@ const Practice = ({ match, history, }: RouteComponentProps<MatchParams>) => {
                                 { onClick: () => check() }
                                 : { disabled: true, }
                             }
+                            shadow="default"
                         >
                             Kirim Jawaban
                         </Button>
