@@ -43,7 +43,8 @@ export const validateAnswer = (question: string, answer: string) => {
     } else if (
         ((['o', 'O', '0',].indexOf(question) > -1) && (['o', 'O', '0',].indexOf(answer) > -1)) ||
         ((['l', 'I', '1',].indexOf(question) > -1) && (['l', 'I', '1',].indexOf(answer) > -1)) ||
-        ((['g', 'q', '9',].indexOf(question) > -1) && (['g', 'q', '9',].indexOf(answer) > -1))
+        ((['g', 'q', '9',].indexOf(question) > -1) && (['g', 'q', '9',].indexOf(answer) > -1)) ||
+        answer.includes(question)
     ) {
         is_correct = true
     }
