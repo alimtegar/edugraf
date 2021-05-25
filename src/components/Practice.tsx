@@ -1,8 +1,11 @@
 import { useState, } from 'react';
 import { RouteComponentProps, } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
-import Tesseract, { recognize } from 'tesseract.js';
+// import Tesseract, { recognize } from 'tesseract.js';
 import { FaChevronLeft, FaVolumeUp } from 'react-icons/fa';
+
+// Utils
+import { base64toBlob, recognize } from '../Utils';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -39,15 +42,15 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
     const formatCharacter = (category: string, character: string) =>
         decodeURIComponent(category === 'letters' ? (letterCase === 'uppercase' ? character.toUpperCase() : character.toLowerCase()) : character);
 
+
     const check = () => {
         setIsChecking(true);
 
         if (canvasRef) {
-            recognize(canvasRef.toDataURL(), undefined, {
-                workerPath: '/workers/tesseract.js/worker.min.js',
-                workerBlobURL: false,
-            })
-                .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))
+            const srcImg = base64toBlob(canvasRef.toDataURL(), 'image/png');
+
+            recognize(srcImg)
+                .then((res) => answer(res))
                 .catch((err) => console.log(err));
         }
     };
