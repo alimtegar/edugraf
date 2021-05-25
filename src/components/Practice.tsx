@@ -5,7 +5,7 @@ import SignatureCanvas from 'react-signature-canvas';
 import { FaChevronLeft, FaVolumeUp } from 'react-icons/fa';
 
 // Utils
-import { base64toBlob, recognize } from '../Utils';
+import { base64toBlob, recognize, validateAnswer } from '../Utils';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -60,10 +60,10 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
         canvasRef?.clear();
 
         if (category && character) {
-            if (answer === formatCharacter(category, character)) {
+            if (validateAnswer(formatCharacter(category, character), answer)) {
                 Alert.fire({
                     title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
-                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
+                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{formatCharacter(category, character)}</strong>) sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
                     icon: 'success',
                     confirmButtonText: 'Baik',
                 }).then(({ isConfirmed }) => {

@@ -26,7 +26,7 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/best/category/${category}/stage/${stage}`)
             .then((res) => {
                 const bestAttemptedStage: AttemptedStage | null = res.data;
-                const bestScoreRate = bestAttemptedStage ? bestAttemptedStage.score / bestAttemptedStage.question_count * 0.5 : 0;
+                const bestScoreRate = bestAttemptedStage ? bestAttemptedStage.score / 10 * 0.5 : 0;
 
                 setBestScoreRate(bestScoreRate);
             })

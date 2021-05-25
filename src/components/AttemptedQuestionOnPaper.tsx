@@ -1,8 +1,11 @@
 import { useState, useRef, useCallback, useEffect, } from 'react';
-import Tesseract, { recognize } from 'tesseract.js';
+// import Tesseract, { recognize } from 'tesseract.js';
 import { FaVolumeUp, } from 'react-icons/fa';
 import Webcam from "react-webcam";
 import axios from 'axios';
+
+// Utils
+import { base64toBlob, recognize } from '../Utils';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -82,11 +85,10 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
         setImageSrc(imageSrc);
 
         if (imageSrc) {
-            recognize(imageSrc, undefined, {
-                workerPath: `${process.env.PUBLIC_URL}/workers/tesseract.js/worker.min.js`,
-                workerBlobURL: false,
-            })
-                .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))
+            const srcImg = base64toBlob(imageSrc, 'image/jpeg');
+
+            recognize(srcImg)
+                .then((res) => answer(res))
                 .catch((err) => console.log(err));
         }
     }, [webcamRef, answer]);

@@ -1,8 +1,11 @@
 import { useState, } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
-import Tesseract, { recognize } from 'tesseract.js';
+// import Tesseract, { recognize } from 'tesseract.js';
 import axios from 'axios';
 import { FaVolumeUp } from 'react-icons/fa';
+
+// Utils
+import { base64toBlob, recognize } from '../Utils';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -17,7 +20,6 @@ import LoadingButton from './LoadingButton';
 
 // Types
 import AttemptedQuestion from '../types/AttemptedQuestion';
-import TranslatedCategory from '../types/TranslatedCategory';
 
 type Props = {
     attemptedQuestion: AttemptedQuestion,
@@ -38,11 +40,10 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
         setIsChecking(true);
 
         if (canvasRef) {
-            recognize(canvasRef.toDataURL(), undefined, {
-                workerPath: `${process.env.PUBLIC_URL}/workers/tesseract.js/worker.min.js`,
-                workerBlobURL: false,
-            })
-                .then(({ data: { text } }: Tesseract.RecognizeResult) => answer(text.trim()))
+            const srcImg = base64toBlob(canvasRef.toDataURL(), 'image/png');
+
+            recognize(srcImg)
+                .then((res) => answer(res))
                 .catch((err) => console.log(err));
         }
     };
