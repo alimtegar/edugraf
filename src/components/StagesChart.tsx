@@ -54,7 +54,7 @@ const StagesChart = () => {
             <div className="flex justify-between text-white text-xs font-bold mb-6">
                 <div className="flex">
                     <div className="bg-secondary w-3 h-3 rounded-full mr-2" />
-                    Di kertas
+                    Alat Tulis
                 </div>
                 <div className="flex">
                     <div className="bg-red-500 w-3 h-3 rounded-full mr-2" />

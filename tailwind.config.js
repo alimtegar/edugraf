@@ -1,25 +1,27 @@
 module.exports = {
-  purge: {
-    content: [
-      './src/**/*.{js,jsx,ts,tsx}',
-      './public/index.html',
-    ],
-    options: {
-      safelist: [
-        /^w-/,
-        /^h-/,
-        /^bg-/,
-        /^text-/,
-        /^rounded-/,
-        /^shadow-/,
-        /^top-/,
-        /^aspect-/,
-        /^p-/,
-        /^border-/,
-        /^grid-cols-/,
-      ],
-    },
-  },
+  purge: false,
+  // purge: {
+  //   content: [
+  //     './src/**/*.{js,jsx,ts,tsx}',
+  //     './public/index.html',
+  //   ],
+  //   options: {
+  //     safelist: [
+  //       /^w-/,
+  //       /^h-/,
+  //       /^bg-/,
+  //       /^text-/,
+  //       /^rounded-/,
+  //       /^shadow-/,
+  //       /^top-/,
+  //       /^aspect-/,
+  //       /^p-/,
+  //       /^border-/,
+  //       /^grid-cols-/,
+  //       /^.hover/,
+  //     ],
+  //   },
+  // },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

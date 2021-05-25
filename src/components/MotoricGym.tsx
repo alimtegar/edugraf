@@ -18,7 +18,7 @@ const MotoricGym = () => {
             }}>
                 <iframe
                     className="absolute z-10 w-full h-full"
-                    src={`${videoSrc}?modestbranding=1`}
+                    src={`${videoSrc}?rel=0&disable_polymer=1&modestbranding=1`}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

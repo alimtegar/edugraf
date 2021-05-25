@@ -26,11 +26,11 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
     // Function
     const getTitle = (score: number) => {
         if (score >= 100) {
-            return 'Hebat';
+            return 'Hebat!';
         } else if (score >= 80) {
-            return 'Keren';
+            return 'Keren!';
         } else if (score >= 60) {
-            return 'Lumayan';
+            return 'Lumayan Bagus';
         } else if (score >= 40) {
             return 'Pelan-Pelan Saja';
         } else {
@@ -40,11 +40,11 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
 
     const getDescription = (score: number) => {
         if (score >= 100) {
-            return 'Hebat sekali, pertahankan nilainya ya.';
+            return 'Hebat sekali, pertahankan untuk nilainya ya.';
         } else if (score >= 80) {
-            return 'Wow keren, sedikit pasti dapat nilai sempurna.';
+            return 'Wow keren, sedikit lagi pasti dapat nilai sempurna.';
         } else if (score >= 60) {
-            return 'Lumayan bagus, tetapi bisa ditingkatkan lagi.';
+            return 'Sudah lumayan bagus tetapi bisa ditingkatkan lagi.';
         } else if (score >= 40) {
             return 'Pelan-pelan saja, nanti pasti juga akan bisa.';
         } else {
@@ -71,7 +71,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                 <section className="flex flex-col justify-center items-center text-white text-center pt-10 px-16 pb-11">
                     <div className="-my-2 pl-2 mb-4">
                         <Rate
-                            value={attemptedStage ? attemptedStage.score / attemptedStage.question_count * 0.5 : 0}
+                            value={attemptedStage ? attemptedStage.score / 10 * 0.5 : 0}
                             allowHalf
                             style={{
                                 fontSize: '2rem',

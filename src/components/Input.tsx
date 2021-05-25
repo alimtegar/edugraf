@@ -8,7 +8,7 @@ type Props = {
 
 const Input = ({ borderColorOn = 'secondary', label, id, ...props }: Props & InputHTMLAttributes<HTMLInputElement>) => (
     <div className="relative">
-        <label htmlFor={id} className="bg-white absolute top-0 transform -translate-y-1/2 inline-flex mt-0.5 ml-4 p-1 text-sm font-bold rounded-full leading-3">{label}</label>
+        <label htmlFor={id} className="bg-white absolute top-0 transform -translate-y-1/2 inline-flex mt-0.5 ml-4 p-1 text-sm font-bold rounded-sm leading-3">{label}</label>
         <input 
             className={`
                 font-semibold
