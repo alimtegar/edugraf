@@ -113,21 +113,39 @@ const Home = () => {
             }} /> */}
 
             <header className="flex items-center bg-white text-gray-700 p-8 md:pt-21 md:pb-12 rounded-b-3xl shadow-default">
-                <span className="mr-6">
+                <div className="mr-6">
                     <Link to="/edit-profile">
                         <Photo
                             {...authContext.user.photo && { photo: authContext.user.photo, }}
                             size={20}
                         />
                     </Link>
-                </span>
-                <span>
+                </div>
+                <div className="flex-1">
                     <Link to="/edit-profile">
-                        <h1 className="text-2xl font-extrabold leading-snug active:underline hover:underline">
+                        <h1 className="text-xl font-extrabold leading-snug active:underline hover:underline">
                             {authContext.user.name}
                         </h1>
                     </Link>
-                </span>
+
+                    <div className="relative pt-4">
+                        <div className="overflow-hidden h-2 text-xs flex rounded bg-gray-100">
+                            <div style={{ width: "30%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                        </div>
+                        <div className="mt-1 flex items-center justify-between">
+                            <div>
+                                <span className="font-bold text-sm leading-none inline-block">
+                                    Level 1
+                                </span>
+                            </div>
+                            <div className="text-right">
+                                <span className="font-bold text-sm text-yellow-600 leading-none inline-block">
+                                    0/100 XP
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </header>
 
             <main className="flex flex-grow md:mx-auto md:w-1/2">
