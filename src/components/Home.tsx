@@ -107,12 +107,13 @@ const Home = () => {
 
     return (
         <div className="flex flex-col flex-grow">
-            <Navbar leftButton={{
+            {/* <Navbar leftButton={{
                 icon: (<FaBars size="0.83rem" />),
                 onClick: sidebarContext.toggleSidebar,
-            }} />
-            <header className="flex justify-center items-center text-white pt-15 pb-6 md:pt-21 md:pb-12">
-                <span className="mr-4">
+            }} /> */}
+
+            <header className="flex items-center bg-white text-gray-700 p-8 md:pt-21 md:pb-12 rounded-b-3xl shadow-default">
+                <span className="mr-6">
                     <Link to="/edit-profile">
                         <Photo
                             {...authContext.user.photo && { photo: authContext.user.photo, }}
@@ -121,9 +122,8 @@ const Home = () => {
                     </Link>
                 </span>
                 <span>
-                    <p className="text-sm font-semibold leading-snug">Selamat datang,</p>
                     <Link to="/edit-profile">
-                        <h1 className="text-lg font-extrabold leading-snug active:underline hover:underline">
+                        <h1 className="text-2xl font-extrabold leading-snug active:underline hover:underline">
                             {authContext.user.name}
                         </h1>
                     </Link>
@@ -131,16 +131,16 @@ const Home = () => {
             </header>
 
             <main className="flex flex-grow md:mx-auto md:w-1/2">
-                <section className="flex-grow w-full bg-white bg-opacity-95 text-gray-700 pt-6 pb-4 px-4 rounded-t-2xl shadow-default">
+                <section className="flex-grow w-full text-gray-700 p-4">
                     <div className="flex flex-col mb-4">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="font-bold leading-none">
-                                Senam Motorik
+                            <h2 className="font-bold text-sm leading-none">
+                                Senam
                             </h2>
                         </div>
                         <IconButton
                             icon={(<FaChild size="1.16rem" />)}
-                            title="Senam Motorik"
+                            title="Senam"
                             onClick={showMotoricGym}
                         />
                     </div>
@@ -149,10 +149,9 @@ const Home = () => {
                     {menu.map((menuItem, i) => (
                         <div className="flex flex-col mb-4" key={i}>
                             <div className="flex justify-between items-center mb-4">
-                                <h2 className="font-bold leading-none">
+                                <h2 className="font-bold text-sm leading-none">
                                     {menuItem.title}
                                 </h2>
-                                <span className="text-sm font-semibold leading-none"><strong className="font-bold">{menuItem.subMenu.length}</strong> Item</span>
                             </div>
                             <div className="relative -m-1">
                                 <Slider settings={{

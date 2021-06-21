@@ -52,46 +52,7 @@ const Wrapper = () => {
 
     return (
         <Router>
-            <div id="outer-container" className="bg-primary">
-                <Sidebar />
-                <Particles
-                    height="100%"
-                    width="100%"
-                    className="absolute w-full h-screen"
-                    params={{
-                        particles: {
-                            number: {
-                                value: 8,
-                                density: {
-                                    enable: false
-                                }
-                            },
-                            size: {
-                                value: 100,
-                                random: true,
-                                // anim: {
-                                //     speed: 0.5,
-                                //     size_min: 0.3
-                                // }
-                            },
-                            line_linked: {
-                                enable: false
-                            },
-                            move: {
-                                random: true,
-                                speed: 1,
-                                direction: 'top',
-                                out_mode: 'out'
-                            },
-                            opacity: {
-                                anim: {
-                                    enable: false,
-                                },
-                                value: 0.2,
-                            }
-                        },
-                    }}
-                />
+            <div id="outer-container" className="bg-blue-100">
                 <div id="page-wrap" className="relative z-10 flex flex-col w-screen min-h-screen overflow-hidden">
                     <Switch>
                         {routes.map((route) => (

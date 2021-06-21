@@ -7,7 +7,7 @@ type Props = {
 };
 
 const Photo = ({ photo, size }: Props) => (
-    <div className={`flex justify-center items-center bg-gray-200 text-gray-400 w-${size} h-${size} border-3 border-white rounded-full shadow-default overflow-hidden focus:outline-none`}>
+    <div className={`flex justify-center items-center bg-white text-gray-700 w-${size} h-${size} border-3 border-gray-700 rounded-full overflow-hidden focus:outline-none`}>
         {photo ? (
             <img
                 src={photo}
