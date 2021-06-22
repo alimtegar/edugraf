@@ -52,7 +52,7 @@ const Wrapper = () => {
 
     return (
         <Router>
-            <div id="outer-container" className="bg-blue-100">
+            <div id="outer-container">
                 <div id="page-wrap" className="relative z-10 flex flex-col w-screen min-h-screen overflow-hidden">
                     <Switch>
                         {routes.map((route) => (

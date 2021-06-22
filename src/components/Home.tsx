@@ -123,26 +123,18 @@ const Home = () => {
                 </div>
                 <div className="flex-1">
                     <Link to="/edit-profile">
-                        <h1 className="text-xl font-extrabold leading-snug active:underline hover:underline">
+                        <h1 className="text-xl font-extrabold leading-snug active:underline hover:underline mb-4">
                             {authContext.user.name}
                         </h1>
                     </Link>
 
-                    <div className="relative pt-4">
-                        <div className="overflow-hidden h-2 text-xs flex rounded bg-gray-100">
-                            <div style={{ width: "30%" }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"></div>
+                    <div className="relative">
+                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-blue-50">
+                            <div style={{ width: "30%" }} className="flex bg-blue-500 rounded-full" />
                         </div>
-                        <div className="mt-1 flex items-center justify-between">
-                            <div>
-                                <span className="font-bold text-sm leading-none inline-block">
-                                    Level 1
-                                </span>
-                            </div>
-                            <div className="text-right">
-                                <span className="font-bold text-sm text-yellow-600 leading-none inline-block">
-                                    0/100 XP
-                                </span>
-                            </div>
+                        <div className="mt-2 flex items-center justify-between font-bold text-xs leading-none">
+                            <span>Level 1</span>
+                            <span className="text-yellow-600">0/100 XP</span>
                         </div>
                     </div>
                 </div>
@@ -152,12 +144,12 @@ const Home = () => {
                 <section className="flex-grow w-full text-gray-700 p-4">
                     <div className="flex flex-col mb-4">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="font-bold text-sm leading-none">
+                            <h2 className="font-bold text-xs leading-none">
                                 Senam
                             </h2>
                         </div>
                         <IconButton
-                            icon={(<FaChild size="1.16rem" />)}
+                            icon={(<img src={require(`../assets/images/gym.svg`).default} className="h-8" alt="Senam" />)}
                             title="Senam"
                             onClick={showMotoricGym}
                         />
@@ -167,7 +159,7 @@ const Home = () => {
                     {menu.map((menuItem, i) => (
                         <div className="flex flex-col mb-4" key={i}>
                             <div className="flex justify-between items-center mb-4">
-                                <h2 className="font-bold text-sm leading-none">
+                                <h2 className="font-bold text-xs leading-none">
                                     {menuItem.title}
                                 </h2>
                             </div>

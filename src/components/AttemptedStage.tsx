@@ -64,7 +64,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
 
     return (
         <div className="attempted-stage flex flex-col flex-grow">
-            <Navbar />
+            <Navbar title="Attempted Stage" />
             <main className="flex flex-grow flex-col justify-between pt-15">
                 <Stepper active={1} count={1} />
 

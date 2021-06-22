@@ -36,8 +36,9 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     };
 
     return (
-        <div className="flex-grow text-white">
+        <div className="flex-grow text-gray-700">
             <Navbar
+                title="Tabel Karakter"
                 leftButton={{
                     onClick: () => history.replace('/'),
                     icon: <FaChevronLeft size="0.83rem" />

@@ -90,10 +90,13 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
 
     return (
         <>
-            <Navbar leftButton={{
-                icon: (<FaChevronLeft size="0.83rem" />),
-                onClick: () => history.replace(`/characters/category/${category}/${character}`),
-            }} />
+            <Navbar
+                title="Latihan Menulis"
+                leftButton={{
+                    icon: (<FaChevronLeft size="0.83rem" />),
+                    onClick: () => history.replace(`/characters/category/${category}/${character}`),
+                }}
+            />
 
             <main className="flex flex-grow flex-col justify-between pt-15">
                 <Stepper active={1} count={1} />

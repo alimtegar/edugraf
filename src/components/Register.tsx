@@ -75,10 +75,13 @@ const Register = ({ history }: RouteComponentProps) => {
 
     return (
         <div>
-            <Navbar leftButton={{
-                icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggleSidebar,
-            }} />
+            <Navbar
+                title="Daftar"
+                leftButton={{
+                    icon: (<FaBars size="0.83rem" />),
+                    onClick: sidebarContext.toggleSidebar,
+                }}
+            />
 
             <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
                 <h1 className="text-lg font-extrabold leading-snug mb-2">

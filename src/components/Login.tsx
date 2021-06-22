@@ -77,10 +77,13 @@ const Login = () => {
 
     return (
         <>
-            <Navbar leftButton={{
-                icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggleSidebar,
-            }} />
+            <Navbar
+                title="Masuk"
+                leftButton={{
+                    icon: (<FaBars size="0.83rem" />),
+                    onClick: sidebarContext.toggleSidebar,
+                }}
+            />
 
             <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
                 <h1 className="text-lg font-extrabold leading-snug mb-2">
@@ -136,7 +139,7 @@ const Login = () => {
 
                         <GoogleLoginButton />
 
-                        
+
 
                         {/* <p className="text-gray-500 text-sm font-semibold text-center mt-4">
                             Belum punya akun? <Link to={`/register`}><a className="text-secondary font-extrabold">Daftar</a></Link>

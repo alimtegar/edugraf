@@ -7,7 +7,9 @@ import Button from './Button';
 
 const NotFound = () => (
     <div className="flex flex-col flex-grow text-white">
-        <Navbar />
+        <Navbar 
+            title="Not Found"
+        />
         <section className="flex flex-col flex-grow justify-center items-center px-16">
             <div className="text-center ">
                 <h1 className="text-6xl font-extrabold mb-4">404</h1>

@@ -48,6 +48,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
     return (
         <main className="flex flex-grow flex-col">
             <Navbar
+                title="Detail Karakter"
                 leftButton={{
                     onClick: () => history.replace(`/characters/category/${category}`),
                     icon: <FaChevronLeft size="0.83rem" />
@@ -67,26 +68,36 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-white text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category]} <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
+                <p className="text-gray-700 text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category]} <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">
                 <IconButton
                     icon={(<FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />)}
+                    iconBgColor="blue-500"
+                    iconBgColorOn="blue-600"
+                    iconTextColor="white"
+                    iconTextColorOn="white"
                     title="Dengarkan Pengucapan"
                     isPing={isListeningPronounciation}
                     onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => { }}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
                 />
                 <IconButton
                     icon={(<FaPen size="0.83rem" className="transform -translate-y-0.25" />)}
-                    iconBgColor={isWriting ? 'red-500' : 'secondary'}
-                    iconBgColorOn={isWriting ? 'red-600' : 'secondary-on'}
+                    iconBgColor={isWriting ? 'red-500' : 'blue-500'}
+                    iconBgColorOn={isWriting ? 'red-600' : 'blue-600'}
+                    iconTextColor="white"
+                    iconTextColorOn="white"
                     title={`${isWriting ? 'Sembunyikan' : 'Tampilkan'} Penulisan`}
                     onClick={() => setIsWriting((prevState) => !prevState)}
                 />
                 {(category === 'letters' && character) && (
                     <IconButton
                         icon={letterCase === 'uppercase' ? character.toLowerCase() : character.toUpperCase()}
+                        iconBgColor="blue-500"
+                        iconBgColorOn="blue-600"
+                        iconTextColor="white"
+                        iconTextColorOn="white"
                         title={`Ubah Huruf ${letterCase === 'uppercase' ? 'Kecil' : 'Besar'}`}
                         onClick={() => history.push(`/characters/category/${category}/${character}?letter-case=${letterCase === 'uppercase' ? 'lowercase' : 'uppercase'}`)}
                     />

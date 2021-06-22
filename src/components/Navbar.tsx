@@ -10,19 +10,22 @@ type NavbarButton = {
 }
 
 type Props = {
+    title: string,
     leftButton?: NavbarButton | undefined
     rightButton?: NavbarButton | undefined
 };
 
-const Navbar = ({ leftButton, rightButton }: Props) => (
-    <nav className="absolute w-full flex justify-between items-center text-white p-2">
+const Navbar = ({ title, leftButton, rightButton }: Props) => (
+    <nav className="absolute w-full flex justify-between items-center text-gray-700 p-2">
         {leftButton !== undefined ? (
             <Button
-                bgColor="transparent"
-                bgColorOn="white-on"
+                bgColor="white"
+                bgColorOn="gray-50"
+                textColor="gray-700"
+                textColorOn="gray-700"
                 w={11}
                 h={11}
-                shadow="none"
+                shadow="default"
                 center
                 onClick={leftButton.onClick}
             >
@@ -30,17 +33,19 @@ const Navbar = ({ leftButton, rightButton }: Props) => (
             </Button>
         ) : (<span className="w-11 h-11" />)}
 
-        <Link to={`/`}>
-            <Logo />
-        </Link>
+        <h1 className="font-bold text-lg">
+            {title}
+        </h1>
 
         {rightButton !== undefined ? (
             <Button
-                bgColor="transparent"
-                bgColorOn="white-on"
+                bgColor="white"
+                bgColorOn="gray-50"
+                textColor="gray-700"
+                textColorOn="gray-700"
                 w={11}
                 h={11}
-                shadow="none"
+                shadow="default"
                 center
                 onClick={rightButton.onClick}
             >

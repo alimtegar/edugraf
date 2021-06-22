@@ -25,36 +25,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      backgroundColor: {
-        'primary': '#0AB5A3',
-        'primary-light': '#3fc7ba',
-        'primary-dark': '#146759',
-        'primary-on': 'rgba(0, 181, 163, 0.125)',
-        'secondary': '#FC9F60',
-        'secondary-on': '#ED965A',
-        'white-on': 'rgba(255, 255, 255, 0.2)',
-        'red': { '500': '#FF2C55', '600': '#E3284C', },
-        'blue': { '500': '#3B82F6', '600': '#3575DD', },
-        'purple': { '500': '#996eff', '600': '#8963E5', },
-      },
-      textColor: {
-        'primary': '#0AB5A3',
-        'primary-light': '#3fc7ba',
-        'primary-dark': '#146759',
-        'primary-on': 'rgba(0, 181, 163, 0.125)',
-        'secondary': '#FC9F60',
-        'secondary-on': '#ED965A',
-        'white-on': 'rgba(255, 255, 255, 0.2)',
-      },
-      borderColor: {
-        'primary': '#0AB5A3',
-        'primary-light': '#3fc7ba',
-        'primary-dark': '#146759',
-        'primary-on': 'rgba(0, 181, 163, 0.125)',
-        'secondary': '#FC9F60',
-        'secondary-on': '#ED965A',
-        'white-on': 'rgba(255, 255, 255, 0.2)',
-      },
+      backgroundColor: {},
+      textColor: {},
+      borderColor: {},
       translate: {
         '0.25': '1px',
         '1/6': '16.666667%',

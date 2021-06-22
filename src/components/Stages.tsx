@@ -35,6 +35,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
         <div className="flex-grow text-gray-700 overflow-y-scroll">
             <div className="sticky top-0 h-auto">
                 <Navbar
+                    title="Daftar Stage"
                     leftButton={{
                         icon: (<FaChevronLeft size="0.83rem" />),
                         onClick: () => history.replace('/'),

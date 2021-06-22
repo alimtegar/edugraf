@@ -15,8 +15,8 @@ type Props = {
 
 const Button = ({
     children,
-    bgColor = 'secondary',
-    bgColorOn = 'secondary-on',
+    bgColor = 'blue-500',
+    bgColorOn = 'blue-600',
     textColor = 'white',
     textColorOn = 'white',
     w = 'full',
