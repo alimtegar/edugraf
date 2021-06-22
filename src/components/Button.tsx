@@ -15,8 +15,8 @@ type Props = {
 
 const Button = ({
     children,
-    bgColor = 'blue-500',
-    bgColorOn = 'blue-600',
+    bgColor = 'gradient-to-tl from-blue-500 to-blue-400',
+    bgColorOn = 'gradient-to-tl from-blue-500 to-blue-400',
     textColor = 'white',
     textColorOn = 'white',
     w = 'full',
@@ -37,7 +37,6 @@ const Button = ({
             active:bg-${bgColorOn}
             hover:bg-${bgColorOn}
             text-${textColor}
-            text-sm
             active:text-${textColorOn}
             hover:text-${textColorOn}
             font-extrabold

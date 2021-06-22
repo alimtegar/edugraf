@@ -23,15 +23,15 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
                 bgColorOn="gray-50"
                 textColor="gray-700"
                 textColorOn="gray-700"
-                w={11}
-                h={11}
+                w={12}
+                h={12}
                 shadow="default"
                 center
                 onClick={leftButton.onClick}
             >
                 {leftButton.icon}
             </Button>
-        ) : (<span className="w-11 h-11" />)}
+        ) : (<span className="w-12 h-12" />)}
 
         <h1 className="font-bold text-lg">
             {title}
@@ -43,15 +43,15 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
                 bgColorOn="gray-50"
                 textColor="gray-700"
                 textColorOn="gray-700"
-                w={11}
-                h={11}
+                w={12}
+                h={12}
                 shadow="default"
                 center
                 onClick={rightButton.onClick}
             >
                 {rightButton.icon}
             </Button>
-        ) : (<span className="w-11 h-11" />)}
+        ) : (<span className="w-12 h-12" />)}
     </nav>
 );
 

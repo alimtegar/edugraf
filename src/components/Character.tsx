@@ -51,7 +51,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                 title="Detail Karakter"
                 leftButton={{
                     onClick: () => history.replace(`/characters/category/${category}`),
-                    icon: <FaChevronLeft size="0.83rem" />
+                    icon: <FaChevronLeft size="1rem" />
                 }}
             />
             {/* Space */}
@@ -73,9 +73,9 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
 
             <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">
                 <IconButton
-                    icon={(<FaVolumeUp size="0.83rem" className="transform -translate-y-0.25" />)}
-                    iconBgColor="blue-500"
-                    iconBgColorOn="blue-600"
+                    icon={(<FaVolumeUp size="1rem" className="transform -translate-y-0.25" />)}
+                    iconBgColor="gradient-to-tl from-blue-500 to-blue-400"
+                    iconBgColorOn="gradient-to-tl from-blue-500 to-blue-400"
                     iconTextColor="white"
                     iconTextColorOn="white"
                     title="Dengarkan Pengucapan"
@@ -83,9 +83,9 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => { }}  // AND with !isListeningPronounciation to prevent overlapping pronounciation
                 />
                 <IconButton
-                    icon={(<FaPen size="0.83rem" className="transform -translate-y-0.25" />)}
-                    iconBgColor={isWriting ? 'red-500' : 'blue-500'}
-                    iconBgColorOn={isWriting ? 'red-600' : 'blue-600'}
+                    icon={(<FaPen size="1rem" className="transform -translate-y-0.25" />)}
+                    iconBgColor={isWriting ? 'red-500' : 'gradient-to-tl from-blue-500 to-blue-400'}
+                    iconBgColorOn={isWriting ? 'red-600' : 'gradient-to-tl from-blue-500 to-blue-400'}
                     iconTextColor="white"
                     iconTextColorOn="white"
                     title={`${isWriting ? 'Sembunyikan' : 'Tampilkan'} Penulisan`}
@@ -94,8 +94,8 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                 {(category === 'letters' && character) && (
                     <IconButton
                         icon={letterCase === 'uppercase' ? character.toLowerCase() : character.toUpperCase()}
-                        iconBgColor="blue-500"
-                        iconBgColorOn="blue-600"
+                        iconBgColor="gradient-to-tl from-blue-500 to-blue-400"
+                        iconBgColorOn="gradient-to-tl from-blue-500 to-blue-400"
                         iconTextColor="white"
                         iconTextColorOn="white"
                         title={`Ubah Huruf ${letterCase === 'uppercase' ? 'Kecil' : 'Besar'}`}

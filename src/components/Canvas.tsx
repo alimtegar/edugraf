@@ -25,8 +25,8 @@ type CanvasTool = {
 const Canvas = ({
     bgColor = 'transparent',
     textColor = 'gray-400',
-    btnBgColorOn = 'primary-on',
-    btnTextColorOn = 'primary-dark',
+    btnBgColorOn = 'blue-50',
+    btnTextColorOn = 'blue-500',
     btnShadow = 'none',
     canvasRef,
     setCanvasRef
@@ -36,17 +36,17 @@ const Canvas = ({
     const tools: CanvasTool[] = [
         {
             onClick: () => canvasRef?.clear(),
-            icon: (<FaTrash color="inherit" size="0.83rem" />),
+            icon: (<FaTrash color="inherit" size="1rem" />),
             isActivable: false,
         },
         {
             onClick: () => setPenColor('white'),
-            icon: (<FaEraser color="inherit" size="0.83rem" />),
+            icon: (<FaEraser color="inherit" size="1rem" />),
             isActivable: true,
         },
         {
             onClick: () => setPenColor('black'),
-            icon: (<FaPen color="inherit" size="0.83rem" />),
+            icon: (<FaPen color="inherit" size="1rem" />),
             isActivable: true,
         },
     ];
@@ -57,10 +57,10 @@ const Canvas = ({
                 <strong className={`text-gray-700 text-sm ml-3 mr-auto`}>Kanvas</strong>
 
                 {tools.map((tool, key) => (
-                    <span key={key}>
+                    <span className="mx-1" key={key}>
                         <Button
-                            w={11}
-                            h={11}
+                            w={12}
+                            h={12}
                             bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}
@@ -91,8 +91,14 @@ const Canvas = ({
                     canvasProps={{ className: 'sigCanvas relative z-10 w-full h-full' }}
                     ref={(ref) => setCanvasRef(ref)}
                 />
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((v) => (
-                    <div className={`absolute top-${v}/8 left-0 bg-gray-300 w-full h-0.5`} key={v} />
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((v) => (
+                    <div 
+                    className={`absolute left-0 bg-gray-300 w-full h-0.5`} 
+                    style={{
+                        top: `${v * 10}%`,
+                    }}
+                    key={v} 
+                />
                 ))}
             </div>
         </div>

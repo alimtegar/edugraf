@@ -52,7 +52,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 <section className="grid grid-cols-4 gap-2 px-8 mb-8 md:mx-auto md:grid-cols-8 md:w-1/2">
                     {(category && characterContext.characters[category]) ? (characterContext.characters[category] as Array<string | number>).map((character) => (
                         <Link to={`/characters/category/${category}/${getLinkCharacter(category, character)}`} key={character}>
-                            <CharacterFrame size="full" textSize="3xl" rounded="lg">
+                            <CharacterFrame size="full" textSize="4xl" rounded="lg">
                                 {character}
                             </CharacterFrame>
                         </Link>

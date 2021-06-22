@@ -19,7 +19,7 @@ const SliderNextArrow = ({ onClick, currentSlide, slideCount, slidesToShow }: Ne
         className={`absolute z-50 top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 ${currentSlide && slidesToShow && (currentSlide + slidesToShow === slideCount) ? 'hidden' : ''}`}
         onClick={onClick}
     >
-        <Button w={11} h={11} borderR="full" shadow="default" center>
+        <Button w={12} h={12} borderR="full" shadow="default" center>
             <FaChevronRight size="0.83rem" className="mt-0.5" />
         </Button>
     </div>
@@ -29,7 +29,7 @@ const SliderPrevArrow = ({ onClick, currentSlide }: CustomArrowProps) => (
     <div
         className={`absolute z-50 top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 ${currentSlide === 0 ? 'hidden' : ''}`}
         onClick={onClick}>
-        <Button w={11} h={11} borderR="full" shadow="default" center>
+        <Button w={12} h={12} borderR="full" shadow="default" center>
             <FaChevronLeft size="0.83rem" className="mt-0.5" />
         </Button>
     </div>

@@ -18,7 +18,7 @@ type Props = {
 
 const IconButton = ({
     icon,
-    iconSize = 11,
+    iconSize = 12,
     iconBgColor = 'blue-50',
     iconBgColorOn = 'blue-50',
     iconTextColor = 'blue-500',
@@ -71,7 +71,7 @@ const IconButton = ({
             </span>
         </div>
         <div className="flex flex-col mr-auto">
-            <h3 className="text-sm font-bold leading-none">
+            <h3 className="font-bold leading-none">
                 {title}
             </h3>
             {description && (

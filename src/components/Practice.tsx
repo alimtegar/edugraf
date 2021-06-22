@@ -93,7 +93,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
             <Navbar
                 title="Latihan Menulis"
                 leftButton={{
-                    icon: (<FaChevronLeft size="0.83rem" />),
+                    icon: (<FaChevronLeft size="1rem" />),
                     onClick: () => history.replace(`/characters/category/${category}/${character}`),
                 }}
             />
@@ -108,19 +108,19 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
                             <Button
-                                w={11}
-                                h={11}
+                                w={12}
+                                h={12}
                                 borderR="full"
                                 shadow="default"
                                 center
                                 isPing={isListeningPronounciation}
                                 onClick={character ? () => characterContext.listenPronounciation(decodeURIComponent(character), setIsListeningPronounciation) : () => { }}
                             >
-                                <FaVolumeUp size="0.83rem" />
+                                <FaVolumeUp size="1rem" />
                             </Button>
                         </span>
                     </div>
-                    <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
+                    <p className="text-gray-700 text-center text-sm mt-10 font-semibold leading-none">
                         {/* Tulislah (character category)... */}
                         Tulislah <strong className="font-bold">{category && character && formatCharacter(category, character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
