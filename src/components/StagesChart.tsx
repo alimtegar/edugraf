@@ -1,18 +1,12 @@
-import { useState, useEffect, } from 'react';
+import { useEffect, } from 'react';
 import axios from 'axios';
-import { Bar, } from '@reactchartjs/react-chart.js';
 import 'chartjs-plugin-datalabels';
-
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../../tailwind.config.js'
 
 // Types
 import AttemptedStage from '../types/AttemptedStage';
 
 // Components
 import StagesChartBar from './StagesChartBar';
-
-const fullConfig = resolveConfig(tailwindConfig)
 
 const StagesChart = () => {
     const attemptedStages: AttemptedStage[] = [
