@@ -59,9 +59,9 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
 
     return !attemptedQuestion ? (<Loading />) : (
         <>
-            <Navbar title="Attempted Question" />
+            <Navbar title="Tes Menulis" />
 
-            <main className="flex flex-grow flex-col justify-between pt-15">
+            <main className="flex flex-grow flex-col justify-between pt-17">
                 <Stepper active={n} count={attemptedQuestion?.attempted_stage.question_count} />
 
                 {(attemptedQuestion?.attempted_stage.stage.category === 'on-paper') ? (

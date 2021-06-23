@@ -85,7 +85,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
                         </Button>
                     </span>
                 </div>
-                <p className="text-white text-center text-sm mt-10 font-semibold leading-none">
+                <p className="text-gray-700 text-center text-sm mt-10 font-semibold leading-none">
                     {/* Tulislah (character category)... */}
                     Tulislah <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>

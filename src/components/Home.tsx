@@ -25,19 +25,19 @@ const Home = () => {
                 {
                     title: 'Tabel Simbol',
                     description: 'Tabel huruf dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/symbols-table.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/symbols-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/symbols',
                 },
                 {
                     title: 'Tabel Huruf',
                     description: 'Tabel huruf dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/letters-table.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/letters-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/letters',
                 },
                 {
                     title: 'Tabel Angka',
                     description: 'Tabel angka dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/numbers-table.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/numbers-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/numbers',
                 },
             ],
@@ -48,25 +48,25 @@ const Home = () => {
                 {
                     title: 'Tes Alat Tulis',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/stages-on-paper.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/stages-on-paper.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/on-paper',
                 },
                 {
                     title: 'Tes Simbol',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/symbol-stages-on-canvas.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/symbols',
                 },
                 {
                     title: 'Tes Huruf',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/letter-stages-on-canvas.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/letters',
                 },
                 {
                     title: 'Tes Angka',
                     description: 'Tabel alfabet dan cara penulisannya',
-                    icon: (<img src={require(`../assets/images/number-stages-on-canvas.svg`).default} className="h-12" alt="icon" />),
+                    icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/numbers',
                 },
             ],
@@ -122,7 +122,7 @@ const Home = () => {
 
                     <div className="relative">
                         <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-200">
-                            <div style={{ width: "30%" }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
+                            <div style={{ width: '30%', }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
                         </div>
                         <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
                             <span>Level 1</span>

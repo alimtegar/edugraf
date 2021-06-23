@@ -99,8 +99,6 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
             />
 
             <main className="flex flex-grow flex-col justify-between pt-15">
-                <Stepper active={1} count={1} />
-
                 <section className="flex flex-col justify-center items-center w-full p-10">
                     <div className="relative">
                         <CharacterFrame size={28} textSize="6xl" rounded="xl">
