@@ -52,7 +52,7 @@ const PhotoDropzone = ({ initPhoto, setPhotoFile }: Props) => {
                         center
                         onClick={open}
                     >
-                        <FaUpload size="0.83rem" />
+                        <FaUpload size="1rem" />
                     </Button>
                 </span>
             </div>

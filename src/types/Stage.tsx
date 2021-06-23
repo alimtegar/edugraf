@@ -6,6 +6,7 @@ type Stage = {
     question_count: number,
     id: number,
     questions: Question[],    
+    is_locked: boolean,
 };
 
 export default Stage;

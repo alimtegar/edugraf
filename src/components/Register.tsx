@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
+import { RouteComponentProps } from 'react-router-dom';
 
 // Contexts
 import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
-import Navbar from './Navbar';
+import Logo from './Logo';
 import Input from './Input';
 import Button from './Button';
 import LoadingButton from './LoadingButton';
+import AuthNavbar from './AuthNavbar';
 
 // Types
 type RegisterForm = {
@@ -22,9 +22,6 @@ type RegisterForm = {
 };
 
 const Register = ({ history }: RouteComponentProps) => {
-    // Contexts
-    const sidebarContext = useSidebarContext();
-
     // States
     const initForm: RegisterForm = {
         name: '',
@@ -74,26 +71,16 @@ const Register = ({ history }: RouteComponentProps) => {
     }
 
     return (
-        <div>
-            <Navbar
-                title="Daftar"
-                leftButton={{
-                    icon: (<FaBars size="0.83rem" />),
-                    onClick: sidebarContext.toggleSidebar,
-                }}
-            />
-
-            <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
-                <h1 className="text-lg font-extrabold leading-snug mb-2">
-                    Daftar Sekarang
-                </h1>
-                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Daftar sekarang dan mulai belajar dengan berbagai fitur Sibisa.</p>
+        <div className="flex flex-col flex-grow bg-gradient-to-tl from-blue-500 to-blue-400 text-white">
+            <header className="pt-20 px-16 pb-20 md:pt-25">
+                <Logo />
             </header>
 
-            <main className="flex-grow">
-                <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3 md:pb-29">
+            <main className="flex-grow bg-white text-gray-700 p-8 rounded-t-3xl shadow-default">
+                <AuthNavbar />
+                <section>
                     <form
-                        className="flex flex-col bg-white p-6 rounded-xl shadow-default"
+                        className="flex flex-col"
                         onSubmit={(e) => handleSubmit(e)}
                     >
                         <div className="mt-2 mb-3">

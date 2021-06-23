@@ -1,5 +1,5 @@
 import { useEffect, useCallback, } from 'react';
-import { FaBars, FaTimes, } from 'react-icons/fa';
+import { FaTimes, } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 // Contexts
@@ -7,14 +7,11 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 // Types
 import HomeMenuItem from '../types/HomeMenuItem';
-import { FaChild } from 'react-icons/fa';
 
 // Components
-import Navbar from './Navbar';
 import Slider from './Slider';
 import IconButton from './IconButton';
 import HomeSubMenuItem from './HomeSubMenuItem';
-import { useSidebarContext } from '../contexts/SidebarContext';
 import Photo from './Photo';
 import Alert from './Alert';
 import MotoricGym from './MotoricGym';
@@ -78,7 +75,6 @@ const Home = () => {
 
     // Contexts
     const authContext = useAuthContext();
-    const sidebarContext = useSidebarContext();
 
     // Functions
     const showMotoricGym = useCallback(() => {
@@ -108,11 +104,6 @@ const Home = () => {
 
     return (
         <div className="flex flex-col flex-grow">
-            {/* <Navbar leftButton={{
-                icon: (<FaBars size="0.83rem" />),
-                onClick: sidebarContext.toggleSidebar,
-            }} /> */}
-
             <header className="flex items-center bg-white text-gray-700 p-8 md:pt-21 md:pb-12 rounded-b-3xl shadow-default">
                 <div className="mr-6">
                     <Link to="/edit-profile">
@@ -130,7 +121,7 @@ const Home = () => {
                     </Link>
 
                     <div className="relative">
-                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-blue-50">
+                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-200">
                             <div style={{ width: "30%" }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
                         </div>
                         <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">

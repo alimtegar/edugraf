@@ -22,28 +22,28 @@ const Sidebar = () => {
     const menu: SidebarMenuItemProps[] = authContext.token.token ? [
         {
             title: 'Dasbor',
-            icon: (<FaHome size="0.83rem" />),
+            icon: (<FaHome size="1rem" />),
             to: '/',
         },
         {
             title: 'Sunting Profil',
-            icon: (<FaUserEdit size="0.83rem" />),
+            icon: (<FaUserEdit size="1rem" />),
             to: '/edit-profile',
         },
         {
             title: 'Ubah Kata Sandi',
-            icon: (<FaAsterisk size="0.83rem" />),
+            icon: (<FaAsterisk size="1rem" />),
             to: '/change-password',
         },
     ] : [
         {
             title: 'Masuk',
-            icon: (<FaSignInAlt size="0.83rem" />),
+            icon: (<FaSignInAlt size="1rem" />),
             to: '/login',
         },
         {
             title: 'Daftar',
-            icon: (<FaUserPlus size="0.83rem" />),
+            icon: (<FaUserPlus size="1rem" />),
             to: '/register',
         },
     ];
@@ -69,7 +69,7 @@ const Sidebar = () => {
                         center
                         onClick={sidebarContext.toggleSidebar}
                     >
-                        <FaTimes size="0.83rem" />
+                        <FaTimes size="1rem" />
                     </Button>
                 </div>
             </div>

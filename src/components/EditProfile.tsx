@@ -73,7 +73,7 @@ const EditProfile = () => {
             <Navbar
                 title="Edit Profil"
                 leftButton={{
-                    icon: (<FaBars size="0.83rem" />),
+                    icon: (<FaBars size="1rem" />),
                     onClick: sidebarContext.toggleSidebar,
                 }}
             />

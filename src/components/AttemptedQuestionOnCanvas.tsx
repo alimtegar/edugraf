@@ -81,7 +81,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
                             isPing={isListeningPronounciation}
                             onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}
                         >
-                            <FaVolumeUp size="0.83rem" />
+                            <FaVolumeUp size="1rem" />
                         </Button>
                     </span>
                 </div>

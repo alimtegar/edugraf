@@ -77,7 +77,7 @@ const ChangePassword = () => {
             <Navbar
                 title="Ganti Kata Sandi"
                 leftButton={{
-                    icon: (<FaBars size="0.83rem" />),
+                    icon: (<FaBars size="1rem" />),
                     onClick: sidebarContext.toggleSidebar,
                 }}
             />

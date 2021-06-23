@@ -41,7 +41,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 title="Tabel Karakter"
                 leftButton={{
                     onClick: () => history.replace('/'),
-                    icon: <FaChevronLeft size="0.83rem" />
+                    icon: <FaChevronLeft size="1rem" />
                 }}
             />
 

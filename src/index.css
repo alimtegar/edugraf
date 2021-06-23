@@ -52,8 +52,7 @@ input, textarea, button, select, a {
 /* RC Rate Star */
 
 .rc-rate-star {
-    color: #93D4CE;
-    /* filter: drop-shadow(1px 3px 0 rgba(0, 0, 0, 0.1)); */
+    color: #E2E8F0;
 }
 
 .rc-rate-star:focus, .rc-rate-star [role='radio']:focus {

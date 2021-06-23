@@ -63,7 +63,7 @@ const GoogleLoginButton = () => {
                     type="button"
                     {...isLoading
                         ? { bgColor: 'gray-200', bgColorOn: 'gray-200', disabled: true, }
-                        : { bgColor: 'blue-500', bgColorOn: 'blue-600', }
+                        : { bgColor: 'gradient-to-tl from-blue-500 to-blue-400 text-white', bgColorOn: 'gradient-to-tl from-blue-500 to-blue-400 text-white', }
                     }
                     onClick={() => {
                         setIsLoading(true);

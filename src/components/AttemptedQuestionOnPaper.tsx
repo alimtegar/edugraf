@@ -115,7 +115,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
 
             <section className="grid px-4 mb-4 md:mx-auto md:w-1/3">
                 <IconButton
-                    icon={<FaVolumeUp size="0.83rem" />}
+                    icon={<FaVolumeUp size="1rem" />}
                     title="Dengarkan Pengucapan"
                     isPing={isListeningPronounciation}
                     onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}

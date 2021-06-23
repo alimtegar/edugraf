@@ -1,13 +1,14 @@
-import logo from '../assets/images/logo.svg';
-
 type Props = {
     h?: number,
 };
 
 const Logo = ({ h = 6 }: Props) => (
-    <h1 className="font-handwriting font-semibold text-2xl">
-        <img src={logo} alt={process.env.REACT_APP_NAME} className={`w-auto h-${h}`} />
-    </h1>
+    <div className="text-center text-white">
+        <h1>
+            <img src={require(`../assets/images/logo.svg`).default} className="inline-flex h-8" alt="Logo" />
+        </h1>
+        <h2 className="mt-3 font-semibold leading-none">Education for Disgraphia</h2>
+    </div>
 );
 
 export default Logo;

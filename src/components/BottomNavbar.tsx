@@ -24,7 +24,7 @@ const BottomNavbar = () => {
         <nav className="bg-white p-4 rounded-t-3xl shadow-default">
             <ul className="flex justify-around">
                 {menu.map(({ title, icon, to }) => (
-                    <li>
+                    <li key={to}>
                         <NavLink
                             className="flex flex-col justify-center items-center text-gray-400 hover:text-blue-500 active:text-blue-500"
                             activeClassName="text-blue-500"

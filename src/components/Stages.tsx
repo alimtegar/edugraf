@@ -24,10 +24,14 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
-            .then((res) => setStages(res.data))
+            .then((res) => {
+                // console.log(res.data);
+                setStages(res.data);
+                
+            })
             .catch((err) => {
                 console.error(err);
-                history.push('/404');
+                // history.push('/404');
             });
     }, [category, history])
 
@@ -37,22 +41,16 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                 <Navbar
                     title="Daftar Stage"
                     leftButton={{
-                        icon: (<FaChevronLeft size="0.83rem" />),
+                        icon: (<FaChevronLeft size="1rem" />),
                         onClick: () => history.replace('/'),
                     }}
                 />
-                <section className="pt-17 px-8 md:mx-auto md:w-1/2">
+                <section className="pt-21 px-8 md:mx-auto md:w-1/2">
                     <StagesChart />
                 </section>
             </div>
             <div className="sticky top-15 h-auto md:mx-auto md:w-1/2">
-                <section className="absolute w-full h-screen flex-grow bg-white bg-opacity-95 h-full pt-6 pb-4 px-4 rounded-t-2xl shadow">
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="font-bold leading-none">
-                            Daftar Stage
-                        </h2>
-                        <span className="text-sm font-semibold leading-none"><strong className="font-bold">{stages ? stages.length : 0}</strong> Item</span>
-                    </div>
+                <section className="absolute w-full h-screen flex-grow h-full p-8">
                     <div className="grid gap-2">
                         {stages ? stages.map((stage) => (
                             <StagesItem {...stage} key={stage.id} />

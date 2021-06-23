@@ -14,7 +14,7 @@ type MatchParams = {
     category?: string | undefined;
 };
 
-const StagesItem = ({ id, stage, questions, }: Stage) => {
+const StagesItem = ({ id, stage, questions, is_locked }: Stage) => {
     const history = useHistory();
     const { category } = useParams<MatchParams>();
 
@@ -63,8 +63,8 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
 
     return (
         <div className="flex items-center bg-white text-gray-700 p-2 rounded-xl shadow" onClick={handleClick}>
-            <div className="flex justify-center items-center bg-secondary text-white text-xl font-extrabold w-11 h-11 mr-4 rounded-full shadow-sm">
-                {stage}
+            <div className="flex justify-center items-center bg-blue-50 w-12 h-12 mr-4 rounded-full">
+                {(<img src={require(`../assets/images/${is_locked ? '' : 'un'}locked-stage.svg`).default} className="h-7" alt={`Stage ${stage}`} />)}
             </div>
             <div className="flex flex-col mr-auto">
                 <h3 className="text-sm font-bold leading-none">
@@ -72,10 +72,12 @@ const StagesItem = ({ id, stage, questions, }: Stage) => {
                 </h3>
                 <span className="text-xs font-semibold">
                     {/* {questions[0].question}, ..., {questions[questions.length - 1].question} */}
-                    {questions[0].question}, {questions[1].question}, {category !== 'on-paper' ? questions[2].question + ',' : ''} ...
+                    {/* {questions[0].question}, {questions[1].question}, {category !== 'on-paper' ? questions[2].question + ',' : ''} ... */}
                 </span>
             </div>
-            <Rate value={bestScoreRate} allowHalf />
+            <span className="mr-2">
+                <Rate value={bestScoreRate} allowHalf />
+            </span>
         </div>
     );
 };
