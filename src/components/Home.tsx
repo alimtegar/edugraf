@@ -18,6 +18,7 @@ import { useSidebarContext } from '../contexts/SidebarContext';
 import Photo from './Photo';
 import Alert from './Alert';
 import MotoricGym from './MotoricGym';
+import BottomNavbar from './BottomNavbar';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -90,7 +91,7 @@ const Home = () => {
             showCancelButton: false,
             showConfirmButton: false,
             showCloseButton: true,
-            closeButtonHtml: (<FaTimes size="0.83rem" />),
+            closeButtonHtml: (<FaTimes size="1rem" />),
         }).then(() => {
             localStorage.setItem('is-motoric-gym-watched', '1');
         });
@@ -181,6 +182,8 @@ const Home = () => {
                     ))}
                 </section>
             </main>
+
+            <BottomNavbar />
         </div>
     );
 };
