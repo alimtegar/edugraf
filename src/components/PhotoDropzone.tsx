@@ -45,8 +45,8 @@ const PhotoDropzone = ({ initPhoto, setPhotoFile }: Props) => {
                 <span className="absolute right-0 bottom-0 transform translate-x-1/6 translate-y-1/6">
                     <Button
                         type="button"
-                        w={11}
-                        h={11}
+                        w={12}
+                        h={12}
                         borderR="full"
                         shadow="default"
                         center

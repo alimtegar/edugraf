@@ -64,11 +64,9 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
 
     return (
         <div className="attempted-stage flex flex-col flex-grow">
-            <Navbar title="Attempted Stage" />
+            <Navbar title="Hasil Tes" />
             <main className="flex flex-grow flex-col justify-between pt-15">
-                <Stepper active={1} count={1} />
-
-                <section className="flex flex-col justify-center items-center text-white text-center pt-10 px-16 pb-11">
+                <section className="flex flex-col justify-center items-center text-gray-700 text-center pt-10 px-16 pb-11">
                     <div className="-my-2 pl-2 mb-4">
                         <Rate
                             value={attemptedStage ? attemptedStage.score / 10 * 0.5 : 0}

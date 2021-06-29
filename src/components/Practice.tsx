@@ -1,7 +1,6 @@
 import { useState, } from 'react';
 import { RouteComponentProps, } from 'react-router-dom';
 import SignatureCanvas from 'react-signature-canvas';
-// import Tesseract, { recognize } from 'tesseract.js';
 import { FaChevronLeft, FaVolumeUp } from 'react-icons/fa';
 
 // Utils
@@ -13,7 +12,6 @@ import { useCharacterContext } from '../contexts/CharacterContext';
 // Components
 import Navbar from './Navbar';
 import CharacterFrame from './CharacterFrame';
-import Stepper from './Stepper';
 import Canvas from './Canvas';
 import Button from './Button';
 import Alert from './Alert';
