@@ -117,7 +117,6 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
                         </span>
                     </div>
                     <p className="text-gray-700 text-center text-sm mt-10 font-semibold leading-none">
-                        {/* Tulislah (character category)... */}
                         Tulislah <strong className="font-bold">{category && character && formatCharacter(category, character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
@@ -126,6 +125,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
                     <Canvas
                         canvasRef={canvasRef}
                         setCanvasRef={setCanvasRef}
+                        tracingImgSrc={category && character && require(`../assets/images/writings/${category}/${category === 'letters' ? `${letterCase}/` : ''}${decodeURIComponent(category === 'letters' ? (letterCase === 'uppercase' ? character.toUpperCase() : character.toLowerCase()) : character).charCodeAt(0)}.gif`).default}
                     />
                 </section>
 

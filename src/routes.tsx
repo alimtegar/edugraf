@@ -13,6 +13,8 @@ import EditProfile from './components/EditProfile';
 import ChangePassword from './components/ChangePassword';
 import Practice from './components/Practice';
 import Leaderboard from './components/Leaderboard';
+import Profile from './components/Profile';
+import Achievements from './components/Achievements';
 
 // Types
 import ProtectedRoute from './types/ProtectedRoute';
@@ -100,6 +102,18 @@ const routes: ProtectedRoute[] = [
         exact: true,
         path: '/leaderboard',
         renderedComponent: Leaderboard,
+        visibility: 'user',
+    },
+    {
+        exact: true,
+        path: '/profile',
+        renderedComponent: Profile,
+        visibility: 'user',
+    },
+    {
+        exact: true,
+        path: '/achievements',
+        renderedComponent: Achievements,
         visibility: 'user',
     },
 ];

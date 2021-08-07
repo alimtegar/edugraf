@@ -56,7 +56,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
         // componentWillUnmount
         return () => {
             // Clean up
-            setIsChecking(false); 
+            setIsChecking(false);
         }
     }, []);
 
@@ -108,14 +108,18 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
             </section>
 
             <section className="px-16 mb-10">
-                <p className="text-white text-center text-sm font-semibold leading-snug">
+                <p className="text-white text-center text-sm text-gray-700 font-semibold leading-snug">
                     Tulislah kata <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> lalu fotolah.
                 </p>
             </section>
 
             <section className="grid px-4 mb-4 md:mx-auto md:w-1/3">
                 <IconButton
-                    icon={<FaVolumeUp size="1rem" />}
+                    icon={(<FaVolumeUp size="1rem" />)}
+                    iconBgColor="gradient-to-tl from-blue-500 to-blue-400"
+                    iconBgColorOn="gradient-to-tl from-blue-500 to-blue-400"
+                    iconTextColor="white"
+                    iconTextColorOn="white"
                     title="Dengarkan Pengucapan"
                     isPing={isListeningPronounciation}
                     onClick={() => characterContext.listenPronounciation(attemptedQuestion?.question.question, setIsListeningPronounciation)}

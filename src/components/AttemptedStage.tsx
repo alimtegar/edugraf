@@ -12,6 +12,7 @@ import Stepper from './Stepper';
 // Types
 import { default as AttemptedStateState } from '../types/AttemptedStage';
 import CharacterFrame from './CharacterFrame';
+import classNames from 'classnames';
 
 type MatchParams = {
     id?: string | undefined;
@@ -79,29 +80,37 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <h1 className="text-6xl font-extrabold mb-4">
                         {attemptedStage ? attemptedStage.score : 0}
                     </h1>
-                    <h2 className="text-lg font-extrabold leading-snug mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
-                    <p className="text-sm font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
+                    <h2 className="text-lg font-extrabold leading-none mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
+                    <p className="text-sm text-500 font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
                 </section>
-                <section className="flex justify-center items-center flex-wrap px-8 md:mx-auto md:w-1/3">
-                    {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
-                        <div className="relative m-1" key={attemptedQuestion.id}>
-                            <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 ${attemptedQuestion.is_correct ? 'bg-blue-500' : 'bg-red-500'} w-3 h-3 rounded-full shadow-default`} />
-                            <CharacterFrame
-                                size={11}
-                                textSize="xl"
-                                rounded="lg"
-                                {...attemptedStage.stage.category === 'on-paper' ? {
-                                    aspect: false,
-                                    p: 4
-                                } : {
-                                    aspect: 1,
-                                    p: 0,
-                                }}
-                            >
+                <section className="flex justify-center items-center flex-wrap px-16 md:mx-auto md:w-1/3">
+                    <div className="grid grid-cols-5 gap-2 w-full">
+                        {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
+                            <div className={classNames('inline-flex justify-center items-center text-white text-xl font-bold aspect-1 rounded-lg shadow-default', {
+                                [`bg-gradient-to-tl from-green-500 to-green-400`]: attemptedQuestion.is_correct,
+                                [`bg-gradient-to-tl from-red-500 to-red-400`]: !attemptedQuestion.is_correct,
+                            })}>
                                 {attemptedQuestion.question.question}
-                            </CharacterFrame>
-                        </div>
-                    ))}
+                            </div>
+                            // <div className="relative m-1" key={attemptedQuestion.id}>
+                            //     <div className={`absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 ${attemptedQuestion.is_correct ? 'bg-blue-500' : 'bg-red-500'} w-3 h-3 rounded-full shadow-default`} />
+                            //     <CharacterFrame
+                            //         size={11}
+                            //         textSize="xl"
+                            //         rounded="lg"
+                            //         {...attemptedStage.stage.category === 'on-paper' ? {
+                            //             aspect: false,
+                            //             p: 4
+                            //         } : {
+                            //             aspect: 1,
+                            //             p: 0,
+                            //         }}
+                            //     >
+                            //         {attemptedQuestion.question.question}
+                            //     </CharacterFrame>
+                            // </div>
+                        ))}
+                    </div>
                 </section>
                 <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>

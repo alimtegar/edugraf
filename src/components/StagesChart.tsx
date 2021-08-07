@@ -21,7 +21,7 @@ const StagesChart = () => {
                 questions: [],
                 is_locked: false,
             },
-            score: 80,
+            score: 70,
             question_count: 5,
             attempted_questions: []
         },
@@ -55,7 +55,22 @@ const StagesChart = () => {
             question_count: 5,
             attempted_questions: []
         },
-    ]
+        {
+            stage_id: 1,
+            id: 1,
+            stage: {
+                stage: '1',
+                category: 'on-paper',
+                id: 1,
+                question_count: 5,
+                questions: [],
+                is_locked: false,
+            },
+            score: 30,
+            question_count: 5,
+            attempted_questions: []
+        },
+    ];
 
     // Effects
     useEffect(() => {
@@ -70,20 +85,20 @@ const StagesChart = () => {
         <section>
             <div className="flex justify-between text-gray-700 text-xs font-semibold mb-6">
                 <div className="flex">
-                    <div className="bg-red-500 w-3 h-3 rounded-full mr-2" />
-                    Alat Tulis
-                </div>
-                <div className="flex">
-                    <div className="bg-yellow-500 w-3 h-3 rounded-full mr-2" />
+                    <div className="bg-gradient-to-tl from-red-500 to-red-400 w-3 h-3 rounded-full mr-2" />
                     Simbol
                 </div>
                 <div className="flex">
-                    <div className="bg-green-500 w-3 h-3 rounded-full mr-2" />
+                    <div className="bg-gradient-to-tl from-yellow-500 to-yellow-400 w-3 h-3 rounded-full mr-2" />
                     Huruf
                 </div>
                 <div className="flex">
-                    <div className="bg-blue-500 w-3 h-3 rounded-full mr-2" />
+                    <div className="bg-gradient-to-tl from-green-500 to-green-400 w-3 h-3 rounded-full mr-2" />
                     Angka
+                </div>
+                <div className="flex">
+                    <div className="bg-gradient-to-tl from-blue-500 to-blue-400 w-3 h-3 rounded-full mr-2" />
+                    Alat Tulis
                 </div>
             </div>
             <div className="flex -mx-1">

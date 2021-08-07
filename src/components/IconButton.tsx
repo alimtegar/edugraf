@@ -48,7 +48,7 @@ const IconButton = ({
         })}
         {...props}
     >
-        <div className={classNames('relative flex justify-center items-center text-xl font-extrabold mr-4 rounded-full overflow-hidden', {
+        <div className={classNames('relative flex justify-center items-center text-xl font-extrabold mr-4 rounded-full', {
             [`bg-${iconBgColor}`]: !!iconBgColor,
             [`group-active:bg-${iconBgColorOn}`]: !!iconBgColorOn,
             [`group-hover:bg-${iconBgColorOn}`]: !!iconBgColorOn,
