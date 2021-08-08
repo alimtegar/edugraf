@@ -3,7 +3,6 @@ import AttemptedStage from '../types/AttemptedStage';
 
 // Components
 import BottomNavbar from './BottomNavbar';
-import StagesChartBar from './StagesChartBar';
 
 type ProfileChartBarProps = {
     bgColor?: string,

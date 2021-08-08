@@ -25,13 +25,10 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
             .then((res) => {
-                // console.log(res.data);
                 setStages(res.data);
-                
             })
             .catch((err) => {
                 console.error(err);
-                // history.push('/404');
             });
     }, [category, history])
 

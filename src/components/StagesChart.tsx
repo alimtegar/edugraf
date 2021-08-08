@@ -1,4 +1,4 @@
-import { useEffect, } from 'react';
+import { useState, useEffect, } from 'react';
 import axios from 'axios';
 import 'chartjs-plugin-datalabels';
 
@@ -9,74 +9,13 @@ import AttemptedStage from '../types/AttemptedStage';
 import StagesChartBar from './StagesChartBar';
 
 const StagesChart = () => {
-    const attemptedStages: AttemptedStage[] = [
-        {
-            stage_id: 1,
-            id: 1,
-            stage: {
-                stage: '1',
-                category: 'letters',
-                id: 1,
-                question_count: 5,
-                questions: [],
-                is_locked: false,
-            },
-            score: 70,
-            question_count: 5,
-            attempted_questions: []
-        },
-        {
-            stage_id: 1,
-            id: 1,
-            stage: {
-                stage: '1',
-                category: 'numbers',
-                id: 1,
-                question_count: 5,
-                questions: [],
-                is_locked: false,
-            },
-            score: 50,
-            question_count: 5,
-            attempted_questions: []
-        },
-        {
-            stage_id: 1,
-            id: 1,
-            stage: {
-                stage: '1',
-                category: 'symbols',
-                id: 1,
-                question_count: 5,
-                questions: [],
-                is_locked: false,
-            },
-            score: 60,
-            question_count: 5,
-            attempted_questions: []
-        },
-        {
-            stage_id: 1,
-            id: 1,
-            stage: {
-                stage: '1',
-                category: 'on-paper',
-                id: 1,
-                question_count: 5,
-                questions: [],
-                is_locked: false,
-            },
-            score: 30,
-            question_count: 5,
-            attempted_questions: []
-        },
-    ];
+    const [attemptedStages, setAttemptedStages] = useState<AttemptedStage[]>();
 
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages?limit=10`)
             .then((res) => {
-                console.log(JSON.stringify(res.data));
+                setAttemptedStages(res.data);
             })
             .catch((err) => console.error(err));
     }, []);
@@ -102,7 +41,7 @@ const StagesChart = () => {
                 </div>
             </div>
             <div className="flex -mx-1">
-                {attemptedStages.map(({ id, score, stage }) => {
+                {attemptedStages ? attemptedStages.map(({ id, score, stage }) => {
                     let bgColor = '';
 
                     switch (stage.category) {
@@ -115,14 +54,15 @@ const StagesChart = () => {
                     return (
                         <StagesChartBar
                             bgColor={bgColor}
-                            title="Stg. 1"
+                            title={'Stg. ' + stage.stage}
                             value={score}
+                            key={id}
                         />
                     );
-                })}
-                {Array.from(Array(8 - attemptedStages.length).keys()).map(() => (
-                    <StagesChartBar />
-                ))}
+                }) : null}
+                {attemptedStages ? Array.from(Array(8 - attemptedStages.length).keys()).map((i) => (
+                    <StagesChartBar key={i} />
+                )) : null}
             </div>
         </section>
     );
