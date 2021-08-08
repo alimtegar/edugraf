@@ -30,7 +30,7 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
             </Button>
         ) : (<span className="w-12 h-12" />)}
 
-        <h1 className="font-bold text-lg">
+        <h1 className="font-extrabold text-lg">
             {title}
         </h1>
 
