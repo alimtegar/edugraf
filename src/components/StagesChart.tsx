@@ -12,7 +12,6 @@ import { getStageCategoryColor } from '../Utils';
 import AttemptedStage from '../types/AttemptedStage';
 import StageCategory from '../types/StageCategory';
 
-
 const StagesChart = () => {
     // States
     const [attemptedStages, setAttemptedStages] = useState<AttemptedStage[]>();
