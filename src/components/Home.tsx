@@ -15,6 +15,7 @@ import HomeSubMenuItem from './HomeSubMenuItem';
 import Alert from './Alert';
 import MotoricGym from './MotoricGym';
 import BottomNavbar from './BottomNavbar';
+import Photo from './Photo';
 import XpBar from './XpBar';
 
 const Home = () => {
@@ -74,7 +75,7 @@ const Home = () => {
     ];
 
     // Contexts
-    const authContext = useAuthContext();
+    const { user: { name, photo } } = useAuthContext();
 
     // Functions
     const showMotoricGym = useCallback(() => {
@@ -106,16 +107,12 @@ const Home = () => {
         <div className="flex flex-col flex-grow">
             <header className="flex items-center justify-center bg-white text-gray-700 p-8 md:p-12 rounded-b-3xl shadow-default">
                 <div className="mr-6">
-                    <Link to="/edit-profile">
-                        <div className="w-20 h-20 flex justify-center items-end text-gray-400 rounded-full overflow-hidden focus:outline-none" style={{ backgroundColor: '#e0ecff', }}>
-                            <img alt="Foto Profil" style={{ height: '80%', }} src="https://image.flaticon.com/icons/png/512/2945/2945467.png" />
-                        </div>
-                    </Link>
+                    <Photo photo={photo} size={20} shadow="none" />
                 </div>
                 <div className="flex-1">
                     <Link to="/edit-profile">
                         <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
-                            {authContext.user.name}
+                            {name}
                         </h1>
                     </Link>
 

@@ -13,7 +13,7 @@ const StagesChart = () => {
 
     // Effects
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages?limit=10`)
+        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages?limit=10&order_by=asc`)
             .then((res) => {
                 setAttemptedStages(res.data);
             })
