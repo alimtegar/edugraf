@@ -62,14 +62,11 @@ const Canvas = ({
                     <span key={key}>
                         <Button
                             w={12}
-                            h={12}
                             bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}
                             textColorOn={btnTextColorOn}
-                            borderR="full"
-                            center={true}
-                            shadow={key === activeToolKey ? btnShadow : 'none'}
+                            center
                             onClick={() => {
                                 tool.onClick();
 

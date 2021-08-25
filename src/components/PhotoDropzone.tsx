@@ -46,8 +46,6 @@ const PhotoDropzone = ({ initPhoto, setPhotoFile }: Props) => {
                     <Button
                         type="button"
                         w={12}
-                        h={12}
-                        borderR="full"
                         shadow="default"
                         center
                         onClick={open}

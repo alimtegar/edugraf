@@ -1,9 +1,9 @@
 import { ReactComponent as Medal } from '../assets/images/medal.svg';
 import { RouteComponentProps, } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
+import classNames from 'classnames';
 
 // Components
-import classNames from 'classnames';
 import Navbar from './Navbar';
 
 const Achievements = ({ history }: RouteComponentProps) => {

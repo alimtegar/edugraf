@@ -47,7 +47,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
         } else if (score >= 80) {
             return 'Wow keren, sedikit lagi pasti dapat nilai sempurna.';
         } else if (score >= 60) {
-            return 'Nilaimu sudah cukup bagus tetapi ditingkatkan lagi ya!';
+            return 'Nilaimu sudah cukup bagus tetapi bisa kamu tingkatkan lagi!';
         } else if (score >= 40) {
             return 'Pelan-pelan saja, nanti pasti juga akan bisa.';
         } else {
@@ -59,8 +59,8 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${id}`)
             .then((res) => {
-                setAttemptedStage(res.data); 
-                
+                setAttemptedStage(res.data);
+
                 // toast.error('mamamia', {
                 //     position: 'top-center',
                 //     hideProgressBar: true,
@@ -79,8 +79,8 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
         <div className="attempted-stage flex flex-col flex-grow">
             <Navbar title="Hasil Tes" />
             <main className="flex flex-grow flex-col justify-between pt-15">
-                <section className="flex flex-col justify-center items-center text-gray-700 text-center pt-10 px-16 pb-11">
-                    {/* Star Score */}
+                <section className="flex flex-col justify-center items-center text-gray-700 text-center pt-10 px-16 pb-10">
+                    {/* Star Rating */}
                     <div className="mb-4">
                         <Rate
                             value={attemptedStage ? attemptedStage.score / 10 * 0.5 : 0}
@@ -91,14 +91,25 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         />
                     </div>
 
-                    <h1 className="text-6xl font-extrabold mb-4">
-                        {attemptedStage ? attemptedStage.score : 0}
-                    </h1>
+                    {/* Score */}
+                    <div className="relative">
+                        <h1 className="text-6xl font-extrabold mb-4">
+                            {attemptedStage ? attemptedStage.score : 0}
+                        </h1>
+                        {attemptedStage ? (
+                            <div className="absolute top-0 -right-2 transform translate-x-full bg-gradient-to-tl from-blue-500 to-blue-400 text-white text-sm font-extrabold px-4 py-2 rounded-t-xl rounded-br-xl">
+                                <div style={{ transform: 'translateY(1px)', }}>
+                                    +{attemptedStage.score}XP
+                                </div>
+                            </div>
+                        ) : null}
+                    </div>
+
                     <h2 className="text-lg font-extrabold leading-none mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
-                    <p className="text-sm text-gray-600 font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
+                    <p className="text-gray-500 font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
                 </section>
                 <section className="flex justify-center items-center flex-wrap px-16 md:mx-auto md:w-1/3">
-                    <p className="text-sm text-gray-600 font-semibold mb-3">Jawaban kamu:</p>
+                    <p className="text-gray-500 font-semibold mb-4">Jawaban kamu:</p>
                     <div className="grid grid-cols-5 gap-2 w-full">
                         {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
                             <div className={classNames('inline-flex justify-center items-center text-xl font-extrabold aspect-1 rounded-lg', {
@@ -127,9 +138,14 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         ))}
                     </div>
                 </section>
-                <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
+                <section className="grid grid-cols-1 gap-2 px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
                         <Button shadow="default">
+                            Coba Lagi
+                        </Button>
+                    </Link>
+                    <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
+                        <Button bgColor="white" textColor="blue-500" shadow="default">
                             Daftar Stage
                         </Button>
                     </Link>
