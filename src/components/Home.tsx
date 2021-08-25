@@ -15,6 +15,7 @@ import HomeSubMenuItem from './HomeSubMenuItem';
 import Alert from './Alert';
 import MotoricGym from './MotoricGym';
 import BottomNavbar from './BottomNavbar';
+import XpBar from './XpBar';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -118,15 +119,7 @@ const Home = () => {
                         </h1>
                     </Link>
 
-                    <div className="relative">
-                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-100">
-                            <div style={{ width: `${210 / 300 * 100}%`, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
-                        </div>
-                        <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
-                            <span>Level 1</span>
-                            <span className="text-yellow-600">210/300 XP</span>
-                        </div>
-                    </div>
+                    <XpBar />
                 </div>
             </header>
 

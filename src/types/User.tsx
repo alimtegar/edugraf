@@ -3,6 +3,7 @@ type User = {
     name: string,
     email: string,
     photo: string,
+    xp: number,
 };
 
 export default User;

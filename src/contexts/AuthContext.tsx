@@ -24,6 +24,7 @@ const initState: AuthContextState = {
     name: '',
     email: '',
     photo: '',
+    xp: 0,
   },
   token: {
     token: '',
