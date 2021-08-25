@@ -30,7 +30,7 @@ const StagesChart = () => {
             <div className="flex justify-between text-gray-700 text-xs font-semibold mb-6">
                 {['symbols', 'letters', 'numbers', 'on-paper',].map((stageCategory) => (
                     <div className="flex" key={stageCategory}>
-                        <div className={`${getStageCategoryColor(stageCategory as StageCategory)} w-3 h-3 rounded-full mr-2`} />
+                        <div className={`bg-${getStageCategoryColor(stageCategory as StageCategory)} w-3 h-3 rounded-full mr-2`} />
                         Simbol
                     </div>
                 ))}
@@ -38,7 +38,7 @@ const StagesChart = () => {
             <div className="flex -mx-1">
                 {attemptedStages ? attemptedStages.map(({ id, score, stage }) => (
                     <StagesChartBar
-                        bgColor={stage.category}
+                        bgColor={getStageCategoryColor(stage.category)}
                         title={'Stg. ' + stage.stage}
                         value={score}
                         key={id}

@@ -148,7 +148,6 @@ const Home = () => {
                                     dots: false,
                                     infinite: false,
                                     speed: 500,
-                                    slidesToShow: 4,
                                     responsive: [
                                         {
                                             breakpoint: 1440,

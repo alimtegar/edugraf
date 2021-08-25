@@ -33,8 +33,8 @@ const Button = ({
     ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => {
     const [bgColorOnClassNames, setBgColorOnClassNames] = useState({
-        [`active:bg-${bgColorOn}`]: !!bgColorOn,
-        [`hover:bg-${bgColorOn}`]: !!bgColorOn,
+        [`active:bg-${bgColorOn}`]: bgColorOn,
+        [`hover:bg-${bgColorOn}`]: bgColorOn,
     });
 
     useEffect(() => {
@@ -54,22 +54,22 @@ const Button = ({
             className={classNames('relative font-extrabold focus:outline-none hover:border-transparent transition duration-300', {
                 ...bgColorOnClassNames,
                 'flex justify-center items-center': center,
-                [`w-${w}`]: !!w,
-                [`h-${h}`]: !!h,
-                [`bg-${bgColor}`]: !!bgColor,
-                [`text-${textColor}`]: !!textColor,
-                [`active:text-${textColorOn}`]: !!textColorOn,
-                [`hover:text-${textColorOn}`]: !!textColorOn,
-                [`rounded-${borderR}`]: !!borderR,
-                [`border-${borderW}`]: !!borderW,
-                [`border-${borderColor}`]: !!borderColor,
-                [`shadow-${shadow}`]: !!shadow,
+                [`w-${w}`]: w,
+                [`h-${h}`]: h,
+                [`bg-${bgColor}`]: bgColor,
+                [`text-${textColor}`]: textColor,
+                [`active:text-${textColorOn}`]: textColorOn,
+                [`hover:text-${textColorOn}`]: textColorOn,
+                [`rounded-${borderR}`]: borderR,
+                [`border-${borderW}`]: borderW,
+                [`border-${borderColor}`]: borderColor,
+                [`shadow-${shadow}`]: shadow,
             })}
             {...props}
         >
             {isPing && (
                 <span className={classNames('animate-ping absolute inline-flex h-full w-full rounded-full opacity-75', {
-                    [`bg-${bgColor}`]: !!bgColor,
+                    [`bg-${bgColor}`]: bgColor,
                 })} />
             )}
             {isPing ? (

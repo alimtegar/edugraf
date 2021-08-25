@@ -1,22 +1,21 @@
-import InitialSlider, { Settings, CustomArrowProps } from "react-slick";
+import InitialSlider, { Settings, CustomArrowProps } from 'react-slick';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import classNames from 'classnames';
 
 // Components
 import Button from './Button';
 
 // Types
-type NextArrowProps = {
-    slidesToShow: number | undefined,
-};
-
 type Props = {
     settings: Settings,
     children: JSX.Element[],
 };
 
-const SliderNextArrow = ({ onClick, currentSlide, slideCount, slidesToShow }: NextArrowProps & CustomArrowProps) => (
+const SliderNextArrow = ({ onClick, }: CustomArrowProps) => (
     <div
-        className={`absolute z-50 top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2 ${currentSlide && slidesToShow && (currentSlide + slidesToShow === slideCount) ? 'hidden' : ''}`}
+        className={classNames('absolute z-50 top-1/2 right-0 transform -translate-y-1/2 translate-x-1/2', {
+            'hidden': !onClick,
+        })}
         onClick={onClick}
     >
         <Button w={12} h={12} borderR="full" shadow="default" center>
@@ -25,9 +24,11 @@ const SliderNextArrow = ({ onClick, currentSlide, slideCount, slidesToShow }: Ne
     </div>
 );
 
-const SliderPrevArrow = ({ onClick, currentSlide }: CustomArrowProps) => (
+const SliderPrevArrow = ({ onClick, }: CustomArrowProps) => (
     <div
-        className={`absolute z-50 top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2 ${currentSlide === 0 ? 'hidden' : ''}`}
+        className={classNames('absolute z-50 top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/2', {
+            'hidden': !onClick,
+        })}
         onClick={onClick}>
         <Button w={12} h={12} borderR="full" shadow="default" center>
             <FaChevronLeft size="1rem" className="mt-0.5" />
@@ -35,20 +36,14 @@ const SliderPrevArrow = ({ onClick, currentSlide }: CustomArrowProps) => (
     </div>
 );
 
-const Slider = ({settings: initSettings, children}: Props) => {
-    const slidesToShow = initSettings.slidesToShow;
-    const settings: Settings = {
-        slidesToShow: slidesToShow,
-        nextArrow: <SliderNextArrow slidesToShow={slidesToShow} />,
-        prevArrow: <SliderPrevArrow />,
-        ...initSettings
-    };
-
-    return (
-        <InitialSlider {...settings}>
-            {children.map((childrenItem) => (childrenItem))}
-        </InitialSlider>
-    );
-};
+const Slider = ({ settings, children, }: Props) => (
+    <InitialSlider
+        {...settings}
+        nextArrow={(<SliderNextArrow />)}
+        prevArrow={(<SliderPrevArrow />)}
+    >
+        {children.map((childrenItem) => (childrenItem))}
+    </InitialSlider>
+);
 
 export default Slider;
