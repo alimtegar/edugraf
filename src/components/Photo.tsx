@@ -21,7 +21,7 @@ const Photo = ({ photo, size, borderSize = 3, borderColor = 'white', shadow = 'd
         {photo ? (
             <img src={photo} alt="Foto Profil" className="object-cover w-full h-full" />
         ) : (
-            <FaLaugh size="2rem" />
+            <FaLaugh size={`${size / 10}rem`} />
         )}
     </div>
 );
