@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-type MdealProps = {
+type Props = {
     position: number,
 };
 
-const Medal = ({ position }: MdealProps) => {
+const Medal = ({ position }: Props) => {
     let addClassNames = 'bg-gray-100 text-gray-500';
 
     switch (position) {

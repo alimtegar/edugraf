@@ -1,8 +1,13 @@
-// Types
-import AttemptedStage from '../types/AttemptedStage';
+// Contexts
+import { useAuthContext } from '../contexts/AuthContext';
 
 // Components
 import BottomNavbar from './BottomNavbar';
+import Photo from './Photo';
+import XpBar from './XpBar';
+
+// Types
+import AttemptedStage from '../types/AttemptedStage';
 
 type ProfileChartBarProps = {
     bgColor?: string,
@@ -31,6 +36,10 @@ const ProfileChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: 
 );
 
 const Profile = () => {
+    // Contexts
+    const { user: { name, photo } } = useAuthContext();
+
+    // States
     const attemptedStages: AttemptedStage[] = [
         {
             stage_id: 1,
@@ -82,30 +91,20 @@ const Profile = () => {
     return (
         <div className="flex flex-col flex-grow">
             <header className="text-gray-700 text-center p-8 md:pt-21 md:pb-12">
-                <div className="mb-3">
-                    <div className="w-24 h-24 inline-flex justify-center items-end bg-gray-100 text-gray-400 border-3 border-white rounded-full shadow-default overflow-hidden focus:outline-none">
-                        <img alt="Foto Profil" style={{ height: '80%', }} src="https://image.flaticon.com/icons/png/512/2945/2945467.png" />
-                    </div>
+                <div className="flex justify-center mb-3">
+                    <Photo photo={photo} size={24} shadow="none" />
                 </div>
                 <div className="flex-1">
                     <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
-                        Bayu Catur
+                        {name}
                     </h1>
-                    <div className="relative">
-                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-900 bg-opacity-10">
-                            <div style={{ width: `${4269 / 5125 * 100}%`, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
-                        </div>
-                        <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
-                            <span>Level 8</span>
-                            <span className="text-yellow-600">4269/5125 XP</span>
-                        </div>
-                    </div>
+                    <XpBar bgColor="gray-500 bg-opacity-10" />
                 </div>
             </header>
 
             <main>
                 {/* Chart */}
-                <section className="px-8">                    
+                <section className="px-8">
                     <div className="bg-white p-6 shadow-default rounded-xl">
                         <h2 className="text-sm font-bold mb-6">Rata-Rata Tes Menulis</h2>
                         <div className="flex justify-between text-gray-700 text-xs font-semibold mb-6">

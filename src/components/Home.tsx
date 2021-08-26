@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
 
-// Types
-import HomeMenuItem from '../types/HomeMenuItem';
-
 // Components
 import Slider from './Slider';
 import IconButton from './IconButton';
@@ -17,6 +14,9 @@ import MotoricGym from './MotoricGym';
 import BottomNavbar from './BottomNavbar';
 import Photo from './Photo';
 import XpBar from './XpBar';
+
+// Types
+import HomeMenuItem from '../types/HomeMenuItem';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -110,12 +110,10 @@ const Home = () => {
                     <Photo photo={photo} size={20} shadow="none" />
                 </div>
                 <div className="flex-1">
-                    <Link to="/edit-profile">
-                        <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
-                            {name}
-                        </h1>
-                    </Link>
-
+                    <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
+                        {name}
+                    </h1>
+                    
                     <XpBar />
                 </div>
             </header>

@@ -1,16 +1,24 @@
+import classNames from 'classnames';
+
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
 
 // Utils
 import { getLevel, getXpPct, getXpLimit } from '../Utils';
 
-const XpBar = () => {
+type Props = {
+    bgColor?: string,
+}
+
+const XpBar = ({ bgColor = 'gray-100' }: Props) => {
     // Contexts
     const { user: { xp } } = useAuthContext();
 
     return (
         <div className="relative">
-            <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-100">
+            <div className={classNames('overflow-hidden h-2 text-xs flex rounded-full', {
+                [`bg-${bgColor}`]: bgColor,
+            })}>
                 <div style={{ width: `${getXpPct(xp)}%`, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
             </div>
             <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">

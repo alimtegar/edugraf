@@ -5,11 +5,11 @@ import Medal from './Medal';
 // Types
 import User from '../types/User';
 
-type TopLeaderboardItemProps = User & {
+type Props = User & {
     position: number,
 };
 
-const TopLeaderboardItem = ({ name, photo, xp, position }: TopLeaderboardItemProps) => {
+const TopLeaderboardItem = ({ name, photo, xp, position }: Props) => {
     const formatName = (name: string) => {
         const nameArr = name.split(' ');
 
