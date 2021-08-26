@@ -1,20 +1,8 @@
 import { useState, useEffect, ButtonHTMLAttributes, } from 'react';
 import classNames from 'classnames';
 
-type Props = {
-    bgColor?: string,
-    bgColorOn?: string,
-    textColor?: string,
-    textColorOn?: string,
-    w?: number | string,
-    h?: number | string,
-    borderR?: string,
-    borderW?: number | string,
-    borderColor?: string,
-    shadow?: string,
-    center?: boolean,
-    isPing?: boolean,
-};
+// Types
+import {default as Props} from '../types/Button';
 
 const Button = ({
     children,

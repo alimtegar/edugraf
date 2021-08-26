@@ -16,12 +16,12 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
     <nav className="absolute w-full flex justify-between items-center text-gray-700 p-2">
         {leftButton !== undefined ? (
             <Button
-                bgColor="white"
-                bgColorOn="gray-50"
-                textColor="gray-700"
-                textColorOn="gray-700"
                 w={12}
                 h={12}
+                bgColor="white"
+                bgColorOn="white"
+                textColor="gray-400"
+                textColorOn="blue-500"
                 shadow="default"
                 center
                 onClick={leftButton.onClick}
@@ -36,12 +36,12 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
 
         {rightButton !== undefined ? (
             <Button
-                bgColor="white"
-                bgColorOn="gray-50"
-                textColor="gray-700"
-                textColorOn="gray-700"
                 w={12}
                 h={12}
+                bgColor="white"
+                bgColorOn="white"
+                textColor="gray-400"
+                textColorOn="blue-500"
                 shadow="default"
                 center
                 onClick={rightButton.onClick}

@@ -21,7 +21,7 @@ const BottomNavbar = () => {
     ];
 
     return (
-        <nav className="fixed z-20 bottom-0 bg-white w-full p-4 rounded-t-3xl shadow-default">
+        <nav className="fixed z-50 bottom-0 bg-white w-full p-4 rounded-t-3xl shadow-default">
             <ul className="flex justify-around">
                 {menu.map(({ title, icon, to }) => (
                     <li key={to}>

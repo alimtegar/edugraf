@@ -1,64 +1,79 @@
-import { ReactComponent as Medal } from '../assets/images/medal.svg';
 import { RouteComponentProps, } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
-import classNames from 'classnames';
 
 // Components
 import Navbar from './Navbar';
+import AchievementsItem from './AchievementsItem';
+
+// Types
+import Achievement from '../types/Achievement';
 
 const Achievements = ({ history }: RouteComponentProps) => {
-    const achievements = [
+    const achievements: Achievement[] = [
         {
-            title: (<>Huruf<br/>Pertama</>),
-            is_locked: false,
+            id: 1,
+            title: 'Huruf Pertama',
+            progress: 100,
         },
         {
-            title: (<>Angka<br/>Pertama</>),
-            is_locked: false,
+            id: 2,
+            title: 'Angka Pertama',
+            progress: 100,
         },
         {
-            title: (<>Simbol<br/>Pertama</>),
-            is_locked: false,
+            id: 3,
+            title: 'Simbol Pertama',
+            progress: 100,
         },
         {
+            id: 4,
             title: 'Tes Huruf Pertama',
-            is_locked: false,
+            progress: 100,
         },
         {
+            id: 5,
             title: 'Tes Angka Pertama',
-            is_locked: false,
+            progress: 100,
         },
         {
+            id: 6,
             title: 'Tes Simbol Pertama',
-            is_locked: false,
+            progress: 100,
         },
         {
+            id: 7,
             title: 'Tes Alat Tulis Pertama',
-            is_locked: false,
+            progress: 100,
         },
         {
-            title: (<>Medali<br/>Pandai</>),
-            is_locked: true,
+            id: 8,
+            title: 'Medali Pandai',
+            progress: 0,
         },
         {
-            title: (<>Medali<br/>Tekun</>),
-            is_locked: true,
+            id: 9,
+            title: 'Medali Tekun',
+            progress: 0,
         },
         {
-            title: (<>Medali<br/>Cepat</>),
-            is_locked: true,
+            id: 10,
+            title: 'Medali Cepat',
+            progress: 0,
         },
         {
-            title: (<>Medali<br/>Perunggu</>),
-            is_locked: true,
+            id: 11,
+            title: 'Medali Perunggu',
+            progress: 0,
         },
         {
-            title: (<>Medali<br/>Perak</>),
-            is_locked: true,
+            id: 12,
+            title: 'Medali Perak',
+            progress: 0,
         },
         {
-            title: (<>Medali<br/>Emas</>),
-            is_locked: true,
+            id: 13,
+            title: 'Medali Emas',
+            progress: 0,
         },
     ];
 
@@ -70,23 +85,8 @@ const Achievements = ({ history }: RouteComponentProps) => {
             }} />
             <main className="w-full pt-21 pb-8">
                 <section className="grid grid-cols-3 gap-2 px-8">
-                    {achievements.map(({ title, is_locked }, i) => (
-                        <div
-                            className={classNames('relative text-center w-full py-6 rounded-lg shadow-default overflow-hidden', {
-                                [`bg-gradient-to-tl from-blue-500 to-blue-400 text-white`]: !is_locked,
-                                [`bg-white text-gray-400`]: is_locked,
-                            })}
-                            key={i}
-                        >
-                            <Medal className={classNames('inline-flex mb-2', {
-                                [`text-white`]: !is_locked,
-                                [`text-gray-300`]: is_locked,
-                            })} />
-                            <h2 className="text-sm font-bold leading-none">
-                                {title}
-                            </h2>
-                            <div className="absolute -right-8 -bottom-4 bg-white bg-opacity-20 w-24 h-24 rounded-full" />
-                        </div>
+                    {achievements.map((achievement) => (
+                        <AchievementsItem {...achievement} key={achievement.id} />
                     ))}
                 </section>
             </main>

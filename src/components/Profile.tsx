@@ -5,9 +5,12 @@ import { useAuthContext } from '../contexts/AuthContext';
 import BottomNavbar from './BottomNavbar';
 import Photo from './Photo';
 import XpBar from './XpBar';
+import Slider from './Slider';
+import AchievementsItem from './AchievementsItem';
 
 // Types
 import AttemptedStage from '../types/AttemptedStage';
+import Achievement from '../types/Achievement';
 
 type ProfileChartBarProps = {
     bgColor?: string,
@@ -87,12 +90,39 @@ const Profile = () => {
             attempted_questions: []
         },
     ];
+    const achievements: Achievement[] = [
+        {
+            id: 1,
+            title: 'Huruf Pertama',
+            progress: 100,
+        },
+        {
+            id: 2,
+            title: 'Angka Pertama',
+            progress: 100,
+        },
+        {
+            id: 3,
+            title: 'Simbol Pertama',
+            progress: 100,
+        },
+        {
+            id: 4,
+            title: 'Tes Huruf Pertama',
+            progress: 100,
+        },
+        {
+            id: 5,
+            title: 'Tes Angka Pertama',
+            progress: 100,
+        },
+    ];
 
     return (
-        <div className="flex flex-col flex-grow">
+        <div className="flex-grow overflow-y-scroll pb-22">
             <header className="text-gray-700 text-center p-8 md:pt-21 md:pb-12">
                 <div className="flex justify-center mb-3">
-                    <Photo photo={photo} size={24} shadow="none" />
+                    <Photo photo={photo} size={24} />
                 </div>
                 <div className="flex-1">
                     <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
@@ -104,7 +134,7 @@ const Profile = () => {
 
             <main>
                 {/* Chart */}
-                <section className="px-8">
+                <section className="px-4 mb-4">
                     <div className="bg-white p-6 shadow-default rounded-xl">
                         <h2 className="text-sm font-bold mb-6">Rata-Rata Tes Menulis</h2>
                         <div className="flex justify-between text-gray-700 text-xs font-semibold mb-6">
@@ -151,13 +181,52 @@ const Profile = () => {
                 </section>
 
                 {/* Achievements */}
-                <section>
-
+                <section className="px-4 mb-4">
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="font-bold text-sm leading-none">
+                            Penghargaan
+                        </h2>
+                    </div>
+                    <div className="relative -m-1">
+                        <Slider
+                            arrowSettings={{
+                                bgColor: 'white',
+                                bgColorOn: 'white',
+                                textColor: 'gray-400',
+                                textColorOn: 'blue-500',
+                            }}
+                            settings={{
+                                dots: false,
+                                infinite: false,
+                                speed: 500,
+                                responsive: [
+                                    {
+                                        breakpoint: 1440,
+                                        settings: {
+                                            slidesToShow: 3,
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 768,
+                                        settings: {
+                                            slidesToShow: 3,
+                                        }
+                                    },
+                                ],
+                            }}
+                        >
+                            {achievements.map((achievement) => (
+                                <div className="p-1" key={achievement.id}>
+                                    <AchievementsItem {...achievement} />
+                                </div>
+                            ))}
+                        </Slider>
+                    </div>
                 </section>
             </main>
 
             <BottomNavbar />
-        </div>
+        </div >
     );
 };
 

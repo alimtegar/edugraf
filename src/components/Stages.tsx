@@ -37,7 +37,7 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     }, [category, history])
 
     return (
-        <div className="flex-grow text-gray-700 overflow-y-scroll">
+        <div className="flex-grow overflow-y-scroll">
             <div>
                 <Navbar
                     title={`Tes ${translateStageCategory(category as StageCategory)}`}
