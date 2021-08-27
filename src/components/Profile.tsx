@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { FaAngleDoubleRight } from 'react-icons/fa';
+
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
 
@@ -11,6 +15,7 @@ import AchievementsItem from './AchievementsItem';
 // Types
 import AttemptedStage from '../types/AttemptedStage';
 import Achievement from '../types/Achievement';
+import AcquiredAchievement from '../types/AcquiredAchievement';
 
 type ProfileChartBarProps = {
     bgColor?: string,
@@ -40,7 +45,7 @@ const ProfileChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: 
 
 const Profile = () => {
     // Contexts
-    const { user: { name, photo } } = useAuthContext();
+    const { user: { name, photo, acquired_achievement_count } } = useAuthContext();
 
     // States
     const attemptedStages: AttemptedStage[] = [
@@ -90,33 +95,43 @@ const Profile = () => {
             attempted_questions: []
         },
     ];
-    const achievements: Achievement[] = [
-        {
-            id: 1,
-            title: 'Huruf Pertama',
-            progress: 100,
-        },
-        {
-            id: 2,
-            title: 'Angka Pertama',
-            progress: 100,
-        },
-        {
-            id: 3,
-            title: 'Simbol Pertama',
-            progress: 100,
-        },
-        {
-            id: 4,
-            title: 'Tes Huruf Pertama',
-            progress: 100,
-        },
-        {
-            id: 5,
-            title: 'Tes Angka Pertama',
-            progress: 100,
-        },
-    ];
+    // States
+    const [achievements, setAchievements] = useState<(Achievement & { is_locked: boolean })[]>();
+
+    // Effects
+    useEffect(() => {
+        if (acquired_achievement_count) {
+            axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements?limit=${acquired_achievement_count}`)
+                .then((res) => {
+                    const acquiredAchievements: AcquiredAchievement[] = res.data;
+
+                    setAchievements([
+                        ...(achievements ? achievements : []),
+                        ...acquiredAchievements.map((acquiredAchievement) => ({
+                            ...acquiredAchievement.achievement,
+                            is_locked: acquiredAchievement.progress < 100,
+                        })),
+                    ]);
+                })
+                .catch((err) => console.error(err));
+        }
+
+        if (!acquired_achievement_count) {
+            axios.get(`${process.env.REACT_APP_API_URL}/achievements?limit=${3 - acquired_achievement_count}`)
+                .then((res) => {
+                    const _achievements: Achievement[] = res.data;
+
+                    setAchievements([
+                        ...(achievements ? achievements : []),
+                        ..._achievements.map((_achievement) => ({
+                            ..._achievement,
+                            is_locked: true,
+                        }))
+                    ])
+                })
+                .catch((err) => console.error(err));
+        }
+    }, [acquired_achievement_count])
 
     return (
         <div className="flex-grow overflow-y-scroll pb-22">
@@ -173,8 +188,8 @@ const Profile = () => {
                                     />
                                 );
                             })}
-                            {Array.from(Array(4 - attemptedStages.length).keys()).map(() => (
-                                <ProfileChartBar />
+                            {Array.from(Array(4 - attemptedStages.length).keys()).map((i) => (
+                                <ProfileChartBar key={i} />
                             ))}
                         </div>
                     </div>
@@ -182,45 +197,68 @@ const Profile = () => {
 
                 {/* Achievements */}
                 <section className="px-4 mb-4">
-                    <div className="flex justify-between items-center mb-4">
-                        <h2 className="font-bold text-sm leading-none">
+                    <div className="flex justify-between items-center text-sm mb-4">
+                        <h2 className="font-bold leading-none">
                             Penghargaan
                         </h2>
                     </div>
                     <div className="relative -m-1">
-                        <Slider
-                            arrowSettings={{
-                                bgColor: 'white',
-                                bgColorOn: 'white',
-                                textColor: 'gray-400',
-                                textColorOn: 'blue-500',
-                            }}
-                            settings={{
-                                dots: false,
-                                infinite: false,
-                                speed: 500,
-                                responsive: [
-                                    {
-                                        breakpoint: 1440,
-                                        settings: {
-                                            slidesToShow: 3,
-                                        }
-                                    },
-                                    {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 3,
-                                        }
-                                    },
-                                ],
-                            }}
-                        >
-                            {achievements.map((achievement) => (
-                                <div className="p-1" key={achievement.id}>
-                                    <AchievementsItem {...achievement} />
-                                </div>
-                            ))}
-                        </Slider>
+                        {achievements ? (
+                            <Slider
+                                arrowSettings={{
+                                    bgColor: 'white',
+                                    bgColorOn: 'white',
+                                    textColor: 'gray-400',
+                                    textColorOn: 'blue-500',
+                                }}
+                                settings={{
+                                    dots: false,
+                                    infinite: false,
+                                    speed: 500,
+                                    responsive: [
+                                        {
+                                            breakpoint: 1440,
+                                            settings: {
+                                                slidesToShow: 3,
+                                            }
+                                        },
+                                        {
+                                            breakpoint: 768,
+                                            settings: {
+                                                slidesToShow: 3,
+                                            }
+                                        },
+                                    ],
+                                }}
+                            >
+                                {[...achievements, undefined].map((achievement) => achievement ? (
+                                    <div className="p-1" key={achievement.id}>
+                                        <AchievementsItem {...achievement} />
+                                    </div>
+                                ) : (
+                                    <div className="p-1">
+                                        <div
+                                            className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400">
+                                            <div
+                                                className="flex justify-center items-center"
+                                                style={{
+                                                    height: '3.83rem',
+                                                }}
+                                            >
+                                                {/* <div className="inline-flex justify-center items-center border-3 w-12 h-12 rounded-full"> */}
+                                                <FaAngleDoubleRight className="inline-flex" size="1.66rem" />
+                                                {/* </div> */}
+                                            </div>
+
+                                            <h2 className="text-sm font-bold leading-none">
+                                                Lihat Lebih <br /> Banyak
+                                            </h2>
+                                            <div className="absolute -right-8 -bottom-4 bg-white bg-opacity-20 w-24 h-24 rounded-full" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </Slider>
+                        ) : null}
                     </div>
                 </section>
             </main>

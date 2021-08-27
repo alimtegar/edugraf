@@ -25,6 +25,8 @@ const initState: AuthContextState = {
     email: '',
     photo: '',
     xp: 0,
+    level: 1,
+    acquired_achievement_count: 0,
   },
   token: {
     token: '',
