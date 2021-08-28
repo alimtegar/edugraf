@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import numeral from 'numeral';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -23,7 +24,7 @@ const XpBar = ({ bgColor = 'gray-100' }: Props) => {
             </div>
             <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
                 <span>Level {getLevel(xp)}</span>
-                <span className="text-yellow-600">{xp}/{getXpLimit(getLevel(xp))} XP</span>
+                <span className="text-yellow-600">{numeral(xp).format('0,0')}/{numeral(getXpLimit(getLevel(xp))).format('0,0')} XP</span>
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { FaAngleDoubleRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -96,42 +97,16 @@ const Profile = () => {
         },
     ];
     // States
-    const [achievements, setAchievements] = useState<(Achievement & { is_locked: boolean })[]>();
+    const [acquiredAchievements, setAcquiredAchievements] = useState<AcquiredAchievement[]>();
 
-    // Effects
     useEffect(() => {
-        if (acquired_achievement_count) {
-            axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements?limit=${acquired_achievement_count}`)
-                .then((res) => {
-                    const acquiredAchievements: AcquiredAchievement[] = res.data;
-
-                    setAchievements([
-                        ...(achievements ? achievements : []),
-                        ...acquiredAchievements.map((acquiredAchievement) => ({
-                            ...acquiredAchievement.achievement,
-                            is_locked: acquiredAchievement.progress < 100,
-                        })),
-                    ]);
-                })
-                .catch((err) => console.error(err));
-        }
-
-        if (!acquired_achievement_count) {
-            axios.get(`${process.env.REACT_APP_API_URL}/achievements?limit=${3 - acquired_achievement_count}`)
-                .then((res) => {
-                    const _achievements: Achievement[] = res.data;
-
-                    setAchievements([
-                        ...(achievements ? achievements : []),
-                        ..._achievements.map((_achievement) => ({
-                            ..._achievement,
-                            is_locked: true,
-                        }))
-                    ])
-                })
-                .catch((err) => console.error(err));
-        }
-    }, [acquired_achievement_count])
+        axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements?limit=3`)
+            .then((res: AxiosResponse<AcquiredAchievement[]>) => setAcquiredAchievements([
+                ...(acquiredAchievements || []),
+                ...res.data,
+            ]))
+            .catch((err) => console.error(err));
+    }, [])
 
     return (
         <div className="flex-grow overflow-y-scroll pb-22">
@@ -203,14 +178,14 @@ const Profile = () => {
                         </h2>
                     </div>
                     <div className="relative -m-1">
-                        {achievements ? (
+                        {acquiredAchievements ? (
                             <Slider
-                                arrowSettings={{
-                                    bgColor: 'white',
-                                    bgColorOn: 'white',
-                                    textColor: 'gray-400',
-                                    textColorOn: 'blue-500',
-                                }}
+                                // arrowSettings={{
+                                //     bgColor: 'white',
+                                //     bgColorOn: 'white',
+                                //     textColor: 'gray-400',
+                                //     textColorOn: 'blue-500',
+                                // }}
                                 settings={{
                                     dots: false,
                                     infinite: false,
@@ -231,30 +206,35 @@ const Profile = () => {
                                     ],
                                 }}
                             >
-                                {[...achievements, undefined].map((achievement) => achievement ? (
-                                    <div className="p-1" key={achievement.id}>
-                                        <AchievementsItem {...achievement} />
+                                {[...acquiredAchievements, undefined].map((acquiredAchievement) => acquiredAchievement ? (
+                                    <div className="p-1" key={acquiredAchievement.achievement.id}>
+                                        <AchievementsItem
+                                            {...acquiredAchievement.achievement}
+                                            is_locked={acquiredAchievement.progress < 100}
+                                        />
                                     </div>
                                 ) : (
                                     <div className="p-1">
-                                        <div
-                                            className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400">
+                                        <Link to="/achievements">
                                             <div
-                                                className="flex justify-center items-center"
-                                                style={{
-                                                    height: '3.83rem',
-                                                }}
-                                            >
-                                                {/* <div className="inline-flex justify-center items-center border-3 w-12 h-12 rounded-full"> */}
-                                                <FaAngleDoubleRight className="inline-flex" size="1.66rem" />
-                                                {/* </div> */}
-                                            </div>
+                                                className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400">
+                                                <div
+                                                    className="flex justify-center items-center"
+                                                    style={{
+                                                        height: '3.83rem',
+                                                    }}
+                                                >
+                                                    {/* <div className="inline-flex justify-center items-center border-3 w-12 h-12 rounded-full"> */}
+                                                    <FaAngleDoubleRight className="inline-flex" size="1.66rem" />
+                                                    {/* </div> */}
+                                                </div>
 
-                                            <h2 className="text-sm font-bold leading-none">
-                                                Lihat Lebih <br /> Banyak
-                                            </h2>
-                                            <div className="absolute -right-8 -bottom-4 bg-white bg-opacity-20 w-24 h-24 rounded-full" />
-                                        </div>
+                                                <h2 className="text-sm font-bold leading-none">
+                                                    Lihat Lebih <br /> Banyak
+                                                </h2>
+                                                <div className="absolute -right-8 -bottom-4 bg-white bg-opacity-20 w-24 h-24 rounded-full" />
+                                            </div>
+                                        </Link>
                                     </div>
                                 ))}
                             </Slider>

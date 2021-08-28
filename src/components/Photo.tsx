@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Photo = ({ photo, size, borderW = 3, borderColor = 'white', shadow = 'default', }: Props) => (
-    <div className={classNames('flex justify-center items-center bg-gray-100 text-gray-400 rounded-full overflow-hidden focus:outline-none', {
+    <div className={classNames('inline-flex justify-center items-center bg-gray-100 text-gray-400 rounded-full overflow-hidden focus:outline-none', {
         [`w-${size}`]: size,
         [`h-${size}`]: size,
         [`border-${borderW}`]: borderW,

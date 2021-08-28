@@ -58,17 +58,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${id}`)
-            .then((res) => {
-                setAttemptedStage(res.data);
-
-                // toast.error('mamamia', {
-                //     position: 'top-center',
-                //     hideProgressBar: true,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                // });
-            })
+            .then((res) => setAttemptedStage(res.data))
             .catch((err) => {
                 console.error(err);
                 history.push('/404');
@@ -106,10 +96,10 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     </div>
 
                     <h2 className="text-lg font-extrabold leading-none mb-2">{attemptedStage && getTitle(attemptedStage.score)}</h2>
-                    <p className="text-gray-500 font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
+                    <p className="text-sm text-gray-600 font-semibold">{attemptedStage && getDescription(attemptedStage.score)}</p>
                 </section>
                 <section className="flex justify-center items-center flex-wrap px-16 md:mx-auto md:w-1/3">
-                    <p className="text-gray-500 font-semibold mb-4">Jawaban kamu:</p>
+                    <p className="text-sm text-gray-600 font-semibold mb-4">Jawaban kamu:</p>
                     <div className="grid grid-cols-5 gap-2 w-full">
                         {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
                             <div className={classNames('inline-flex justify-center items-center text-xl font-extrabold aspect-1 rounded-lg', {
