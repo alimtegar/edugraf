@@ -4,6 +4,7 @@ import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline, } from 'r
 import { ReactComponent as GoogleLogo, } from '../assets/images/google-logo.svg';
 import Button from './Button';
 import { toast, } from 'react-toastify';
+import { FaGoogle } from 'react-icons/fa';
 
 // Contexts
 import { useAuthContext, } from '../contexts/AuthContext';
@@ -63,27 +64,32 @@ const GoogleLoginButton = () => {
                     type="button"
                     {...isLoading
                         ? { bgColor: 'gray-200', bgColorOn: 'gray-200', disabled: true, }
-                        : { bgColor: 'gradient-to-tl from-blue-500 to-blue-400 text-white', bgColorOn: 'gradient-to-tl from-blue-500 to-blue-400 text-white', }
+                        : { bgColor: 'gradient-to-tl from-white to-white', bgColorOn: 'gradient-to-tl from-blue-500 to-blue-400', }
                     }
+                    textColor="blue-500"
+                    textColorOn="white"
+                    borderW={2}
                     onClick={() => {
                         setIsLoading(true);
                         renderProps.onClick();
                     }}
                 >
-                    <div className="flex justify-between items-center w-full p-1">
-                        <div className="flex justify-center items-center bg-white h-10 w-10 rounded-full">
-                            <GoogleLogo className="h-5" />
-                        </div>
-                        <div>
-                            {isLoading ? (
+                    {/* <div className="flex justify-between items-center w-full p-1"> */}
+                    {/* <div className="flex justify-center items-center bg-white h-10 w-10 rounded-full"> */}
+                    {/* <GoogleLogo className="h-5" /> */}
+                    {/* </div> */}
+                    {/* <div> */}
+                    {/* {isLoading ? (
                                 <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
-                            ) : 'Google'}
-                        </div>
-                        <div className="w-10 h-10"></div>
-                    </div>
+                            ) : 'Google'} */}
+                    {/* </div> */}
+                    {/* <div className="w-10 h-10"></div> */}
+                    {/* </div> */}
+                    <FaGoogle className="inline-flex mr-2 mb-1" />
+                    Google
                 </Button>
             )}
             buttonText="Google"

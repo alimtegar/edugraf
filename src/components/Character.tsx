@@ -23,9 +23,9 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
     const { params: { category, character } } = match;
     const letterCase = new URLSearchParams(location.search).get('letter-case') || 'uppercase';
     const translatedCategory: TranslatedCategory = {
-        symbols: 'simbol',
-        letters: 'huruf',
-        numbers: 'angka',
+        symbols: 'Simbol',
+        letters: 'Huruf',
+        numbers: 'Angka',
     };
 
     // Contexts
@@ -48,15 +48,14 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
     return (
         <main className="flex flex-grow flex-col">
             <Navbar
-                title="Detail Karakter"
+                title={`Detail ${category && translatedCategory[category]} ${letterCase === 'uppercase' ? character?.toUpperCase() : character?.toLowerCase()}`}
                 leftButton={{
                     onClick: () => history.replace(`/characters/category/${category}`),
                     icon: <FaChevronLeft size="1rem" />
                 }}
             />
-            {/* Space */}
+            
             <div className="h-0.75"></div>
-            {/*  */}
 
             <section className="flex flex-col justify-center items-center w-full pt-25 px-16 mb-10">
                 <CharacterFrame size={28} textSize="6xl" rounded="xl">
@@ -68,7 +67,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-gray-700 text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category]} <strong className="font-bold">{character && decodeURIComponent(character)}</strong> dengan menu di bawah ini.</p>
+                <p className="text-gray-700 text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category].toLowerCase()} <strong className="font-bold">{character && decodeURIComponent(letterCase === 'uppercase' ? character?.toUpperCase() : character?.toLowerCase())}</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">
@@ -84,8 +83,8 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                 />
                 <IconButton
                     icon={(<FaPen size="1rem" className="transform -translate-y-0.25" />)}
-                    iconBgColor={isWriting ? 'red-500' : 'gradient-to-tl from-blue-500 to-blue-400'}
-                    iconBgColorOn={isWriting ? 'red-600' : 'gradient-to-tl from-blue-500 to-blue-400'}
+                    iconBgColor={isWriting ? 'gradient-to-tl from-red-500 to-red-400' : 'gradient-to-tl from-blue-500 to-blue-400'}
+                    iconBgColorOn={isWriting ? 'gradient-to-tl from-red-500 to-red-400' : 'gradient-to-tl from-blue-500 to-blue-400'}
                     iconTextColor="white"
                     iconTextColorOn="white"
                     title={`${isWriting ? 'Sembunyikan' : 'Tampilkan'} Penulisan`}
@@ -103,6 +102,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                     />
                 )}
             </div>
+            
             <section className="px-4 mt-auto mb-4 md:mx-auto md:w-1/3">
                 <Link to={`/practice/category/${category}/${character}?letter-case=${letterCase}`}>
                     <Button shadow="default">

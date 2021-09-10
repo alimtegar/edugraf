@@ -1,8 +1,8 @@
-import { RouteComponentProps, Link, Redirect } from 'react-router-dom';
-import { FaChevronLeft } from 'react-icons/fa';
+import { RouteComponentProps, Link, Redirect, } from 'react-router-dom';
+import { FaChevronLeft, } from 'react-icons/fa';
 
 // Contexts
-import { useCharacterContext } from '../contexts/CharacterContext';
+import { useCharacterContext, } from '../contexts/CharacterContext';
 
 // Components
 import Navbar from './Navbar';

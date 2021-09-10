@@ -62,7 +62,7 @@ const StagesItem = ({ id, stage, questions, is_locked }: Stage) => {
     };
 
     return (
-        <div className="flex items-center bg-white text-gray-700 p-2 rounded-xl shadow" onClick={handleClick}>
+        <div className="flex items-center bg-white text-gray-700 p-2 rounded-xl shadow" onClick={is_locked ? () => {} : handleClick}>
             <div className="flex justify-center items-center bg-blue-50 w-12 h-12 mr-4 rounded-full">
                 {(<img src={require(`../assets/images/${is_locked ? '' : 'un'}locked-stage.svg`).default} className="h-7" alt={`Stage ${stage}`} />)}
             </div>

@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Types
+import StageCategory from './types/StageCategory';
+
 export const base64toBlob = (dataURI: string, type: string) => {
     var byteString = atob(dataURI.split(',')[1]);
     var ab = new ArrayBuffer(byteString.length);
@@ -50,4 +53,26 @@ export const validateAnswer = (question: string, answer: string) => {
     }
 
     return is_correct
+}
+
+export const getLevel = (xp: number) => xp < 300 ? 1 : Math.floor((Math.log((xp - 1) / 300) / Math.log(1.5))) + 2;
+export const getXpLimit = (level: number) => Math.floor(1.5 ** (level - 1) * 300);
+export const getXpPct = (xp: number) => xp / getXpLimit(getLevel(xp)) * 100
+
+export const getStageCategoryColor = (stageCategory: StageCategory) => {
+    switch (stageCategory) {
+        case 'symbols': return 'gradient-to-tl from-red-500 to-red-400';
+        case 'letters': return 'gradient-to-tl from-yellow-500 to-yellow-400';
+        case 'numbers': return 'gradient-to-tl from-green-500 to-green-400';
+        case 'on-paper': return 'gradient-to-tl from-blue-500 to-blue-400';
+    }
+};
+
+export const translateStageCategory = (stageCategory: StageCategory) => {
+    switch (stageCategory) {
+        case 'symbols': return 'Simbol';
+        case 'letters': return 'Huruf';
+        case 'numbers': return 'Angka';
+        case 'on-paper': return 'Alat Tulis';
+    }
 }

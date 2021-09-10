@@ -1,6 +1,7 @@
 import { useState, useEffect, } from 'react';
 import axios from 'axios';
 import { toast, } from 'react-toastify';
+import { FaSignInAlt } from 'react-icons/fa';
 
 // Contexts
 import { useAuthContext, } from '../contexts/AuthContext';
@@ -111,27 +112,16 @@ const Login = () => {
                             <LoadingButton />
                         ) : (
                             <Button type="submit">
+                                <FaSignInAlt className="inline-flex mr-2 mb-1" />
                                 Masuk
                             </Button>
                         )}
 
                         <span className="text-gray-500 text-sm font-semibold text-center my-4">
-                            Atau masuk dengan
+                            atau masuk dengan
                         </span>
 
                         <GoogleLoginButton />
-
-
-
-                        {/* <p className="text-gray-500 text-sm font-semibold text-center mt-4">
-                            Belum punya akun? <Link to={`/register`}><a className="text-secondary font-extrabold">Daftar</a></Link>
-                        </p> */}
-                        {/* 
-                        <Link to={`/register`}>
-                            <Button bgColor="red-500" bgColorOn="red-600" type="button">
-                                Daftar
-                        </Button>
-                        </Link> */}
                     </form>
                 </section>
             </main>

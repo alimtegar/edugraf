@@ -5,11 +5,15 @@ import axios from 'axios';
 
 // Components
 import Navbar from './Navbar';
+import StagesChart from './StagesChart';
 import StagesItem from './StagesItem';
+
+// Utils
+import { translateStageCategory } from '../Utils';
 
 // Types
 import Stage from '../types/Stage';
-import StagesChart from './StagesChart';
+import StageCategory from '../types/StageCategory';
 
 type MatchParams = {
     category?: string | undefined;
@@ -25,21 +29,18 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/stages/category/${category}`)
             .then((res) => {
-                // console.log(res.data);
                 setStages(res.data);
-                
             })
             .catch((err) => {
                 console.error(err);
-                // history.push('/404');
             });
     }, [category, history])
 
     return (
-        <div className="flex-grow text-gray-700 overflow-y-scroll">
-            <div className="sticky top-0 h-auto">
+        <div className="flex-grow overflow-y-scroll">
+            <div>
                 <Navbar
-                    title="Daftar Stage"
+                    title={`Tes ${translateStageCategory(category as StageCategory)}`}
                     leftButton={{
                         icon: (<FaChevronLeft size="1rem" />),
                         onClick: () => history.replace('/'),
@@ -49,8 +50,8 @@ const Stages = ({ match, history }: RouteComponentProps<MatchParams>) => {
                     <StagesChart />
                 </section>
             </div>
-            <div className="sticky top-15 h-auto md:mx-auto md:w-1/2">
-                <section className="absolute w-full h-screen flex-grow h-full p-8">
+            <div className="md:mx-auto md:w-1/2">
+                <section className="w-full p-8">
                     <div className="grid gap-2">
                         {stages ? stages.map((stage) => (
                             <StagesItem {...stage} key={stage.id} />

@@ -43,24 +43,24 @@ const IconButton = ({
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button
         className={classNames('group flex items-center bg-white text-gray-700 p-2 focus:outline-none', {
-            [`rounded-${borderR}`]: !!borderR,
-            [`shadow-${shadow}`]: !!shadow,
+            [`rounded-${borderR}`]: borderR,
+            [`shadow-${shadow}`]: shadow,
         })}
         {...props}
     >
-        <div className={classNames('relative flex justify-center items-center text-xl font-extrabold mr-4 rounded-full overflow-hidden', {
-            [`bg-${iconBgColor}`]: !!iconBgColor,
-            [`group-active:bg-${iconBgColorOn}`]: !!iconBgColorOn,
-            [`group-hover:bg-${iconBgColorOn}`]: !!iconBgColorOn,
-            [`text-${iconTextColor}`]: !!iconTextColor,
-            [`group-active:text-${iconTextColorOn}`]: !!iconTextColorOn,
-            [`group-hover:text-${iconTextColorOn}`]: !!iconTextColorOn,
-            [`w-${iconSize}`]: !!iconSize,
-            [`h-${iconSize}`]: !!iconSize,
+        <div className={classNames('relative flex justify-center items-center text-xl font-extrabold mr-4 rounded-full', {
+            [`bg-${iconBgColor}`]: iconBgColor,
+            [`group-active:bg-${iconBgColorOn}`]: iconBgColorOn,
+            [`group-hover:bg-${iconBgColorOn}`]: iconBgColorOn,
+            [`text-${iconTextColor}`]: iconTextColor,
+            [`group-active:text-${iconTextColorOn}`]: iconTextColorOn,
+            [`group-hover:text-${iconTextColorOn}`]: iconTextColorOn,
+            [`w-${iconSize}`]: iconSize,
+            [`h-${iconSize}`]: iconSize,
         })}>
             {isPing && (
                 <span className={classNames('animate-ping absolute inline-flex h-full w-full rounded-full opacity-75', {
-                    [`bg-${iconBgColor}`]: !!iconBgColor,
+                    [`bg-${iconBgColor}`]: iconBgColor,
                 })}></span>
             )}
             <span className="relative z-10">

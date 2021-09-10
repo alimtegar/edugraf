@@ -5,17 +5,18 @@ import { Link } from 'react-router-dom';
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
 
-// Types
-import HomeMenuItem from '../types/HomeMenuItem';
-
 // Components
 import Slider from './Slider';
 import IconButton from './IconButton';
 import HomeSubMenuItem from './HomeSubMenuItem';
-import Photo from './Photo';
 import Alert from './Alert';
 import MotoricGym from './MotoricGym';
 import BottomNavbar from './BottomNavbar';
+import Photo from './Photo';
+import XpBar from './XpBar';
+
+// Types
+import HomeMenuItem from '../types/HomeMenuItem';
 
 const Home = () => {
     const menu: HomeMenuItem[] = [
@@ -74,7 +75,7 @@ const Home = () => {
     ];
 
     // Contexts
-    const authContext = useAuthContext();
+    const { user: { name, photo } } = useAuthContext();
 
     // Functions
     const showMotoricGym = useCallback(() => {
@@ -104,34 +105,20 @@ const Home = () => {
 
     return (
         <div className="flex flex-col flex-grow">
-            <header className="flex items-center bg-white text-gray-700 p-8 md:pt-21 md:pb-12 rounded-b-3xl shadow-default">
+            <header className="flex items-center justify-center bg-white text-gray-700 p-8 md:p-12 rounded-b-3xl shadow-default">
                 <div className="mr-6">
-                    <Link to="/edit-profile">
-                        <div className="w-20 h-20 flex justify-center items-end bg-gray-100 text-gray-400 rounded-full overflow-hidden focus:outline-none">
-                            <img alt="Foto Profil" style={{ height: '80%', }} src="https://image.flaticon.com/icons/png/512/2945/2945467.png" />
-                        </div>
-                    </Link>
+                    <Photo photo={photo} size={20} shadow="none" />
                 </div>
                 <div className="flex-1">
-                    <Link to="/edit-profile">
-                        <h1 className="text-xl font-extrabold leading-snug active:underline hover:underline mb-3">
-                            {authContext.user.name}
-                        </h1>
-                    </Link>
-
-                    <div className="relative">
-                        <div className="overflow-hidden h-2 text-xs flex rounded-full bg-gray-100">
-                            <div style={{ width: `${4269 / 5125 * 100}%`, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
-                        </div>
-                        <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
-                            <span>Level 8</span>
-                            <span className="text-yellow-600">4269/5125 XP</span>
-                        </div>
-                    </div>
+                    <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
+                        {name}
+                    </h1>
+                    
+                    <XpBar />
                 </div>
             </header>
 
-            <main className="flex flex-grow md:mx-auto md:w-1/2">
+            <main className="flex flex-grow md:mx-auto md:w-full">
                 <section className="flex-grow w-full text-gray-700 p-4">
                     <div className="flex flex-col mb-4">
                         <div className="flex justify-between items-center mb-4">
@@ -159,7 +146,20 @@ const Home = () => {
                                     dots: false,
                                     infinite: false,
                                     speed: 500,
-                                    slidesToShow: 2,
+                                    responsive: [
+                                        {
+                                            breakpoint: 1440,
+                                            settings: {
+                                                slidesToShow: 3,
+                                            }
+                                        },
+                                        {
+                                            breakpoint: 768,
+                                            settings: {
+                                                slidesToShow: 2,
+                                            }
+                                        },
+                                    ],
                                 }}>
                                     {menuItem.subMenu.map((subMenuItem) => (
                                         <div className="p-1" key={subMenuItem.to}>

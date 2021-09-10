@@ -1,8 +1,10 @@
+import StageCategory from './StageCategory';
 import Question from './Question';
+
 
 type Stage = {
     stage: string,
-    category: 'symbols' | 'letters' | 'numbers' | 'on-paper',
+    category: StageCategory,
     question_count: number,
     id: number,
     questions: Question[],    

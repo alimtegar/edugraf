@@ -55,7 +55,8 @@ input, textarea, button, select, a {
 /* RC Rate Star */
 
 .rc-rate-star {
-    color: #E2E8F0;
+    color: rgba(55, 64, 81, 0.1);
+    margin-right: 4px;
 }
 
 .rc-rate-star:focus, .rc-rate-star [role='radio']:focus {
@@ -63,7 +64,10 @@ input, textarea, button, select, a {
 }
 
 .rc-rate-star-half .rc-rate-star-first, .rc-rate-star-full .rc-rate-star-second, .rc-rate-star-half:hover .rc-rate-star-first, .rc-rate-star-full:hover .rc-rate-star-second {
-    color: #FC9F60;
+    background: -webkit-linear-gradient(top left, #fcd34d, #fbbf24);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Toastify */
