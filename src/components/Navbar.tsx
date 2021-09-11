@@ -16,8 +16,8 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
     <nav className="absolute w-full flex justify-between items-center text-gray-700 p-2">
         {leftButton !== undefined ? (
             <Button
-                w={12}
-                h={12}
+                w={11}
+                h={11}
                 bgColor="white"
                 bgColorOn="white"
                 textColor="gray-400"
@@ -36,8 +36,8 @@ const Navbar = ({ title, leftButton, rightButton }: Props) => (
 
         {rightButton !== undefined ? (
             <Button
-                w={12}
-                h={12}
+                w={11}
+                h={11}
                 bgColor="white"
                 bgColorOn="white"
                 textColor="gray-400"

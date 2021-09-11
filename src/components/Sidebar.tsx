@@ -63,7 +63,7 @@ const Sidebar = () => {
                         bgColorOn="primary-on"
                         textColor="gray-400"
                         textColorOn="primary-dark"
-                        w={12}
+                        w={11}
                         shadow="none"
                         center
                         onClick={sidebarContext.toggleSidebar}

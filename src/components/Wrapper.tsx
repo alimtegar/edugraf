@@ -15,6 +15,7 @@ import ProtectedRoute from './ProtectedRoute';
 
 // Types
 import Auth from '../types/Auth';
+import AcquiredAchievement from '../types/AcquiredAchievement';
 
 const Wrapper = () => {
     const contextClass = {
@@ -42,12 +43,14 @@ const Wrapper = () => {
                 }
             })
                 .then((res: AxiosResponse<Auth>) => {
-                    if (true) {
-                        // if (res.data.user.level > auth.user.level) {
+                    // If level updated, show notification
+                    if (res.data.user.level > auth.user.level) {
                         toast.success((
                             <div className="flex items-center">
-                                <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
-                                    <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                <div>
+                                    <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
+                                        <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                    </div>
                                 </div>
                                 <div>
                                     <div className="font-bold leading-none">Naik Level {res.data.user.level}</div>
@@ -61,6 +64,37 @@ const Wrapper = () => {
                             pauseOnHover: true,
                             draggable: true,
                         });
+                    }
+
+                    // If achievement updated, show notification
+                    if (res.data.user.acquired_achievement_count > auth.user.acquired_achievement_count) {
+                        axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements/latest`, {
+                            headers: {
+                                'Authorization': `${res.data.token.type} ${res.data.token.token}`,
+                            }
+                        })
+                            .then((res: AxiosResponse<AcquiredAchievement>) => {
+                                toast.success((
+                                    <div className="flex items-center">
+                                        <div>
+                                            <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
+                                                <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="font-bold leading-none">{res.data.achievement.title}</div>
+                                            <div className="text-sm text-gray-600">Selamat! Kamu mendapatkan penghargaan "{res.data.achievement.title}".</div>
+                                        </div>
+                                    </div>
+                                ), {
+                                    position: 'top-center',
+                                    hideProgressBar: true,
+                                    closeOnClick: false,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                });
+                            })
+                            .catch((err) => console.log(err))
                     }
 
                     authContext.setAuth(res.data);
@@ -95,7 +129,7 @@ const Wrapper = () => {
                     </Switch>
                 </div>
                 <ToastContainer
-                    toastClassName={(parameter) => contextClass[parameter?.type || 'default'] + ' relative flex justify-between bg-white text-gray-700 font-semibold m-4 p-2 border-l-3 rounded-sm shadow-default overflow-hidden cursor-pointer'}
+                    toastClassName={(parameter) => contextClass[parameter?.type || 'default'] + ' relative flex justify-between bg-white text-gray-700 font-semibold m-4 py-2 pl-2 pr-12 border-l-3 rounded-sm shadow-default overflow-hidden cursor-pointer'}
                 />
             </div>
         </Router>

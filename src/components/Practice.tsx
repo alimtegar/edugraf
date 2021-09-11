@@ -104,8 +104,8 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
                         </CharacterFrame>
                         <span className="absolute right-0 bottom-0 transform translate-x-1/3 translate-y-1/3">
                             <Button
-                                w={12}
-                                h={12}
+                                w={11}
+                                h={11}
                                 borderR="full"
                                 shadow="default"
                                 center

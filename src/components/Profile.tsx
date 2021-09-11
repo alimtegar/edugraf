@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { FaAngleDoubleRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, } from 'react';
+import axios, { AxiosResponse, } from 'axios';
+import { FaAngleDoubleRight, FaPen, } from 'react-icons/fa';
+import { Link, } from 'react-router-dom';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -12,6 +12,7 @@ import Photo from './Photo';
 import XpBar from './XpBar';
 import Slider from './Slider';
 import AchievementsItem from './AchievementsItem';
+import Button from './Button';
 
 // Types
 import AttemptedStage from '../types/AttemptedStage';
@@ -111,8 +112,25 @@ const Profile = () => {
     return (
         <div className="flex-grow overflow-y-scroll pb-22">
             <header className="text-gray-700 text-center p-8 md:pt-21 md:pb-12">
-                <div className="flex justify-center mb-3">
+                <div className="inline-flex relative mb-3">
                     <Photo photo={photo} size={24} />
+                    <span className="absolute right-0 bottom-0 transform translate-x-1/6 translate-y-1/6">
+                        <Link to="/edit-profile">
+                            <Button
+                                w={11}
+                                h={11}
+                                bgColor="white"
+                                bgColorOn="white"
+                                textColor="gray-400"
+                                textColorOn="blue-500"
+                                shadow="default"
+                                center
+                                onClick={() => { }}
+                            >
+                                <FaPen />
+                            </Button>
+                        </Link>
+                    </span>
                 </div>
                 <div className="flex-1">
                     <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">

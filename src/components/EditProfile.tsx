@@ -1,7 +1,7 @@
 import { useState, } from 'react';
 import axios from 'axios';
 import { toast, } from 'react-toastify';
-import { FaBars, } from 'react-icons/fa';
+import { FaChevronLeft, } from 'react-icons/fa';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -73,7 +73,7 @@ const EditProfile = () => {
             <Navbar
                 title="Edit Profil"
                 leftButton={{
-                    icon: (<FaBars size="1rem" />),
+                    icon: (<FaChevronLeft size="1rem" />),
                     onClick: sidebarContext.toggleSidebar,
                 }}
             />

@@ -22,7 +22,7 @@ const Achievements = ({ history }: RouteComponentProps) => {
                 ...res.data,
             ]))
             .catch((err) => console.error(err));
-    }, [history])
+    }, [history]);
 
     return (
         <div className="flex flex-col flex-grow">

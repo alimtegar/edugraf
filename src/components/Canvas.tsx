@@ -61,7 +61,7 @@ const Canvas = ({
                 {tools.map((tool, key) => (
                     <span key={key}>
                         <Button
-                            w={12}
+                            w={11}
                             bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}
