@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect, useCallback, } from 'react';
+import { RouteComponentProps, Link, } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
+import classNames from 'classnames';
 import Rate from 'rc-rate';
-import { FaChevronLeft, } from 'react-icons/fa';
 import { toast, } from 'react-toastify';
+
+// Contexts
+import { useAuthContext } from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
 import Button from './Button';
-import Stepper from './Stepper';
-// import CharacterFrame from './CharacterFrame';
 
 // Types
 import { default as AttemptedStateState } from '../types/AttemptedStage';
-import CharacterFrame from './CharacterFrame';
-import classNames from 'classnames';
+import Auth from '../types/Auth';
+import AcquiredAchievement from '../types/AcquiredAchievement';
 
 type MatchParams = {
     id?: string | undefined;
@@ -22,6 +23,9 @@ type MatchParams = {
 
 const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) => {
     const { params: { id } } = match;
+
+    // Contexts
+    const authContext = useAuthContext();
 
     // States
     const [attemptedStage, setAttemptedStage] = useState<AttemptedStateState>();
@@ -55,6 +59,85 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
         }
     };
 
+    const validateToken = useCallback(() => {
+        const storedAuth = localStorage.getItem('auth');
+
+        if (storedAuth) {
+            const auth: Auth = JSON.parse(storedAuth);
+
+            axios.get(`${process.env.REACT_APP_API_URL}/validate-token`, {
+                headers: {
+                    'Authorization': `${auth.token.type} ${auth.token.token}`,
+                }
+            })
+                .then((res: AxiosResponse<Auth>) => {
+                    // If level updated, show notification
+                    if (res.data.user.level > auth.user.level) {
+                        toast.success((
+                            <div className="flex items-center">
+                                <div>
+                                    <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
+                                        <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="font-bold leading-none">Naik Level {res.data.user.level}</div>
+                                    <div className="text-sm text-gray-600">Selamat! Kamu naik ke level {res.data.user.level}.</div>
+                                </div>
+                            </div>
+                        ), {
+                            position: 'top-center',
+                            hideProgressBar: true,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                        });
+                    }
+
+                    // If achievement updated, show notification
+                    if (res.data.user.acquired_achievement_count > auth.user.acquired_achievement_count) {
+                        axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements/latest`, {
+                            headers: {
+                                'Authorization': `${res.data.token.type} ${res.data.token.token}`,
+                            }
+                        })
+                            .then((res: AxiosResponse<AcquiredAchievement>) => {
+                                toast.success((
+                                    <div className="flex items-center">
+                                        <div>
+                                            <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
+                                                <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="font-bold leading-none">{res.data.achievement.title}</div>
+                                            <div className="text-sm text-gray-600">Selamat! Kamu mendapatkan penghargaan "{res.data.achievement.title}".</div>
+                                        </div>
+                                    </div>
+                                ), {
+                                    position: 'top-center',
+                                    hideProgressBar: true,
+                                    closeOnClick: false,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                });
+                            })
+                            .catch((err) => console.log(err))
+                    }
+
+                    authContext.setAuth(res.data);
+                    authContext.setAuthLoading(false);
+
+                })
+                .catch((err) => {
+                    console.error(err);
+                    authContext.setAuthLoading(false);
+                });
+        } else {
+            authContext.setAuthLoading(false);
+        }
+    }, [authContext]);
+
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages/${id}`)
@@ -63,6 +146,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                 console.error(err);
                 history.push('/404');
             });
+        validateToken();
     }, [history, id]);
 
     return (
@@ -135,7 +219,13 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         </Button>
                     </Link>
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
-                        <Button bgColor="white" textColor="blue-500" shadow="default">
+                        <Button 
+                        bgColor="gradient-to-tl from-white to-white" 
+                        bgColorOn="gradient-to-tl from-blue-500 to-blue-400"
+                        textColor="blue-500" 
+                        textColorOn="white"
+                        shadow="default"
+                        >
                             Daftar Stage
                         </Button>
                     </Link>

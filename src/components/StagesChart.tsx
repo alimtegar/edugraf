@@ -6,7 +6,7 @@ import 'chartjs-plugin-datalabels';
 import StagesChartBar from './StagesChartBar';
 
 // Utils
-import { getStageCategoryColor } from '../Utils';
+import { getStageCategoryColor, translateStageCategory, } from '../Utils';
 
 // Types
 import AttemptedStage from '../types/AttemptedStage';
@@ -31,7 +31,7 @@ const StagesChart = () => {
                 {['symbols', 'letters', 'numbers', 'on-paper',].map((stageCategory) => (
                     <div className="flex" key={stageCategory}>
                         <div className={`bg-${getStageCategoryColor(stageCategory as StageCategory)} w-3 h-3 rounded-full mr-2`} />
-                        Simbol
+                        {translateStageCategory(stageCategory as StageCategory)}
                     </div>
                 ))}
             </div>

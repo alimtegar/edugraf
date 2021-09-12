@@ -30,7 +30,6 @@ const Wrapper = () => {
     // Contexts
     const authContext = useAuthContext();
 
-    // Functions
     const validateToken = useCallback(() => {
         const storedAuth = localStorage.getItem('auth');
 

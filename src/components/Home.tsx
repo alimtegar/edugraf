@@ -25,18 +25,21 @@ const Home = () => {
             subMenu: [
                 {
                     title: 'Tabel Simbol',
+                    category: 'symbols',
                     description: 'Tabel huruf dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/symbols-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/symbols',
                 },
                 {
                     title: 'Tabel Huruf',
+                    category: 'letters',
                     description: 'Tabel huruf dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/letters-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/letters',
                 },
                 {
                     title: 'Tabel Angka',
+                    category: 'numbers',
                     description: 'Tabel angka dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/numbers-table.svg`).default} className="h-14" alt="icon" />),
                     to: '/characters/category/numbers',
@@ -49,23 +52,27 @@ const Home = () => {
                 {
                     title: 'Tes Alat Tulis',
                     description: 'Tabel alfabet dan cara penulisannya',
+                    category: 'on-paper',
                     icon: (<img src={require(`../assets/images/stages-on-paper.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/on-paper',
                 },
                 {
                     title: 'Tes Simbol',
+                    category: 'symbols',
                     description: 'Tabel alfabet dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/symbols',
                 },
                 {
                     title: 'Tes Huruf',
+                    category: 'letters',
                     description: 'Tabel alfabet dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/letters',
                 },
                 {
                     title: 'Tes Angka',
+                    category: 'numbers',
                     description: 'Tabel alfabet dan cara penulisannya',
                     icon: (<img src={require(`../assets/images/stages-on-canvas.svg`).default} className="h-14" alt="icon" />),
                     to: '/stages/category/numbers',
