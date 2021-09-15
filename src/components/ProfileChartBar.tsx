@@ -12,7 +12,7 @@ const ProfileChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: 
                 <div
                     className={`bg-${bgColor} text-white h-full rounded-lg`}
                     style={{
-                        width: `${value * 100}%`,
+                        width: value ? `${value * 100}%` : 3,
                     }}
                 >
                 </div>

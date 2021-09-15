@@ -72,7 +72,7 @@ const IconButton = ({
                 {title}
             </h3>
             {description && (
-                <span className="font-semibold text-xs text-gray-500">
+                <span className="font-semibold text-xs text-gray-600">
                     {description}
                 </span>
             )}

@@ -184,11 +184,12 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                 </section>
                 <section className="flex justify-center items-center flex-wrap px-16 md:mx-auto md:w-1/3">
                     <p className="text-sm text-gray-600 font-semibold mb-4">Jawaban kamu:</p>
-                    <div className="grid grid-cols-5 gap-2 w-full">
+                    <div className="flex flex-wrap justify-center w-full">
                         {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
-                            <div className={classNames('inline-flex justify-center items-center text-xl font-extrabold aspect-1 rounded-lg', {
+                            <div className={classNames('inline-flex justify-center items-center text-xl font-extrabold rounded-lg py-2 px-4 m-1', {
                                 [`bg-green-500 bg-opacity-10 text-green-500`]: attemptedQuestion.is_correct,
                                 [`bg-red-400 bg-opacity-10 text-red-400`]: !attemptedQuestion.is_correct,
+                                [`aspect-1`]: attemptedStage.stage.category !== 'on-paper',
                             })}>
                                 {attemptedQuestion.question.question}
                             </div>

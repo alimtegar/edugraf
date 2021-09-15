@@ -29,7 +29,7 @@ const TopLeaderboardItem = ({ name, photo, xp, position }: Props) => {
                 </span>
             </div>
             <h2 className="font-bold text-lg leading-none">{formatName(name)}</h2>
-            <span className="text-sm font-bold text-gray-500">{numeral(xp).format('0,0')} XP</span>
+            <span className="text-sm font-bold text-gray-600">{numeral(xp).format('0,0')} XP</span>
         </span>
     );
 };

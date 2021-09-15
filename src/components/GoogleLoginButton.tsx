@@ -30,6 +30,8 @@ const GoogleLoginButton = () => {
     const responseGoogle = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
         setIsLoading(true);
 
+        console.log(res);
+
         if ('tokenId' in res) {
             axios.get(`${process.env.REACT_APP_API_URL}/login/google/${res.tokenId}`)
                 .then((res) => {
@@ -63,7 +65,7 @@ const GoogleLoginButton = () => {
                 <Button
                     type="button"
                     {...isLoading
-                        ? { bgColor: 'gray-200', bgColorOn: 'gray-200', disabled: true, }
+                        ? { bgColor: 'gray-200', bgColorOn: 'gray-200', textColor: 'gray-400',disabled: true, }
                         : { bgColor: 'gradient-to-tl from-white to-white', bgColorOn: 'gradient-to-tl from-blue-500 to-blue-400', }
                     }
                     textColor="blue-500"
