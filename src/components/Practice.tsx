@@ -49,7 +49,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
 
             recognize(srcImg)
                 .then((res) => answer(res))
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
         }
     };
 

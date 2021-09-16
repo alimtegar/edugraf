@@ -46,7 +46,7 @@ const EditProfile = ({ history }: RouteComponentProps) => {
         })
             .then((res) => {
                 authContext.setAuthUser(res.data);
-                toast.success('Profil akun Sibisa berhasil disunting.', {
+                toast.success('Profil berhasil diedit.', {
                     position: "top-center",
                     autoClose: 10000,
                     hideProgressBar: true,

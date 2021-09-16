@@ -20,27 +20,29 @@ const Button = ({
     isPing = false,
     ...props
 }: Props & ButtonHTMLAttributes<HTMLButtonElement>) => {
+    // const bgColorOnArr = bgColorOn.split(' ').splice(1);
     const [bgColorOnClassNames, setBgColorOnClassNames] = useState({
-        [`active:bg-${bgColorOn}`]: bgColorOn,
-        [`hover:bg-${bgColorOn}`]: bgColorOn,
+        // [`active:bg-${bgColorOn}`]: bgColorOn,
+        // [`hover:bg-${bgColorOn}`]: bgColorOn,
     });
 
     useEffect(() => {
-        const bgColorOnArr = bgColorOn.split(' ');
+        // setTimeout(() => {
+            const bgColorOnArr = bgColorOn.split(' ').splice(1);
 
-        if (bgColorOnArr.length > 1) {
-            setBgColorOnClassNames(bgColorOnArr.reduce((obj, item, i) => ({
-                ...obj,
-                [i ? 'hover:' + item : 'hover:bg-' + item]: !!item,
-                [i ? 'active:' + item : 'active:bg-' + item]: !!item,
-            }), {}));
-        }
+            if (bgColorOnArr.length > 1) {
+                setBgColorOnClassNames(bgColorOnArr.reduce((obj, item, i) => ({
+                    ...obj,
+                    ['hover:' + item]: !!item,
+                    ['active:' + item]: !!item,
+                }), {}));
+            }
+        // }, 100000);
     }, [bgColorOn]);
 
     return (
         <button
             className={classNames('relative font-extrabold focus:outline-none hover:border-transparent transition duration-300', {
-                ...bgColorOnClassNames,
                 'flex justify-center items-center': center,
                 [`w-${w}`]: w,
                 [`h-${h}`]: h,
@@ -52,6 +54,7 @@ const Button = ({
                 [`border-${borderW}`]: borderW,
                 [`border-${borderColor}`]: borderColor,
                 [`shadow-${shadow}`]: shadow,
+                ...bgColorOnClassNames,
             })}
             {...props}
         >

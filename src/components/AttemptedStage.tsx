@@ -81,7 +81,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                                     </div>
                                 </div>
                                 <div>
-                                    <div className="font-bold leading-none">Naik Level {res.data.user.level}</div>
+                                    <div className="font-bold leading-none text-gray-700 mb-1">Naik Level {res.data.user.level}</div>
                                     <div className="text-sm text-gray-600">Selamat! Kamu naik ke level {res.data.user.level}.</div>
                                 </div>
                             </div>
@@ -106,11 +106,11 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                                     <div className="flex items-center">
                                         <div>
                                             <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
-                                                <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                                <img src={require(`../assets/images/achievement.svg`).default} className="h-7" alt="Naik Level" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold leading-none">{res.data.achievement.title}</div>
+                                            <div className="font-bold leading-none text-gray-700 mb-1">{res.data.achievement.title}</div>
                                             <div className="text-sm text-gray-600">Selamat! Kamu mendapatkan penghargaan "{res.data.achievement.title}".</div>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                                     draggable: true,
                                 });
                             })
-                            .catch((err) => console.log(err))
+                            .catch((err) => console.error(err))
                     }
 
                     authContext.setAuth(res.data);
