@@ -106,7 +106,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                                     <div className="flex items-center">
                                         <div>
                                             <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
-                                                <img src={require(`../assets/images/achievement.svg`).default} className="h-7" alt="Naik Level" />
+                                                <img src={require(`../assets/images/achievement.svg`).default} className="h-9" alt="Naik Level" />
                                             </div>
                                         </div>
                                         <div>
