@@ -43,7 +43,9 @@ const StagesChart = () => {
                         value={score}
                         key={id}
                     />
-                )) : null}
+                )) : Array.from(Array(8).keys()).map((i) => (
+                    <StagesChartBar key={i} />
+                ))}
                 {attemptedStages ? Array.from(Array(8 - attemptedStages.length).keys()).map((i) => (
                     <StagesChartBar key={i} />
                 )) : null}

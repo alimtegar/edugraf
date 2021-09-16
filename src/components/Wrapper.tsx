@@ -66,7 +66,7 @@ const Wrapper = () => {
                     }
 
                     // If achievement updated, show notification
-                    if (true || res.data.user.acquired_achievement_count > auth.user.acquired_achievement_count) {
+                    if (res.data.user.acquired_achievement_count > auth.user.acquired_achievement_count) {
                         axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements/latest`, {
                             headers: {
                                 'Authorization': `${res.data.token.type} ${res.data.token.token}`,
