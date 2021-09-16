@@ -1,5 +1,6 @@
 import { useState, useEffect, } from 'react';
 import axios from 'axios';
+import numeral from 'numeral';
 
 // Components
 import Navbar from './Navbar';
@@ -40,7 +41,7 @@ const Leaderboard = () => {
                     {leaderboard ? leaderboard.map(({ name, photo, xp, }, i) => (
                         <IconButton
                             title={name}
-                            description={xp.toString() + ' XP'}
+                            description={numeral(xp).format('0,0') + ' XP'}
                             icon={(<Photo photo={photo} size={12} shadow="none" />)}
                             subIcon={(<Medal position={i + 1} />)}
                             key={name}

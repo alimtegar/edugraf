@@ -63,7 +63,7 @@ const Sidebar = () => {
                         bgColorOn="primary-on"
                         textColor="gray-400"
                         textColorOn="primary-dark"
-                        w={12}
+                        w={11}
                         shadow="none"
                         center
                         onClick={sidebarContext.toggleSidebar}
@@ -89,7 +89,7 @@ const Sidebar = () => {
                             setTimeout(() => {
                                 Alert.fire({
                                     title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah anda yakin?</span>),
-                                    html: (<p className="text-sm text-gray-500 font-semibold">Anda akan keluar dari akun <strong className="font-bold">{authContext.user.name}</strong>.</p>),
+                                    html: (<p className="text-sm text-gray-600 font-semibold">Anda akan keluar dari akun <strong className="font-bold">{authContext.user.name}</strong>.</p>),
                                     icon: 'warning',
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',

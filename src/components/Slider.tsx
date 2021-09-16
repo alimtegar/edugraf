@@ -23,8 +23,8 @@ const SliderNextArrow = ({ bgColor, bgColorOn, textColor, textColorOn, onClick, 
         onClick={onClick}
     >
         <Button
-            w={12}
-            h={12}
+            w={11}
+            h={11}
             bgColor={bgColor}
             bgColorOn={bgColorOn}
             textColor={textColor}
@@ -45,8 +45,8 @@ const SliderPrevArrow = ({ bgColor, bgColorOn, textColor, textColorOn, onClick, 
         })}
         onClick={onClick}>
         <Button
-            w={12}
-            h={12}
+            w={11}
+            h={11}
             bgColor={bgColor}
             bgColorOn={bgColorOn}
             textColor={textColor}

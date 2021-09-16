@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Medal = ({ position }: Props) => {
-    let addClassNames = 'bg-gray-100 text-gray-500';
+    let addClassNames = 'bg-gray-100 text-gray-600';
 
     switch (position) {
         case 1: addClassNames = 'bg-gradient-to-tl from-yellow-300 to-yellow-200 text-yellow-700'; break;

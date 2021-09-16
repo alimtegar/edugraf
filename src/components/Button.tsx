@@ -2,7 +2,7 @@ import { useState, useEffect, ButtonHTMLAttributes, } from 'react';
 import classNames from 'classnames';
 
 // Types
-import {default as Props} from '../types/Button';
+import { default as Props } from '../types/Button';
 
 const Button = ({
     children,

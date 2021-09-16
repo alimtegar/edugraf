@@ -15,7 +15,7 @@ const StagesChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: P
                     <div
                         className={`bg-${bgColor} text-white w-full rounded-lg`}
                         style={{
-                            height: `${value}%`,
+                            height: value ? `${value}%` : 3,
                         }}
                     >
                     </div>

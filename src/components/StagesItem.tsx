@@ -37,7 +37,7 @@ const StagesItem = ({ id, stage, questions, is_locked }: Stage) => {
     const handleClick = () => {
         Alert.fire({
             title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah anda yakin?</span>),
-            html: (<p className="text-sm text-gray-500 font-semibold">Anda diminta untuk tidak keluar saat mengerjakan Stage.</p>),
+            html: (<p className="text-sm text-gray-600 font-semibold">Anda diminta untuk tidak keluar saat mengerjakan Stage.</p>),
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

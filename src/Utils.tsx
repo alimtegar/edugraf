@@ -55,8 +55,9 @@ export const validateAnswer = (question: string, answer: string) => {
     return is_correct
 }
 
-export const getLevel = (xp: number) => xp < 300 ? 1 : Math.floor((Math.log((xp - 1) / 300) / Math.log(1.5))) + 2;
-export const getXpLimit = (level: number) => Math.floor(1.5 ** (level - 1) * 300);
+const initXpLimit = 100;
+export const getLevel = (xp: number) => xp < initXpLimit ? 1 : Math.floor((Math.log((xp - 1) / initXpLimit) / Math.log(1.5))) + 2;
+export const getXpLimit = (level: number) => Math.floor(1.5 ** (level - 1) * initXpLimit);
 export const getXpPct = (xp: number) => xp / getXpLimit(getLevel(xp)) * 100
 
 export const getStageCategoryColor = (stageCategory: StageCategory) => {

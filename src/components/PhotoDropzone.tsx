@@ -40,12 +40,12 @@ const PhotoDropzone = ({ initPhoto, setPhotoFile }: Props) => {
             <div className="relative" {...getRootProps()}>
                 <input name="photo" {...getInputProps()} />
 
-                <Photo {...photo && { photo: photo }} size={28} />
+                <Photo {...photo && { photo: photo }} size={28} borderW={0} />
 
                 <span className="absolute right-0 bottom-0 transform translate-x-1/6 translate-y-1/6">
                     <Button
                         type="button"
-                        w={12}
+                        w={11}
                         shadow="default"
                         center
                         onClick={open}

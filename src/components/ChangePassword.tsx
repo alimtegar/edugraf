@@ -1,14 +1,16 @@
 import { useState, } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import { FaBars } from 'react-icons/fa';
+import { RouteComponentProps, } from 'react-router-dom';
+import { toast, } from 'react-toastify';
+import { FaChevronLeft, } from 'react-icons/fa';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
-import { useSidebarContext } from '../contexts/SidebarContext';
 
 // Components
 import Navbar from './Navbar';
+import ProfileHeader from './ProfileHeader';
+import UpdateUserNavbar from './UpdateUserNavbar';
 import Input from './Input';
 import Button from './Button';
 import LoadingButton from './LoadingButton';
@@ -20,10 +22,9 @@ type ChangePasswordForm = {
     new_password_confirmation: string,
 };
 
-const ChangePassword = () => {
+const ChangePassword = ({ history }: RouteComponentProps) => {
     // Contexts
     const authContext = useAuthContext();
-    const sidebarContext = useSidebarContext();
 
     // States
     const initForm: ChangePasswordForm = {
@@ -75,25 +76,23 @@ const ChangePassword = () => {
     return (
         <>
             <Navbar
-                title="Ganti Kata Sandi"
                 leftButton={{
-                    icon: (<FaBars size="1rem" />),
-                    onClick: sidebarContext.toggleSidebar,
+                    icon: (<FaChevronLeft size="1rem" />),
+                    onClick: () => history.replace('/profile'),
                 }}
             />
-            <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
-                <h1 className="text-lg font-extrabold leading-snug mb-2">
-                    Ubah Kata Sandi
-                </h1>
-                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Ubah kata sandi untuk keamanan akun Sibisa anda.</p>
-            </header>
-            <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3">
-                <form
-                    className="flex flex-col bg-white p-6 rounded-xl shadow-default"
-                    onSubmit={(e) => handleSubmit(e)}
-                >
-                    <input id="email" name="email" autoComplete="username" readOnly value={authContext.user.email} className="hidden" />
-                    {/* <div className="mt-2 mb-3">
+
+            <ProfileHeader editProfileButton={false} />
+
+            <main className="flex-grow bg-white text-gray-700 p-8 rounded-t-3xl shadow-default">
+                <section>
+                    <UpdateUserNavbar />
+                    <form
+                        className="flex flex-col"
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
+                        <input id="email" name="email" autoComplete="username" readOnly value={authContext.user.email} className="hidden" />
+                        {/* <div className="mt-2 mb-3">
                         <Input
                             label="Kata Sandi Sekarang"
                             type="password"
@@ -105,39 +104,40 @@ const ChangePassword = () => {
                             onChange={(e) => handleChange(e)}
                         />
                     </div> */}
-                    <div className="mt-2 mb-3">
-                        <Input
-                            label="Kata Sandi Baru"
-                            type="password"
-                            id="new_password"
-                            name="new_password"
-                            autoComplete="new-password"
-                            required
-                            value={form.new_password}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
-                    <div className="mt-2 mb-6">
-                        <Input
-                            label="Konfirmasi Kata Sandi Baru"
-                            type="password"
-                            id="new_password_confirmation"
-                            name="new_password_confirmation"
-                            autoComplete="new-password"
-                            required
-                            value={form.new_password_confirmation}
-                            onChange={(e) => handleChange(e)}
-                        />
-                    </div>
-                    {isLoading ? (
-                        <LoadingButton />
-                    ) : (
-                        <Button type="submit">
-                            Ubah
-                        </Button>
-                    )}
-                </form>
-            </section>
+                        <div className="mt-2 mb-3">
+                            <Input
+                                label="Kata Sandi Baru"
+                                type="password"
+                                id="new_password"
+                                name="new_password"
+                                autoComplete="new-password"
+                                required
+                                value={form.new_password}
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="mt-2 mb-6">
+                            <Input
+                                label="Konfirmasi Kata Sandi Baru"
+                                type="password"
+                                id="new_password_confirmation"
+                                name="new_password_confirmation"
+                                autoComplete="new-password"
+                                required
+                                value={form.new_password_confirmation}
+                                onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        {isLoading ? (
+                            <LoadingButton />
+                        ) : (
+                            <Button type="submit">
+                                Ubah
+                            </Button>
+                        )}
+                    </form>
+                </section>
+            </main>
         </>
     )
 };

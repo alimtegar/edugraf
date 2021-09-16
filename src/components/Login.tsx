@@ -117,7 +117,7 @@ const Login = () => {
                             </Button>
                         )}
 
-                        <span className="text-gray-500 text-sm font-semibold text-center my-4">
+                        <span className="text-gray-600 text-sm font-semibold text-center my-4">
                             atau masuk dengan
                         </span>
 
