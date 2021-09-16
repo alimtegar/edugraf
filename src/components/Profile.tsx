@@ -1,30 +1,31 @@
 import { useState, useEffect, } from 'react';
 import axios, { AxiosResponse, } from 'axios';
-import { FaAngleDoubleRight, FaPen, } from 'react-icons/fa';
+import { FaAngleDoubleRight, FaSignOutAlt } from 'react-icons/fa';
 import { Link, } from 'react-router-dom';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
 
 // Components
+import Navbar from './Navbar';
 import BottomNavbar from './BottomNavbar';
-import Photo from './Photo';
-import XpBar from './XpBar';
+import ProfileHeader from './ProfileHeader';
+import ProfileChart from './ProfileChart';
 import Slider from './Slider';
 import AchievementsItem from './AchievementsItem';
-import Button from './Button';
-import ProfileChart from './ProfileChart';
+import Alert from './Alert';
 
 // Types
 import AcquiredAchievement from '../types/AcquiredAchievement';
 
 const Profile = () => {
     // Contexts
-    const { user: { name, photo, } } = useAuthContext();
+    const authContext = useAuthContext();
 
     // States
     const [acquiredAchievements, setAcquiredAchievements] = useState<AcquiredAchievement[]>();
 
+    // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/acquired-achievements?limit=3`)
             .then((res: AxiosResponse<AcquiredAchievement[]>) => setAcquiredAchievements([
@@ -34,36 +35,41 @@ const Profile = () => {
             .catch((err) => console.error(err));
     }, [])
 
+    // Functions
+    const logout = () => {
+        Alert.fire({
+            title: (<span className="text-lg text-gray-900 font-bold leading-snug">Apakah anda yakin?</span>),
+            html: (<p className="text-sm text-gray-600 font-semibold">Anda akan keluar dari akun <strong className="font-bold">{authContext.user.name}</strong>.</p>),
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak',
+        }).then(({ isConfirmed }) => {
+            if (isConfirmed) {
+                authContext.removeAuth();
+                authContext.setAuthLoading(false);
+            }
+        });
+    }
+
     return (
         <div className="flex-grow overflow-y-scroll pb-22">
-            <header className="text-gray-700 text-center p-8 md:pt-21 md:pb-12">
-                <div className="inline-flex relative mb-3">
-                    <Photo photo={photo} size={24} />
-                    <span className="absolute right-0 bottom-0 transform translate-x-1/6 translate-y-1/6">
-                        <Link to="/edit-profile">
-                            <Button
-                                w={11}
-                                h={11}
-                                bgColor="white"
-                                bgColorOn="white"
-                                textColor="gray-400"
-                                textColorOn="blue-500"
-                                shadow="default"
-                                center
-                                onClick={() => { }}
-                            >
-                                <FaPen />
-                            </Button>
-                        </Link>
-                    </span>
-                </div>
-                <div className="flex-1">
-                    <h1 className="text-xl font-extrabold leading-none active:underline hover:underline mb-4">
-                        {name}
-                    </h1>
-                    <XpBar bgColor="gray-500 bg-opacity-10" />
-                </div>
-            </header>
+            <Navbar
+                rightButton={{
+                    icon: (<FaSignOutAlt size="1rem" className="transform translate-x-px" />),
+                    onClick: logout,
+                }}
+                rightButtonSettings={{
+                    bgColor: 'gradient-to-tl from-red-500 to-red-400',
+                    bgColorOn: 'gradient-to-tl from-red-600 to-red-500',
+                    textColor: 'white',
+                    textColorOn: 'white',
+                }}
+            />
+
+            <ProfileHeader />
 
             <main>
                 {/* Chart */}

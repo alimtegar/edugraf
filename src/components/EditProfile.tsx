@@ -1,24 +1,25 @@
 import { useState, } from 'react';
 import axios from 'axios';
+import { RouteComponentProps, } from 'react-router-dom';
 import { toast, } from 'react-toastify';
 import { FaChevronLeft, } from 'react-icons/fa';
 
 // Contexts
-import { useAuthContext } from '../contexts/AuthContext';
-import { useSidebarContext } from '../contexts/SidebarContext';
+import { useAuthContext, } from '../contexts/AuthContext';
 
 // Components
 import Navbar from './Navbar';
+import ProfileHeader from './ProfileHeader';
+import UpdateUserNavbar from './UpdateUserNavbar';
 import Input from './Input';
 import Button from './Button';
 import LoadingButton from './LoadingButton';
 import PhotoDropzone from './PhotoDropzone';
 
 
-const EditProfile = () => {
+const EditProfile = ({ history }: RouteComponentProps) => {
     // Contexts
     const authContext = useAuthContext();
-    const sidebarContext = useSidebarContext();
 
     // States
     const [name, setName] = useState(authContext.user.name);
@@ -71,57 +72,56 @@ const EditProfile = () => {
     return (
         <>
             <Navbar
-                title="Edit Profil"
                 leftButton={{
                     icon: (<FaChevronLeft size="1rem" />),
-                    onClick: sidebarContext.toggleSidebar,
+                    onClick: () => history.replace('/profile'),
                 }}
             />
-            <header className="text-center text-white pt-19 px-16 pb-10 md:pt-25">
-                <h1 className="text-lg font-extrabold leading-snug mb-2">
-                    Sunting Profil
-                </h1>
-                <p className="text-sm font-semibold md:mx-auto md:w-1/5">Sunting nama lengkap dan foto profil akun Sibisa anda.</p>
-            </header>
-            <section className="text-gray-900 px-4 mx-auto w-full md:w-1/3">
-                <form
-                    className="flex flex-col bg-white p-6 rounded-xl shadow-default"
-                    onSubmit={(e) => handleSubmit(e)}
-                >
-                    <PhotoDropzone
-                        {...authContext.user.photo && { initPhoto: authContext.user.photo, }}
-                        setPhotoFile={setPhotoFile}
-                    />
-                    <div className="mt-2 mb-3">
-                        <Input
-                            label="Nama Lengkap"
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+
+            <ProfileHeader editProfileButton={false} />
+
+            <main className="flex-grow bg-white text-gray-700 p-8 rounded-t-3xl shadow-default">
+                <section>
+                    <UpdateUserNavbar />
+                    <form
+                        className="flex flex-col"
+                        onSubmit={(e) => handleSubmit(e)}
+                    >
+                        <PhotoDropzone
+                            {...authContext.user.photo && { initPhoto: authContext.user.photo, }}
+                            setPhotoFile={setPhotoFile}
                         />
-                    </div>
-                    <div className="mt-2 mb-6">
-                        <Input
-                            label="Email"
-                            type="email"
-                            id="email"
-                            name="email"
-                            disabled
-                            value={authContext.user.email}
-                        />
-                    </div>
-                    {isLoading ? (
-                        <LoadingButton />
-                    ) : (
-                        <Button type="submit">
-                            Sunting
-                        </Button>
-                    )}
-                </form>
-            </section>
+                        <div className="mt-2 mb-3">
+                            <Input
+                                label="Nama Lengkap"
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div className="mt-2 mb-6">
+                            <Input
+                                label="Email"
+                                type="email"
+                                id="email"
+                                name="email"
+                                disabled
+                                value={authContext.user.email}
+                            />
+                        </div>
+                        {isLoading ? (
+                            <LoadingButton />
+                        ) : (
+                            <Button type="submit">
+                                Simpan
+                            </Button>
+                        )}
+                    </form>
+                </section>
+            </main>
         </>
     )
 };
