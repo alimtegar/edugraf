@@ -113,15 +113,15 @@ const Profile = () => {
                                     ],
                                 }}
                             >
-                                {[...acquiredAchievements, undefined].map((acquiredAchievement) => acquiredAchievement ? (
-                                    <div className="p-1" key={acquiredAchievement.achievement.id}>
+                                {[...acquiredAchievements, undefined].map((acquiredAchievement, i) => acquiredAchievement ? (
+                                    <div className="p-1" key={i}>
                                         <AchievementsItem
                                             {...acquiredAchievement.achievement}
                                             is_locked={acquiredAchievement.progress < 100}
                                         />
                                     </div>
                                 ) : (
-                                    <div className="p-1">
+                                    <div className="p-1" key={i}>
                                         <Link to="/achievements">
                                             <div
                                                 className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400">
