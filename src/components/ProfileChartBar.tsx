@@ -6,7 +6,7 @@ type Props = {
 };
 
 const ProfileChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: Props) => (
-    <div className="w-full h-9 relative flex justify-start items-center bg-gray-500 bg-opacity-10 rounded-lg overflow-hidden">
+    <div className="w-full h-9 relative flex justify-start items-center bg-gray-500 bg-opacity-10 text-right rounded-lg overflow-hidden">
         {bgColor && value !== undefined && (
             <>
                 <div
@@ -16,7 +16,7 @@ const ProfileChartBar = ({ bgColor, title, value, width = `${1 / 8 * 100}%`, }: 
                     }}
                 >
                 </div>
-                <span className={`absolute right-0 font-semibold text-xs text-${value > 0.1 ? 'white' : 'gray-500'} w-full p-2`}>
+                <span className={`absolute right-0 font-semibold text-xs text-${value > 0.9 ? 'white' : 'gray-500'} w-full p-2`}>
                     {value * 100}%
                 </span>
             </>

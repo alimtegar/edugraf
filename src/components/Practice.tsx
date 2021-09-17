@@ -131,7 +131,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
 
                 <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                     {isChecking ? (
-                        <LoadingButton />
+                        <LoadingButton shadow="default" />
                     ) : (
                         <Button
                             {...canvasRef ?
