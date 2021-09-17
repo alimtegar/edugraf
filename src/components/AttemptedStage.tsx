@@ -224,7 +224,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                             Coba Lagi
                         </Button>
                     </Link>
-                    <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
+                    <Link to={`/`} replace>
                         <Button
                             bgColor="gradient-to-tl from-white to-white"
                             bgColorOn="gradient-to-tl from-blue-500 to-blue-400"
@@ -232,7 +232,7 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                             textColorOn="white"
                             shadow="default"
                         >
-                            Daftar Stage
+                            Kembali ke Beranda
                         </Button>
                     </Link>
                 </section>
