@@ -109,7 +109,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
 
             <section className="px-16 mb-10">
                 <p className="text-white text-center text-sm text-gray-700 font-semibold leading-snug">
-                    Tulislah kata <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> lalu fotolah.
+                    Tulislah kata <strong className="font-bold">"{attemptedQuestion ? attemptedQuestion?.question.question : ''}"</strong> lalu fotolah.
                 </p>
             </section>
 
@@ -152,7 +152,7 @@ const AttemptedQuestionOnPaper = ({ attemptedQuestion, next }: Props) => {
 
             <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                 {isChecking ? (
-                    <LoadingButton />
+                    <LoadingButton shadow="default" />
                 ) : (
                     <Button
                         {...webcamRef ?

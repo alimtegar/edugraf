@@ -13,18 +13,23 @@ const NotFound = () => (
                     Tidak Ditemukan
                 </h2>
                 <p className="text font-semibold mb-6">Data yang anda cari tidak ditemukan di dalam <span className="italic">database</span>.</p>
-                <Link to={`/`}>
-                    <Button
-                        bgColor="white"
-                        bgColorOn="gray-50"
-                        textColor="gray-700"
-                        textColorOn="gray-700"
-                        w={32}
-                        shadow="default"
-                    >
-                        Beranda
-                    </Button>
-                </Link>
+                <div className="inline-flex">
+                    <Link to={`/`}>
+                        <Button
+                            w={56}
+                            bgColor="transparent"
+                            bgColorOn="white"
+                            textColor="white"
+                            textColorOn="blue-500"
+                            borderW={2}
+                            center
+                        >
+                            <div className="flex">
+                                Kembali ke Beranda
+                            </div>
+                        </Button>
+                    </Link>
+                </div>
             </div>
         </section>
     </div>

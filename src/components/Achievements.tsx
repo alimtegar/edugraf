@@ -26,7 +26,7 @@ const Achievements = ({ history }: RouteComponentProps) => {
 
     return (
         <div className="flex flex-col flex-grow">
-            <Navbar title="Penhargaan" leftButton={{
+            <Navbar title="Penghargaan" leftButton={{
                 onClick: () => history.replace('/profile'),
                 icon: <FaChevronLeft size="1rem" />
             }} />

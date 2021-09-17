@@ -33,9 +33,14 @@ const Button = ({
             if (bgColorOnArr.length > 1) {
                 setBgColorOnClassNames(bgColorOnArr.reduce((obj, item, i) => ({
                     ...obj,
-                    ['hover:' + item]: !!item,
-                    ['active:' + item]: !!item,
+                    [`hover:${item}`]: !!item,
+                    [`active:${item}`]: !!item,
                 }), {}));
+            } else {
+                setBgColorOnClassNames({
+                    [`hover:bg-${bgColorOn}`]: !!bgColorOn,
+                    [`active:bg-${bgColorOn}`]: !!bgColorOn,
+                })
             }
         // }, 100000);
     }, [bgColorOn]);

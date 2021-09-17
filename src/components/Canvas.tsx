@@ -62,6 +62,7 @@ const Canvas = ({
                     <span key={key}>
                         <Button
                             w={11}
+                            h={11}
                             bgColor={key === activeToolKey ? btnBgColorOn : 'transparent'}
                             bgColorOn={btnBgColorOn}
                             textColor={key === activeToolKey ? btnTextColorOn : textColor}

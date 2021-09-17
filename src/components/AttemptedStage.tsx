@@ -16,6 +16,7 @@ import Button from './Button';
 import { default as AttemptedStateState } from '../types/AttemptedStage';
 import Auth from '../types/Auth';
 import AcquiredAchievement from '../types/AcquiredAchievement';
+import { translateStageCategory } from '../Utils';
 
 type MatchParams = {
     id?: string | undefined;
@@ -151,7 +152,8 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
 
     return (
         <div className="attempted-stage flex flex-col flex-grow">
-            <Navbar title="Hasil Tes" />
+            <Navbar title={`Hasil Tes ${attemptedStage ? translateStageCategory(attemptedStage.stage.category) : ''}: Stage ${attemptedStage?.stage.stage}`} />
+
             <main className="flex flex-grow flex-col justify-between pt-15">
                 <section className="flex flex-col justify-center items-center text-gray-700 text-center pt-10 px-16 pb-10">
                     {/* Star Rating */}
@@ -186,11 +188,14 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <p className="text-sm text-gray-600 font-semibold mb-4">Jawaban kamu:</p>
                     <div className="flex flex-wrap justify-center w-full">
                         {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
-                            <div className={classNames('inline-flex justify-center items-center text-xl font-extrabold rounded-lg py-2 px-4 m-1', {
-                                [`bg-green-500 bg-opacity-10 text-green-500`]: attemptedQuestion.is_correct,
-                                [`bg-red-400 bg-opacity-10 text-red-400`]: !attemptedQuestion.is_correct,
-                                [`aspect-1`]: attemptedStage.stage.category !== 'on-paper',
-                            })}>
+                            <div
+                                className={classNames('inline-flex justify-center items-center text-xl font-extrabold rounded-lg py-2 px-4 m-1', {
+                                    [`bg-green-500 bg-opacity-10 text-green-500`]: attemptedQuestion.is_correct,
+                                    [`bg-red-400 bg-opacity-10 text-red-400`]: !attemptedQuestion.is_correct,
+                                    [`aspect-1`]: attemptedStage.stage.category !== 'on-paper',
+                                })}
+                                key={attemptedQuestion.id}
+                            >
                                 {attemptedQuestion.question.question}
                             </div>
                             // <div className="relative m-1" key={attemptedQuestion.id}>
@@ -220,12 +225,12 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                         </Button>
                     </Link>
                     <Link to={`/stages/category/${attemptedStage?.stage.category}`} replace>
-                        <Button 
-                        bgColor="gradient-to-tl from-white to-white" 
-                        bgColorOn="gradient-to-tl from-blue-500 to-blue-400"
-                        textColor="blue-500" 
-                        textColorOn="white"
-                        shadow="default"
+                        <Button
+                            bgColor="gradient-to-tl from-white to-white"
+                            bgColorOn="gradient-to-tl from-blue-500 to-blue-400"
+                            textColor="blue-500"
+                            textColorOn="white"
+                            shadow="default"
                         >
                             Daftar Stage
                         </Button>

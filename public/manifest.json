@@ -1,7 +1,7 @@
 {
-  "short_name": "Sibisa",
-  "name": "Sibisa",
-  "description": "Aplikasi Belajar Menulis Anak Disgrafia",
+  "short_name": "Edugraph",
+  "name": "Edugraph",
+  "description": "Education for Dysgraphia",
   "icons": [
     {
       "src": "\/android-icon-36x36.png",

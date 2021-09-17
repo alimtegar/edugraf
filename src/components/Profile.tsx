@@ -124,7 +124,7 @@ const Profile = () => {
                                     <div className="p-1" key={i}>
                                         <Link to="/achievements">
                                             <div
-                                                className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400">
+                                                className="relative text-center w-full px-4 py-6 rounded-lg shadow-default overflow-hidden bg-white text-gray-400 hover:text-blue-500 active:text-blue-500">
                                                 <div
                                                     className="flex justify-center items-center"
                                                     style={{
