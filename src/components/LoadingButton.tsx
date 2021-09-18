@@ -1,25 +1,26 @@
+import classNames from "classnames";
+
+// Types
 type Props = {
     w?: number | string,
     h?: number | string,
     borderR?: string,
+    shadow?: string,
 };
 
 const LoadingButton = ({
     w = 'full',
     h = 12,
-    borderR = 'full'
+    borderR = 'full',
+    shadow = 'none',
 }: Props) => (
     <button
-        className={`
-            flex 
-            justify-center
-            items-center
-            bg-gray-200  
-            font-bold 
-            w-${w}
-            h-${h}
-            rounded-${borderR}
-        `}
+        className={classNames('flex justify-center items-center bg-gray-200 font-bold', {
+            [`w-${w}`]: !!w,
+            [`h-${h}`]: !!h,
+            [`rounded-${borderR}`]: !!borderR,
+            [`shadow-${shadow}`]: !!shadow,
+        })}
         disabled
     >
         <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

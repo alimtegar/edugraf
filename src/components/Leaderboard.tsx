@@ -20,9 +20,7 @@ const Leaderboard = () => {
     // Effects
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/leaderboard`)
-            .then((res) => {
-                setLeaderboard(res.data);
-            })
+            .then((res) => setLeaderboard(res.data))
             .catch((err) => console.error(err));
     }, []);
 

@@ -87,10 +87,11 @@ const ProfileChart = () => {
                 ))}
             </div>
             <div className="grid gap-2">
-                {attemptedStageProgress ? attemptedStageProgress.map(({ progress, category }) => (
+                {attemptedStageProgress ? attemptedStageProgress.map(({ progress, category }, i) => (
                     <ProfileChartBar
                         bgColor={getStageCategoryColor(category as StageCategory)}
                         value={progress}
+                        key={i}
                     />
                 )) : Array.from(Array(4).keys()).map((i) => (
                     <ProfileChartBar key={i} />

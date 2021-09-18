@@ -22,12 +22,8 @@ const Activate = ({ match }: RouteComponentProps<MatchParams>) => {
     // Functions
     const activate = useCallback(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/activate/${token}`)
-            .then((res) => {
-                authContext.setAuth(res.data);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+            .then((res) => authContext.setAuth(res.data))
+            .catch((err) => console.error(err));
     }, [token]);
 
     // Effects

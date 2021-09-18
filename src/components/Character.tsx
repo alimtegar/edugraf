@@ -48,7 +48,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
     return (
         <main className="flex flex-grow flex-col">
             <Navbar
-                title={`Detail ${category && translatedCategory[category]} ${letterCase === 'uppercase' ? character?.toUpperCase() : character?.toLowerCase()}`}
+                title={`Detail ${category && translatedCategory[category]} "${character ? (letterCase === 'uppercase' ? decodeURIComponent(character.toUpperCase()) : decodeURIComponent(character.toLowerCase())) : ''}"`}
                 leftButton={{
                     onClick: () => history.replace(`/characters/category/${category}`),
                     icon: <FaChevronLeft size="1rem" />
@@ -67,7 +67,7 @@ const Character = ({ match, history, location }: RouteComponentProps<MatchParams
                         />
                     )}
                 </CharacterFrame>
-                <p className="text-gray-700 text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category].toLowerCase()} <strong className="font-bold">{character && decodeURIComponent(letterCase === 'uppercase' ? character?.toUpperCase() : character?.toLowerCase())}</strong> dengan menu di bawah ini.</p>
+                <p className="text-gray-700 text-sm text-center font-semibold mt-10 md:mx-auto md:w-1/2">Pelajari lebih lengkap tentang {category && translatedCategory[category].toLowerCase()} <strong className="font-bold">"{character && decodeURIComponent(letterCase === 'uppercase' ? character?.toUpperCase() : character?.toLowerCase())}"</strong> dengan menu di bawah ini.</p>
             </section>
 
             <div className="grid grid-cols gap-2 mb-10 px-8 md:mx-auto md:w-1/3">

@@ -18,10 +18,8 @@ const StagesChart = () => {
 
     // Effects
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages?limit=10&order_by=asc`)
-            .then((res) => {
-                setAttemptedStages(res.data);
-            })
+        axios.get(`${process.env.REACT_APP_API_URL}/attempted-stages?limit=8&order_by=desc`)
+            .then((res) => setAttemptedStages(res.data.reverse()))
             .catch((err) => console.error(err));
     }, []);
 
@@ -43,7 +41,9 @@ const StagesChart = () => {
                         value={score}
                         key={id}
                     />
-                )) : null}
+                )) : Array.from(Array(8).keys()).map((i) => (
+                    <StagesChartBar key={i} />
+                ))}
                 {attemptedStages ? Array.from(Array(8 - attemptedStages.length).keys()).map((i) => (
                     <StagesChartBar key={i} />
                 )) : null}

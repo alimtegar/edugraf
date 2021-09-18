@@ -1,6 +1,9 @@
 import { RouteComponentProps, Link, Redirect, } from 'react-router-dom';
 import { FaChevronLeft, } from 'react-icons/fa';
 
+// Utils
+import { translateStageCategory } from '../Utils';
+
 // Contexts
 import { useCharacterContext, } from '../contexts/CharacterContext';
 
@@ -10,6 +13,7 @@ import CharacterFrame from './CharacterFrame';
 
 // Types
 import TranslatedCategory from '../types/TranslatedCategory';
+import StageCategory from '../types/StageCategory';
 
 type MatchParams = {
     category?: string | undefined;
@@ -38,7 +42,7 @@ const Characters = ({ match, history }: RouteComponentProps<MatchParams>) => {
     return (
         <div className="flex-grow text-gray-700">
             <Navbar
-                title="Tabel Karakter"
+                title={`Tabel ${translateStageCategory(category as StageCategory)}`}
                 leftButton={{
                     onClick: () => history.replace('/'),
                     icon: <FaChevronLeft size="1rem" />

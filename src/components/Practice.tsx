@@ -49,7 +49,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
 
             recognize(srcImg)
                 .then((res) => answer(res))
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
         }
     };
 
@@ -61,7 +61,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
             if (validateAnswer(formatCharacter(category, character), answer)) {
                 Alert.fire({
                     title: (<span className="text-lg text-gray-900 font-bold leading-snug">Benar</span>),
-                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{formatCharacter(category, character)}</strong>) sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
+                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda <strong className="font-bold">"{formatCharacter(category, character)}"</strong> sama dengan pertanyaan <strong className="font-bold">"{formatCharacter(category, character)}"</strong>.</p>),
                     icon: 'success',
                     confirmButtonText: 'Baik',
                 }).then(({ isConfirmed }) => {
@@ -72,7 +72,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
             } else {
                 Alert.fire({
                     title: (<span className="text-lg text-gray-900 font-bold leading-snug">Salah</span>),
-                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda (<strong className="font-bold">{answer}</strong>) tidak sama dengan pertanyaan (<strong className="font-bold">{formatCharacter(category, character)}</strong>).</p>),
+                    html: (<p className="text-sm text-gray-500 font-semibold">Jawaban anda <strong className="font-bold">"{answer}"</strong> tidak sama dengan pertanyaan <strong className="font-bold">"{formatCharacter(category, character)}"</strong>.</p>),
                     icon: 'error',
                     showCancelButton: true,
                     showConfirmButton: false,
@@ -117,7 +117,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
                         </span>
                     </div>
                     <p className="text-gray-700 text-center text-sm mt-10 font-semibold leading-none">
-                        Tulislah <strong className="font-bold">{category && character && formatCharacter(category, character)}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                        Tulislah <strong className="font-bold">"{category && character && formatCharacter(category, character)}"</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
                 </section>
 
@@ -131,7 +131,7 @@ const Practice = ({ match, history, location, }: RouteComponentProps<MatchParams
 
                 <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                     {isChecking ? (
-                        <LoadingButton />
+                        <LoadingButton shadow="default" />
                     ) : (
                         <Button
                             {...canvasRef ?

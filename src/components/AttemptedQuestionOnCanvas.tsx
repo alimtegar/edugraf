@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaVolumeUp } from 'react-icons/fa';
 
 // Utils
-import { base64toBlob, recognize } from '../Utils';
+import { base64toBlob, recognize, translateStageCategory } from '../Utils';
 
 // Contexts
 import { useCharacterContext } from '../contexts/CharacterContext';
@@ -44,7 +44,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
 
             recognize(srcImg)
                 .then((res) => answer(res))
-                .catch((err) => console.log(err));
+                .catch((err) => console.error(err));
         }
     };
 
@@ -87,7 +87,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
                 </div>
                 <p className="text-gray-700 text-center text-sm mt-10 font-semibold leading-none">
                     {/* Tulislah (character category)... */}
-                    Tulislah <strong className="font-bold">{attemptedQuestion ? attemptedQuestion?.question.question : ''}</strong> dengan <strong className="font-bold">Kanvas</strong>.
+                    Tulislah {translateStageCategory(attemptedQuestion.attempted_stage.stage.category).toLowerCase()} <strong className="font-bold">"{attemptedQuestion ? attemptedQuestion?.question.question : ''}"</strong> dengan <strong className="font-bold">Kanvas</strong>.
                     </p>
             </section>
 
@@ -100,7 +100,7 @@ const AttemptedQuestionOnCanvas = ({ attemptedQuestion, next }: Props) => {
 
             <section className="mt-auto px-4 mb-4 md:mx-auto md:w-1/3">
                 {isChecking ? (
-                    <LoadingButton />
+                    <LoadingButton shadow="default" />
                 ) : (
                     <Button
                         {...canvasRef ?

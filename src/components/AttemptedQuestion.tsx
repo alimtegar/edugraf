@@ -2,6 +2,9 @@ import { useState, useCallback, useEffect } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
+// Utils
+import { translateStageCategory } from '../Utils';
+
 // Components
 import Loading from './Loading';
 import Navbar from './Navbar';
@@ -59,7 +62,9 @@ const AttemptedQuestion = ({ match, history }: RouteComponentProps<MatchParams>)
 
     return !attemptedQuestion ? (<Loading />) : (
         <>
-            <Navbar title="Tes Menulis" />
+            {/* Stage: attemptedQuestion.attempted_stage.stage.stage */}
+            {/* Stage Category: attemptedQuestion.attempted_stage.stage.category */}
+            <Navbar title={`Tes ${translateStageCategory(attemptedQuestion.attempted_stage.stage.category)}: Stage ${attemptedQuestion.attempted_stage.stage.stage}`} />
 
             <main className="flex flex-grow flex-col justify-between pt-17">
                 <Stepper active={n} count={attemptedQuestion?.attempted_stage.question_count} />

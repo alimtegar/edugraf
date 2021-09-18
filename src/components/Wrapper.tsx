@@ -52,7 +52,7 @@ const Wrapper = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className="font-bold leading-none">Naik Level {res.data.user.level}</div>
+                                    <div className="font-bold leading-none text-gray-700 mb-1">Naik Level {res.data.user.level}</div>
                                     <div className="text-sm text-gray-600">Selamat! Kamu naik ke level {res.data.user.level}.</div>
                                 </div>
                             </div>
@@ -77,11 +77,11 @@ const Wrapper = () => {
                                     <div className="flex items-center">
                                         <div>
                                             <div className="flex justify-center items-center w-12 h-12 bg-blue-50 mr-4 rounded-full">
-                                                <img src={require(`../assets/images/level-up.svg`).default} className="h-7" alt="Naik Level" />
+                                                <img src={require(`../assets/images/achievement.svg`).default} className="h-9" alt="Naik Level" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold leading-none">{res.data.achievement.title}</div>
+                                            <div className="font-bold leading-none text-gray-700 mb-1">{res.data.achievement.title}</div>
                                             <div className="text-sm text-gray-600">Selamat! Kamu mendapatkan penghargaan "{res.data.achievement.title}".</div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@ const Wrapper = () => {
                                     draggable: true,
                                 });
                             })
-                            .catch((err) => console.log(err))
+                            .catch((err) => console.error(err))
                     }
 
                     authContext.setAuth(res.data);
@@ -128,7 +128,7 @@ const Wrapper = () => {
                     </Switch>
                 </div>
                 <ToastContainer
-                    toastClassName={(parameter) => contextClass[parameter?.type || 'default'] + ' relative flex justify-between bg-white text-gray-700 font-semibold m-4 py-2 pl-2 pr-12 border-l-3 rounded-sm shadow-default overflow-hidden cursor-pointer'}
+                    toastClassName={(parameter) => contextClass[parameter?.type || 'default'] + ' relative flex justify-between bg-white text-gray-600 text-sm font-semibold m-4 py-2 pl-2 pr-12 border-l-3 rounded-sm shadow-default overflow-hidden cursor-pointer'}
                 />
             </div>
         </Router>

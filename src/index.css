@@ -172,8 +172,7 @@ input, textarea, button, select, a {
 }
 
 .swal2-close:active {
-    color: #0AB5A3 !important;
-    background-color: rgba(0, 181, 163, 0.125) !important;
+    color: #3B82F6 !important;
 }
 
 /* Motoric Gym */

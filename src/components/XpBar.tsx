@@ -20,7 +20,7 @@ const XpBar = ({ bgColor = 'gray-100' }: Props) => {
             <div className={classNames('overflow-hidden h-2 text-xs flex rounded-full', {
                 [`bg-${bgColor}`]: bgColor,
             })}>
-                <div style={{ width: `${getXpPct(xp)}%`, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
+                <div style={{ width: getXpPct(xp) ? `${getXpPct(xp)}%` : 3, }} className="flex bg-gradient-to-tl from-blue-500 to-blue-400 rounded-full" />
             </div>
             <div className="mt-2 flex items-center justify-between font-bold text-sm leading-none">
                 <span>Level {getLevel(xp)}</span>

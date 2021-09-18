@@ -32,8 +32,6 @@ const GoogleLoginButton = () => {
     const responseGoogle = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
         setIsLoading(true);
 
-        console.log(res);
-
         if ('tokenId' in res) {
             axios.get(`${process.env.REACT_APP_API_URL}/login/google/${res.tokenId}`)
                 .then((res) => {
