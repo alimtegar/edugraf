@@ -119,7 +119,7 @@ const Wrapper = () => {
             <div id="outer-container">
                 <div id="page-wrap" className="relative z-10 flex flex-col w-screen min-h-screen overflow-hidden">
                     <Switch>
-                        {Routes.map((route) => (
+                        {routes.map((route) => (
                             <ProtectedRoute
                                 {...route}
                                 key={route.path}
