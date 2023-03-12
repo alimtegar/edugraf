@@ -19,7 +19,7 @@ import Achievements from './components/Achievements';
 // Types
 import ProtectedRoute from './types/ProtectedRoute';
 
-const routes: ProtectedRoute[] = [
+const Routes: ProtectedRoute[] = [
     {
         exact: true,
         path: '/',
@@ -118,4 +118,4 @@ const routes: ProtectedRoute[] = [
     },
 ];
 
-export default routes;
+export default Routes;
