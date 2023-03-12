@@ -5,7 +5,7 @@ import { ToastContainer, } from 'react-toastify';
 import { toast, } from 'react-toastify';
 
 // Routes
-import Routes from '../Routes';
+import routes from '../routes';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
