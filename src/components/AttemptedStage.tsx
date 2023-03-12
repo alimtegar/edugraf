@@ -189,10 +189,11 @@ const AttemptedStage = ({ match, history }: RouteComponentProps<MatchParams>) =>
                     <div className="flex flex-wrap justify-center w-full">
                         {attemptedStage?.attempted_questions.map((attemptedQuestion, i) => (
                             <div
-                                className={classNames('inline-flex justify-center items-center text-xl font-extrabold rounded-lg py-2 px-4 m-1', {
+                                className={classNames('inline-flex justify-center items-center text-xl font-extrabold rounded-lg m-1 h-11', {
                                     [`bg-green-500 bg-opacity-10 text-green-500`]: attemptedQuestion.is_correct,
                                     [`bg-red-400 bg-opacity-10 text-red-400`]: !attemptedQuestion.is_correct,
                                     [`aspect-1`]: attemptedStage.stage.category !== 'on-paper',
+                                    [`px-4`]: attemptedStage.stage.category === 'on-paper',
                                 })}
                                 key={attemptedQuestion.id}
                             >

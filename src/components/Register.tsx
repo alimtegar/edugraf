@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { RouteComponentProps } from 'react-router-dom';
+import { FaUserPlus } from 'react-icons/fa';
 
 // Contexts
 import { useSidebarContext } from '../contexts/SidebarContext';
@@ -100,7 +101,7 @@ const Register = ({ history }: RouteComponentProps) => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="e.g. example@mail.com"
+                                placeholder="contoh@email.com"
                                 autoComplete="username"
                                 required
                                 value={form.email}
@@ -135,6 +136,7 @@ const Register = ({ history }: RouteComponentProps) => {
                             <LoadingButton />
                         ) : (
                             <Button type="submit">
+                                {/* <FaUserPlus className="inline-flex mr-2 mb-1" /> */}
                                 Daftar
                             </Button>
                         )}
