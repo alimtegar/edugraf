@@ -89,7 +89,7 @@ const Login = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="e.g. example@mail.com"
+                                placeholder="contoh@email.com"
                                 autoComplete="username"
                                 required
                                 value={form.email}
@@ -102,6 +102,7 @@ const Login = () => {
                                 type="password"
                                 id="password"
                                 name="password"
+                                // placeholder="Min. 8 karakter"
                                 autoComplete="current-password"
                                 required
                                 value={form.password}
@@ -112,7 +113,7 @@ const Login = () => {
                             <LoadingButton />
                         ) : (
                             <Button type="submit">
-                                <FaSignInAlt className="inline-flex mr-2 mb-1" />
+                                {/* <FaSignInAlt className="inline-flex mr-2 mb-1" /> */}
                                 Masuk
                             </Button>
                         )}

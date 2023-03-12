@@ -42,7 +42,7 @@ const GoogleLoginButton = () => {
                     setIsLoading(false);
                 })
                 .catch((err) => {
-                    console.error(err);
+                    console.error({err});
                     toast.error(err.response.data.detail, {
                         position: 'top-center',
                         hideProgressBar: true,

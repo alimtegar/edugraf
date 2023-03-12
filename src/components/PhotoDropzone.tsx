@@ -1,9 +1,9 @@
-import { useState, useEffect, } from 'react';
+import { useState, } from 'react';
 import { FaUpload, } from 'react-icons/fa';
-import { useDropzone } from 'react-dropzone';
+import { useDropzone, } from 'react-dropzone';
 
 // Utils
-import { blobToBase64, fileToBase64 } from '../Utils';
+import { fileToBase64, } from '../Utils';
 
 // Components
 import Photo from './Photo';
