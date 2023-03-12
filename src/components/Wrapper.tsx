@@ -5,7 +5,7 @@ import { ToastContainer, } from 'react-toastify';
 import { toast, } from 'react-toastify';
 
 // Routes
-import routes from '../Routes';
+import Routes from '../Routes';
 
 // Contexts
 import { useAuthContext } from '../contexts/AuthContext';
@@ -119,7 +119,7 @@ const Wrapper = () => {
             <div id="outer-container">
                 <div id="page-wrap" className="relative z-10 flex flex-col w-screen min-h-screen overflow-hidden">
                     <Switch>
-                        {routes.map((route) => (
+                        {Routes.map((route) => (
                             <ProtectedRoute
                                 {...route}
                                 key={route.path}
